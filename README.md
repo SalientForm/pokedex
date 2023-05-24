@@ -18,7 +18,7 @@
 1. Fuzzy search has been implemented with [fuse.js](https://fusejs.io/)
 1. Use of the scaffolding tool [Nx](https://nx.dev/)
 1. Use of [CSS Modules](https://github.com/gajus/react-css-modules) to namespace CSS rules
-1. Use of React Bootstrap components to save time
+1. Use of [React Bootstrap components](https://react-bootstrap.github.io/)
 
 ## Next steps
 
