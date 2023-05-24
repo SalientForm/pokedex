@@ -1,0 +1,47 @@
+.container {
+  width: 16rem;
+  margin: 1rem 0 1rem 0;
+  padding: 0.5rem;
+  background-color: #aaaaaa;
+}
+
+.title {
+  font-size: 1.5rem;
+  align-self: center;
+}
+
+.message {
+  align-self: center;
+}
+
+.card-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.abilities {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.badge {
+  margin: 0.125rem;
+}
+
+.primary-image {
+  width: 96px;
+  height: 96px;
+}

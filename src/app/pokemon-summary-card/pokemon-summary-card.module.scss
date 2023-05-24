@@ -1,0 +1,43 @@
+.container {
+  width: 14rem;
+  height: 14rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  justify-self: center;
+  transform: scale(1);
+  transition: all 0.1s ease-in-out;
+  background-color: #dfdfdf;
+  cursor: pointer;
+}
+
+.abilities {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.badge {
+  margin: 0.125rem;
+}
+
+.container:hover {
+  transition: all 0.1s ease-in-out;
+  transform: scale(1.075);
+  background-color: #ffffff;
+}
+
+.card-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+.primary-image {
+  width: 96px;
+  height: 96px;
+}

@@ -1,0 +1,13 @@
+.container {
+  margin: 0 0 0.25rem 0;
+  padding: 0.125rem 0.5rem 0.125rem 0.5rem;
+  width: 100%;
+  border-radius: 5px;
+  background-color: #aaaaaa;
+  text-transform: capitalize;
+}
+
+.container:hover {
+  background-color: #dfdfdf;
+  cursor: pointer;
+}
