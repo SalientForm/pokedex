@@ -17,9 +17,8 @@ export const rootStore = configureStore({
     [POKEMON_INDEX_FEATURE_KEY]: pokemonIndexReducer,
     [VIEW_HISTORY_FEATURE_KEY]: viewHistoryReducer,
   },
-  // Additional middleware can be passed to this array
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
   devTools: process.env.NODE_ENV !== 'production',
-  // Optional Redux store enhancers
   enhancers: [],
 });
