@@ -22,11 +22,8 @@
 
 ## Next steps
 
-- Add unit tests 
-- Consider removing Go button
+- Add unit tests to reach good coverage
 - Implement queue or a query-library to debounce loading of Pokemon details
-- Spend time profiling the app for performance
 - Add ability to search by Pokemon id #
-- Implement separate view-detail screen 
-- Review code for cleanup (remove commented-out code, commit history, etc)
-- Generally complete the bonus items listed
+- Implement separate view-detail screen to show additional details
+
