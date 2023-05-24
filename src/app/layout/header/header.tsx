@@ -6,7 +6,7 @@ export interface HeaderProps {}
 export function Header(props: HeaderProps) {
   return (
     <div className={styles['header']}>
-      <div className={styles['title']}>Pokédex Search</div>
+      <div className={styles['title']}>Pokédex</div>
     </div>
   );
 }

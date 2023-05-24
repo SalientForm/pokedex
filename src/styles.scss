@@ -1,35 +1,5 @@
-@import 'bootstrap/dist/css/bootstrap.min.css';
-
-@font-face {
-  font-family: 'Flexo-Thin';
-  src: url('./assets/fonts/285B7A_0_0.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Flexo-Regular';
-  src:
-    url('./assets/fonts/285B7A_1_0.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Flexo-Medium';
-  src: url('./assets/fonts/285B7A_2_0.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Flexo-Light';
-  src: url('./assets/fonts/285B7A_3_0.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Flexo-Demi';
-  src: url('./assets/fonts/285B7A_4_0.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Flexo-Bold';
-  src: url('./assets/fonts/285B7A_5_0.woff') format('woff');
-}
+@use 'bootstrap/dist/css/bootstrap.min.css';
+@use 'styles/typography.scss';
 
 body {
   background-color: #999999;

@@ -7,7 +7,7 @@ import { POKEMON_FEATURE_KEY, pokemonReducer } from './pokemon/pokemon.slice';
 import {
   VIEW_HISTORY_FEATURE_KEY,
   viewHistoryReducer,
-} from './view-history/view-history.slice';
+} from './pokemon-view-history/view-history.slice';
 
 export type PokedexDispatch = typeof store.dispatch;
 

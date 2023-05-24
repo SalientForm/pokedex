@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import PokemonSummaryCard from '../../pokemon-summary-card/pokemon-summary-card';
+import PokemonSummaryCard from '../pokemon-summary-card/pokemon-summary-card';
 import {
   pokemonIndexActions,
   selectPokemonFromIndexByName,
@@ -10,7 +10,7 @@ import { PokedexDispatch } from '../../state/root-store';
 import {
   addViewHistoryItemByPokemonId,
   selectAllViewHistory,
-} from '../../state/view-history/view-history.slice';
+} from '../../state/pokemon-view-history/view-history.slice';
 
 /* eslint-disable-next-line */
 export interface PokedexSearchResultProps {

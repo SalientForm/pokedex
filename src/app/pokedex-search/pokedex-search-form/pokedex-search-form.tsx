@@ -23,7 +23,7 @@ export function PokedexSearchForm(props: PokedexSearchFormProps) {
   };
 
   return (
-    <Card className={styles['container']}>
+    <div className={styles['container']}>
       <Form onSubmit={handleOnSubmit}>
         <Form.Group className="d-flex flex-row" controlId="pokedexSearch">
           <Form.Control
@@ -33,18 +33,10 @@ export function PokedexSearchForm(props: PokedexSearchFormProps) {
             }}
             placeholder="Enter search text"
             value={searchText}
-            className={'me-3'}
           />
-          <Button
-            variant="primary"
-            type="button"
-            onClick={() => props.handlePokemonSearch(searchText)}
-          >
-            Go
-          </Button>
         </Form.Group>
       </Form>
-    </Card>
+    </div>
   );
 }
 

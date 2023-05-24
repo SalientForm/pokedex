@@ -1,12 +1,11 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import DefaultLayout from './layout/default-layout';
-import styles from './app.module.scss';
+import Pokedex from './pokedex/pokedex';
 
 export function App() {
   return (
-    <div className={styles.host}>
-      <DefaultLayout />
-    </div>
+    <DefaultLayout>
+      <Pokedex />
+    </DefaultLayout>
   );
 }
 
