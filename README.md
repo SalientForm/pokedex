@@ -25,5 +25,5 @@
 - Add unit tests to reach good coverage
 - Implement queue or a query-library to debounce loading of Pokemon details
 - Add ability to search by Pokemon id #
-- Implement separate view-detail screen  
-- Generally complete the bonus items listed
+- Implement separate view-detail screen to show additional details
+
