@@ -22,7 +22,7 @@
 
 ## Next steps
 
-- Add/fix unit tests 
+- Add unit tests 
 - Consider removing Go button
 - Implement queue or a query-library to debounce loading of Pokemon details
 - Spend time profiling the app for performance
