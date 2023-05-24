@@ -1,6 +1,5 @@
 import { PropsWithChildren } from 'react';
 import styles from './default-layout.module.scss';
-import PokedexSearch from '../pokedex-search/pokedex-search';
 import Header from './header/header';
 
 export function DefaultLayout({ children }: PropsWithChildren) {

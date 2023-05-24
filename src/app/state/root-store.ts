@@ -9,9 +9,9 @@ import {
   viewHistoryReducer,
 } from './view-history/view-history.slice';
 
-export type PokedexDispatch = typeof store.dispatch;
+export type PokedexDispatch = typeof rootStore.dispatch;
 
-export const store = configureStore({
+export const rootStore = configureStore({
   reducer: {
     [POKEMON_FEATURE_KEY]: pokemonReducer,
     [POKEMON_INDEX_FEATURE_KEY]: pokemonIndexReducer,
