@@ -1,6 +1,13 @@
 .container {
   flex-grow: 1;
+  display: flex;
   margin: 0 0 1rem 0;
-  padding: 1rem;
+  padding: 0.5rem 1rem 1rem 1rem;
   background-color: #aaaaaa;
+}
+
+.title {
+  font-size: 1.5rem;
+  align-self: center;
+  margin: 0 0 0.5rem 0;
 }

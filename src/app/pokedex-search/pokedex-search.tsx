@@ -22,6 +22,7 @@ export function PokedexSearch() {
 
   return (
     <Card className={styles['container']}>
+      <div className={styles['title']}>Search</div>
       <PokedexSearchForm handlePokemonSearch={handlePokemonSearchTextChange} />
       <PokedexSearchResult searchText={searchText}></PokedexSearchResult>
     </Card>
