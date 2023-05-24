@@ -2,33 +2,25 @@
 
 ## Features
 
-1. Search with the search bar
-2. Click on individual search results to select the Pokemon detail
-3. Click on history items to change Pokemon detail selection
+1. Search with the search bar to search by name
+2. Click on individual search results to view the Pokemon detail
+3. Click on history items to view previously viewed Pokemon
 
 ## Setup
 
 - Clone the repo
 - Install local dependencies `npm i`
-- You may have to install **Nx** globally `npm i -g nx`
 - Run `nx serve`
-
-## Thoughts 
-
-After completing the challenge I have a sense that the 2 1/2 hour time suggestion is appropriate for the base requirements. 
-The bonus items require more time beyond this. The assessment was fun, which is appreciated.
 
 ## Choices
 
-1. Load Pokemon index unfront (not the details)
-1. Use of fuzzy search was added with fuse.js
-1. Use of the scaffolding tool Nx
-1. Use of CSS Modules to namespace CSS rules
+1. The index of all Pokemon is loaded unfront (not the details) to enable fuzzy search
+1. Fuzzy search has been implemented with [fuse.js](https://fusejs.io/)
+1. Use of the scaffolding tool [Nx](https://nx.dev/)
+1. Use of [CSS Modules](https://github.com/gajus/react-css-modules) to namespace CSS rules
 1. Use of React Bootstrap components to save time
 
-## Potential Next steps
-
-Some enhancements that would be implemented with more time are noted with TODO in the code.
+## Next steps
 
 - Add/fix unit tests 
 - Consider removing Go button
