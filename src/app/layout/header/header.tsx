@@ -1,9 +1,6 @@
 import styles from './header.module.scss';
 
-/* eslint-disable-next-line */
-export interface HeaderProps {}
-
-export function Header(props: HeaderProps) {
+export function Header() {
   return (
     <div className={styles['header']}>
       <div className={styles['title']}>Pokédex</div>

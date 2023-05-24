@@ -3,12 +3,8 @@ import { useSelector } from 'react-redux';
 import { selectAllViewHistory } from '../state/view-history/view-history.slice';
 import ViewHistoryItem from './view-history-item/view-history-item';
 import { useEffect, useState } from 'react';
-import viewHistoryItem from './view-history-item/view-history-item';
 
-/* eslint-disable-next-line */
-export interface PokedexViewHistoryProps {}
-
-export function PokedexViewHistory(props: PokedexViewHistoryProps) {
+export function PokedexViewHistory() {
   const [message, setMessage] = useState('');
   const viewHistory$ = useSelector(selectAllViewHistory);
 

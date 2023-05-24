@@ -7,7 +7,7 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit';
 import { PokedexFeatureState } from '../pokedex-feature-state';
-import { selectPokemonIndexItemById } from '../index/pokemon-index.slice';
+import { selectPokemonIndexItemById } from '../pokemon-index/pokemon-index.slice';
 import { v4 as uuidv4 } from 'uuid';
 
 export const VIEW_HISTORY_FEATURE_KEY = 'viewHistory';

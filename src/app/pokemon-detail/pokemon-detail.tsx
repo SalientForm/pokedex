@@ -1,6 +1,6 @@
 import styles from './pokemon-detail.module.scss';
 import { useSelector } from 'react-redux';
-import { selectSelectedPokemon } from '../state/index/pokemon-index.slice';
+import { selectSelectedPokemon } from '../state/pokemon-index/pokemon-index.slice';
 import { Badge, Card } from 'react-bootstrap';
 import { PokemonEntity } from '../state/pokemon/pokemon.slice';
 

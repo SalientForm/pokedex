@@ -6,7 +6,7 @@ import {
   EntityState,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import { PokemonIndexState } from '../index/pokemon-index.slice';
+import { PokemonIndexState } from '../pokemon-index/pokemon-index.slice';
 import { PokedexFeatureState } from '../pokedex-feature-state';
 import { Pokemon } from '../pokemon.model';
 

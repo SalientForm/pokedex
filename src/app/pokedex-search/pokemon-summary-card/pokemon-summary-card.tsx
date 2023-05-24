@@ -9,7 +9,6 @@ import { PokedexDispatch } from '../../state/root-store';
 import styles from './pokemon-summary-card.module.scss';
 import { useEffect } from 'react';
 
-/* eslint-disable-next-line */
 export interface PokemonCardSummaryProps {
   pokemonId: number;
   pokemonName?: string;
@@ -17,12 +16,20 @@ export interface PokemonCardSummaryProps {
   onClick?: (pokemonId: number) => void;
 }
 
-const getAbilities = (pokemon: PokemonEntity) => {
-  return pokemon.abilities?.map((item) => (
-    <Badge key={item.ability.name} bg="secondary" className={styles[`badge`]}>
-      {item.ability.name}
-    </Badge>
-  ));
+const getAbilities = (pokemon?: PokemonEntity) => {
+  return (
+    <div className={`${styles['abilities']}`}>
+      {pokemon?.abilities?.map((item) => (
+        <Badge
+          key={item.ability.name}
+          bg="secondary"
+          className={styles[`badge`]}
+        >
+          {item.ability.name}
+        </Badge>
+      ))}
+    </div>
+  );
 };
 
 export function PokemonSummaryCard(props: PokemonCardSummaryProps) {
@@ -45,17 +52,15 @@ export function PokemonSummaryCard(props: PokemonCardSummaryProps) {
       <div className={styles['primary-image']}>
         {pokemon$?.sprites?.front_default ? (
           <img alt={props.pokemonName} src={pokemon$?.sprites?.front_default} />
-        ) : null}
+        ) : (
+          ''
+        )}
       </div>
       <div className={`${styles['card-title']}`}>
         {`${props.pokemonName}`}
-        <div>{`#${pokemon$?.id.toString().padStart(4, '0')}`}</div>
+        <div>{`#${props.pokemonId}`}</div>
       </div>
-      {pokemon$ ? (
-        <div className={`${styles['abilities']}`}>{getAbilities(pokemon$)}</div>
-      ) : (
-        ''
-      )}
+      {getAbilities(pokemon$)}
     </Card>
   );
 }

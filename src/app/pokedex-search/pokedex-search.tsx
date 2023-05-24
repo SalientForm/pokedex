@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { fetchAllPokemonIndex } from '../state/index/pokemon-index.slice';
+import { fetchAllPokemonIndex } from '../state/pokemon-index/pokemon-index.slice';
 import { PokedexDispatch } from '../state/root-store';
 import PokedexSearchForm from './pokedex-search-form/pokedex-search-form';
 import styles from './pokedex-search.module.scss';
@@ -16,13 +16,13 @@ export function PokedexSearch() {
     dispatch(fetchAllPokemonIndex());
   }, [dispatch]);
 
-  const handlePokemonSearch = (searchText: string) => {
+  const handlePokemonSearchTextChange = (searchText: string) => {
     setSearchText(searchText);
   };
 
   return (
     <Card className={styles['container']}>
-      <PokedexSearchForm handlePokemonSearch={handlePokemonSearch} />
+      <PokedexSearchForm handlePokemonSearch={handlePokemonSearchTextChange} />
       <PokedexSearchResult searchText={searchText}></PokedexSearchResult>
     </Card>
   );

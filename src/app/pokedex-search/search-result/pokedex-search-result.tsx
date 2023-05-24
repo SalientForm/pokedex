@@ -3,7 +3,7 @@ import PokemonSummaryCard from '../pokemon-summary-card/pokemon-summary-card';
 import {
   pokemonIndexActions,
   selectPokemonFromIndexByName,
-} from '../../state/index/pokemon-index.slice';
+} from '../../state/pokemon-index/pokemon-index.slice';
 import styles from './pokedex-search-result.module.scss';
 import { Card } from 'react-bootstrap';
 import { PokedexDispatch } from '../../state/root-store';

@@ -3,11 +3,10 @@ import {
   addViewHistoryItemByPokemonId,
   ViewHistoryEntity,
 } from '../../state/view-history/view-history.slice';
-import { pokemonIndexActions } from '../../state/index/pokemon-index.slice';
+import { pokemonIndexActions } from '../../state/pokemon-index/pokemon-index.slice';
 import { useDispatch } from 'react-redux';
 import { PokedexDispatch } from '../../state/root-store';
 
-/* eslint-disable-next-line */
 export interface ViewHistoryItemProps {
   viewHistoryItem: ViewHistoryEntity;
 }
