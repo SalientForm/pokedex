@@ -2,12 +2,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import {
   POKEMON_INDEX_FEATURE_KEY,
   pokemonIndexReducer,
-} from './pokemon-index/pokemon-index.slice';
+} from './index/pokemon-index.slice';
 import { POKEMON_FEATURE_KEY, pokemonReducer } from './pokemon/pokemon.slice';
 import {
   VIEW_HISTORY_FEATURE_KEY,
   viewHistoryReducer,
-} from './pokemon-view-history/view-history.slice';
+} from './view-history/view-history.slice';
 
 export type PokedexDispatch = typeof store.dispatch;
 

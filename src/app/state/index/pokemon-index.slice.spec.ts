@@ -8,7 +8,7 @@ describe('pokemonIndex reducer', () => {
   it('should handle initial state', () => {
     const expected = pokemonIndexAdapter.getInitialState({
       loadingStatus: 'not loaded',
-      error: null,
+      error: '',
     });
 
     expect(pokemonIndexReducer(undefined, { type: '' })).toEqual(expected);
@@ -23,21 +23,23 @@ describe('pokemonIndex reducer', () => {
     expect(state).toEqual(
       expect.objectContaining({
         loadingStatus: 'loading',
-        error: null,
+        error: '',
         entities: {},
       })
     );
 
+    const mockPokemonIndex = { id: 1, name: 'name', url: 'url' };
+
     state = pokemonIndexReducer(
       state,
-      fetchAllPokemonIndex.fulfilled([{ id: 1, name: 'name', url: 'url' }], '')
+      fetchAllPokemonIndex.fulfilled([mockPokemonIndex], '')
     );
 
     expect(state).toEqual(
       expect.objectContaining({
         loadingStatus: 'loaded',
-        error: null,
-        entities: { 1: { id: 1 } },
+        error: '',
+        entities: { 1: mockPokemonIndex },
       })
     );
 
@@ -50,7 +52,7 @@ describe('pokemonIndex reducer', () => {
       expect.objectContaining({
         loadingStatus: 'error',
         error: 'Uh oh',
-        entities: { 1: { id: 1 } },
+        entities: { 1: mockPokemonIndex },
       })
     );
   });

@@ -3,14 +3,14 @@ import PokemonSummaryCard from '../pokemon-summary-card/pokemon-summary-card';
 import {
   pokemonIndexActions,
   selectPokemonFromIndexByName,
-} from '../../state/pokemon-index/pokemon-index.slice';
+} from '../../state/index/pokemon-index.slice';
 import styles from './pokedex-search-result.module.scss';
 import { Card } from 'react-bootstrap';
 import { PokedexDispatch } from '../../state/root-store';
 import {
   addViewHistoryItemByPokemonId,
   selectAllViewHistory,
-} from '../../state/pokemon-view-history/view-history.slice';
+} from '../../state/view-history/view-history.slice';
 
 /* eslint-disable-next-line */
 export interface PokedexSearchResultProps {

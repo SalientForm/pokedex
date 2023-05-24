@@ -2,8 +2,8 @@ import styles from './view-history-item.module.scss';
 import {
   addViewHistoryItemByPokemonId,
   ViewHistoryEntity,
-} from '../../state/pokemon-view-history/view-history.slice';
-import { pokemonIndexActions } from '../../state/pokemon-index/pokemon-index.slice';
+} from '../../state/view-history/view-history.slice';
+import { pokemonIndexActions } from '../../state/index/pokemon-index.slice';
 import { useDispatch } from 'react-redux';
 import { PokedexDispatch } from '../../state/root-store';
 

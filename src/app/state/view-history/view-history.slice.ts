@@ -7,14 +7,11 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit';
 import { PokedexFeatureState } from '../pokedex-feature-state';
-import { selectPokemonIndexItemById } from '../pokemon-index/pokemon-index.slice';
+import { selectPokemonIndexItemById } from '../index/pokemon-index.slice';
 import { v4 as uuidv4 } from 'uuid';
 
 export const VIEW_HISTORY_FEATURE_KEY = 'viewHistory';
 
-/*
- * Update these interfaces according to your requirements.
- */
 export interface ViewHistoryEntity {
   id: string;
   pokemonId: number;
@@ -22,30 +19,10 @@ export interface ViewHistoryEntity {
   viewTimestamp: number;
 }
 
-export interface ViewHistoryState extends EntityState<ViewHistoryEntity> {
-  loadingStatus: 'not loaded' | 'loading' | 'loaded' | 'error';
-  error?: string;
-}
+export interface ViewHistoryState extends EntityState<ViewHistoryEntity> {}
 
 export const viewHistoryAdapter = createEntityAdapter<ViewHistoryEntity>();
 
-/**
- * Export an effect using createAsyncThunk from
- * the Redux Toolkit: https://redux-toolkit.js.org/api/createAsyncThunk
- *
- * e.g.
- * ```
- * import React, { useEffect } from 'react';
- * import { useDispatch } from 'react-redux';
- *
- * // ...
- *
- * const dispatch = useDispatch();
- * useEffect(() => {
- *   dispatch(fetchViewHistory())
- * }, [dispatch]);
- * ```
- */
 // TODO: migrate to regular thunk with redux-thunk
 export const addViewHistoryItemByPokemonId = createAsyncThunk(
   'viewHistory/addHydratedItem',
@@ -69,10 +46,7 @@ export const addViewHistoryItemByPokemonId = createAsyncThunk(
 );
 
 export const initialViewHistoryState: ViewHistoryState =
-  viewHistoryAdapter.getInitialState({
-    loadingStatus: 'not loaded',
-    error: '',
-  });
+  viewHistoryAdapter.getInitialState({});
 
 export const viewHistorySlice = createSlice({
   name: VIEW_HISTORY_FEATURE_KEY,

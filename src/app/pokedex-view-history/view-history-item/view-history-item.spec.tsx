@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import ViewHistoryItem from './view-history-item';
-import { ViewHistoryEntity } from '../../state/pokemon-view-history/view-history.slice';
+import { ViewHistoryEntity } from '../../state/view-history/view-history.slice';
 
 const mockViewHistoryItem: ViewHistoryEntity = {
   id: 'id',

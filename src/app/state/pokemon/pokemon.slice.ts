@@ -6,6 +6,7 @@ import {
   EntityState,
   PayloadAction,
 } from '@reduxjs/toolkit';
+import { PokemonIndexState } from '../index/pokemon-index.slice';
 import { PokedexFeatureState } from '../pokedex-feature-state';
 import { Pokemon } from '../pokemon.model';
 
@@ -22,29 +23,10 @@ export interface PokemonEntity extends Partial<Pokemon> {
 export interface PokemonState extends EntityState<PokemonEntity> {
   loadingStatus: 'not loaded' | 'loading' | 'loaded' | 'error';
   error: string;
-  // TODO: implement fetch queue, or query library with throttling
-  queue: number[];
 }
 
 export const pokemonAdapter = createEntityAdapter<PokemonEntity>();
 
-/**
- * Export an effect using createAsyncThunk from
- * the Redux Toolkit: https://redux-toolkit.js.org/api/createAsyncThunk
- *
- * e.g.
- * ```
- * import React, { useEffect } from 'react';
- * import { useDispatch } from 'react-redux';
- *
- * // ...
- *
- * const dispatch = useDispatch();
- * useEffect(() => {
- *   dispatch(fetchPokemon())
- * }, [dispatch]);
- * ```
- */
 export const fetchPokemonById = createAsyncThunk(
   'pokemon/fetchStatus',
   async (pokemonId: number, thunkAPI) => {
@@ -59,7 +41,6 @@ export const fetchPokemonById = createAsyncThunk(
       `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
     );
     const loadedPokemon: PokemonEntity = await response.json();
-    // TODO: validate response?
     return Promise.resolve(loadedPokemon);
   }
 );
@@ -68,7 +49,6 @@ export const initialPokemonState: PokemonState = pokemonAdapter.getInitialState(
   {
     loadingStatus: 'not loaded',
     error: '',
-    queue: [],
   }
 );
 
@@ -78,21 +58,24 @@ export const pokemonSlice = createSlice({
   reducers: {
     add: pokemonAdapter.addOne,
     remove: pokemonAdapter.removeOne,
-    // ...
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchPokemonById.pending, (state: PokemonState, { meta }) => {
         state.loadingStatus = 'loading';
-        // TODO: implement queue to throttle fetch requests?
-        //console.log('meta', meta.arg);
-        //state.queue.push(action.payload);
       })
       .addCase(
         fetchPokemonById.fulfilled,
         (state: PokemonState, action: PayloadAction<PokemonEntity>) => {
           pokemonAdapter.addOne(state, action.payload);
           state.loadingStatus = 'loaded';
+        }
+      )
+      .addCase(
+        fetchPokemonById.rejected,
+        (state: PokemonState, action) => {
+          state.loadingStatus = 'error';
+          state.error = action.error.message ?? '';
         }
       );
   },
