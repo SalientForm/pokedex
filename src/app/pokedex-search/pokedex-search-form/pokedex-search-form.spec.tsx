@@ -4,7 +4,7 @@ import { rootStore } from '../../state/root-store';
 import PokedexSearchForm, { PokedexSearchFormProps } from './pokedex-search-form';
 
 const mockProps: PokedexSearchFormProps = {
-  handlePokemonSearch: (searchText: string) => {
+  handlePokemonSearch: () => {
     return undefined;
   },
 };

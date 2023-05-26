@@ -1,5 +1,4 @@
 import {
-  createAction,
   createAsyncThunk,
   createEntityAdapter,
   createSelector,
@@ -8,9 +7,9 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit';
 import Fuse from 'fuse.js';
-import { PokedexFeatureState } from '../pokedex-feature-state';
 import { PokeApiListResponse } from '../pokeapi.model';
-import { selectPokemonById, selectPokemonEntities, selectPokemonState } from '../pokemon/pokemon.slice';
+import { PokedexFeatureState } from '../pokedex-feature-state';
+import { selectPokemonEntities } from '../pokemon/pokemon.slice';
 
 export const POKEMON_INDEX_FEATURE_KEY = 'pokemonIndex';
 
@@ -48,7 +47,7 @@ export const pokemonIndexAdapter = createEntityAdapter<PokemonIndexEntity>();
  * }, [dispatch]);
  * ```
  */
-export const fetchAllPokemonIndex = createAsyncThunk('pokemonIndex/fetchStatus', async (_, thunkAPI) => {
+export const fetchAllPokemonIndex = createAsyncThunk('pokemonIndex/fetchStatus', async (_) => {
   // SUGGESTION: instead of utilizing fetch here, consider a query library or request library
   const POKEMON_LIMIT = 2000;
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=${POKEMON_LIMIT}`);

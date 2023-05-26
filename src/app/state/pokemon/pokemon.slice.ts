@@ -6,7 +6,6 @@ import {
   EntityState,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import { PokemonIndexState } from '../pokemon-index/pokemon-index.slice';
 import { PokedexFeatureState } from '../pokedex-feature-state';
 import { Pokemon } from '../pokemon.model';
 
@@ -53,7 +52,7 @@ export const pokemonSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchPokemonById.pending, (state: PokemonState, { meta }) => {
+      .addCase(fetchPokemonById.pending, (state: PokemonState) => {
         state.loadingStatus = 'loading';
       })
       .addCase(fetchPokemonById.fulfilled, (state: PokemonState, action: PayloadAction<PokemonEntity>) => {
