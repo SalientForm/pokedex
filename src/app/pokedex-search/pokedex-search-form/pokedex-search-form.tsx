@@ -24,10 +24,9 @@ export function PokedexSearchForm(props: PokedexSearchFormProps) {
   return (
     <div className={styles['container']}>
       <Form data-testid="pokedex-search-form" onSubmit={handleOnSubmit}>
-        <Form.Group className="d-flex flex-row" controlId="pokedexSearch">
+        <Form.Group className="d-flex flex-row" controlId="searchText">
           <Form.Control
             type="text"
-            id={"searchText"}
             onChange={(event) => {
               setSearchText(event.target.value.trim());
             }}
