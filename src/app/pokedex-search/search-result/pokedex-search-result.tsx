@@ -1,12 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux';
-import PokemonSummaryCard from '../pokemon-summary-card/pokemon-summary-card';
-import { pokemonIndexActions, selectPokemonFromIndexByName } from '../../state/pokemon-index/pokemon-index.slice';
-import styles from './pokedex-search-result.module.scss';
 import { Card } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { pokemonIndexActions, selectPokemonFromIndexByName } from '../../state/pokemon-index/pokemon-index.slice';
 import { PokedexDispatch } from '../../state/root-store';
-import { addViewHistoryItemByPokemonId, selectAllViewHistory } from '../../state/view-history/view-history.slice';
+import { addViewHistoryItemByPokemonId } from '../../state/view-history/view-history.slice';
+import PokemonSummaryCard from '../pokemon-summary-card/pokemon-summary-card';
+import styles from './pokedex-search-result.module.scss';
 
-/* eslint-disable-next-line */
 export interface PokedexSearchResultProps {
   searchText: string;
 }

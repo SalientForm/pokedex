@@ -29,11 +29,15 @@ export function PokemonSummaryCard(props: PokemonCardSummaryProps) {
   const dispatch = useDispatch<PokedexDispatch>();
 
   useEffect(() => {
-    if (!pokemon$) dispatch(fetchPokemonById(props.pokemonId));
+    if (!pokemon$) {
+      dispatch(fetchPokemonById(props.pokemonId));
+    }
   }, [props, dispatch, pokemon$]);
 
   const handleCardClick = () => {
-    if (props.onClick) props.onClick(props.pokemonId);
+    if (props.onClick) {
+      props.onClick(props.pokemonId);
+    }
   };
 
   return (

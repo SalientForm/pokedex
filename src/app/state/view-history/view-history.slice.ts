@@ -19,7 +19,7 @@ export interface ViewHistoryEntity {
   viewTimestamp: number;
 }
 
-export interface ViewHistoryState extends EntityState<ViewHistoryEntity> {}
+export type ViewHistoryState = EntityState<ViewHistoryEntity>;
 
 export const viewHistoryAdapter = createEntityAdapter<ViewHistoryEntity>();
 

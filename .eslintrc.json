@@ -3,9 +3,7 @@
   "root": true,
   "ignorePatterns": ["!**/*"],
   "plugins": ["@nx"],
-
   "overrides": [
-
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nx/typescript"],
@@ -15,6 +13,10 @@
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nx/javascript"],
       "rules": {}
+    },
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": { "curly": "error" }
     }
   ]
 }
