@@ -1,8 +1,7 @@
 import styles from './pokedex-search-form.module.scss';
-import { Button, Card, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { FormEventHandler, useEffect, useState } from 'react';
 
-/* eslint-disable-next-line */
 export interface PokedexSearchFormProps {
   handlePokemonSearch: (searchText: string) => void;
 }
@@ -24,10 +23,11 @@ export function PokedexSearchForm(props: PokedexSearchFormProps) {
 
   return (
     <div className={styles['container']}>
-      <Form onSubmit={handleOnSubmit}>
+      <Form data-testid="pokedex-search-form" onSubmit={handleOnSubmit}>
         <Form.Group className="d-flex flex-row" controlId="pokedexSearch">
           <Form.Control
             type="text"
+            id={"searchText"}
             onChange={(event) => {
               setSearchText(event.target.value.trim());
             }}
