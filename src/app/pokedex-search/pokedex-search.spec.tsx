@@ -4,12 +4,10 @@ import { Provider } from 'react-redux';
 import * as pokemonIndexSlice from '../state/pokemon-index/pokemon-index.slice';
 import { PokedexDispatch, rootStore } from '../state/root-store';
 import PokedexSearch from './pokedex-search';
-import { PokedexSearchResultProps, } from './search-result/pokedex-search-result';
+import { PokedexSearchResultProps } from './search-result/pokedex-search-result';
 
-vi.mock('../state/pokemon-index/pokemon-index.slice',  async () => {
-  const actual = await vi.importActual(
-    '../state/pokemon-index/pokemon-index.slice'
-  ) as module;
+vi.mock('../state/pokemon-index/pokemon-index.slice', async () => {
+  const actual = (await vi.importActual('../state/pokemon-index/pokemon-index.slice')) as module;
   return {
     ...actual,
     fetchAllPokemonIndex: () => ({
@@ -19,7 +17,7 @@ vi.mock('../state/pokemon-index/pokemon-index.slice',  async () => {
 });
 
 vi.mock('./search-result/pokedex-search-result', () => ({
-  default: (props: PokedexSearchResultProps) => <div data-testid="pokedexSearchResult">{props.searchText}</div>
+  default: (props: PokedexSearchResultProps) => <div data-testid='pokedexSearchResult'>{props.searchText}</div>,
 }));
 
 describe('PokedexSearch', () => {
@@ -32,9 +30,7 @@ describe('PokedexSearch', () => {
     );
     expect(screen.getByText('Search')).toBeInTheDocument();
     expect(rootStore.dispatch).toHaveBeenCalledTimes(1);
-    expect(rootStore.dispatch).toHaveBeenCalledWith(
-      pokemonIndexSlice.fetchAllPokemonIndex()
-    );
+    expect(rootStore.dispatch).toHaveBeenCalledWith(pokemonIndexSlice.fetchAllPokemonIndex());
   });
 
   it('updates search text when a new value is inputted', () => {

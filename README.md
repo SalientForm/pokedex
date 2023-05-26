@@ -26,4 +26,3 @@
 - Implement queue or a query-library to debounce loading of Pokemon details
 - Add ability to search by Pokemon id #
 - Implement separate view-detail screen to show additional details
-

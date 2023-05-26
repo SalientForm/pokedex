@@ -1,16 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import PokemonSummaryCard from '../pokemon-summary-card/pokemon-summary-card';
-import {
-  pokemonIndexActions,
-  selectPokemonFromIndexByName,
-} from '../../state/pokemon-index/pokemon-index.slice';
+import { pokemonIndexActions, selectPokemonFromIndexByName } from '../../state/pokemon-index/pokemon-index.slice';
 import styles from './pokedex-search-result.module.scss';
 import { Card } from 'react-bootstrap';
 import { PokedexDispatch } from '../../state/root-store';
-import {
-  addViewHistoryItemByPokemonId,
-  selectAllViewHistory,
-} from '../../state/view-history/view-history.slice';
+import { addViewHistoryItemByPokemonId, selectAllViewHistory } from '../../state/view-history/view-history.slice';
 
 /* eslint-disable-next-line */
 export interface PokedexSearchResultProps {
@@ -23,9 +17,7 @@ export function PokedexSearchResult(props: PokedexSearchResultProps) {
     dispatch(pokemonIndexActions.setSelectedPokemon(pokemonId));
     dispatch(addViewHistoryItemByPokemonId(pokemonId));
   };
-  const searchResults$ = useSelector(
-    selectPokemonFromIndexByName(props.searchText)
-  );
+  const searchResults$ = useSelector(selectPokemonFromIndexByName(props.searchText));
 
   return (
     <Card className={styles['container']}>

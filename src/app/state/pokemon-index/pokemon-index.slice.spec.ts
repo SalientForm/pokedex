@@ -1,8 +1,4 @@
-import {
-  fetchAllPokemonIndex,
-  pokemonIndexAdapter,
-  pokemonIndexReducer,
-} from './pokemon-index.slice';
+import { fetchAllPokemonIndex, pokemonIndexAdapter, pokemonIndexReducer } from './pokemon-index.slice';
 
 describe('pokemonIndex reducer', () => {
   it('should handle initial state', () => {
@@ -15,10 +11,7 @@ describe('pokemonIndex reducer', () => {
   });
 
   it('should handle fetchAllPokemonIndex', () => {
-    let state = pokemonIndexReducer(
-      undefined,
-      fetchAllPokemonIndex.pending('')
-    );
+    let state = pokemonIndexReducer(undefined, fetchAllPokemonIndex.pending(''));
 
     expect(state).toEqual(
       expect.objectContaining({
@@ -30,10 +23,7 @@ describe('pokemonIndex reducer', () => {
 
     const mockPokemonIndex = { id: 1, name: 'name', url: 'url' };
 
-    state = pokemonIndexReducer(
-      state,
-      fetchAllPokemonIndex.fulfilled([mockPokemonIndex], '')
-    );
+    state = pokemonIndexReducer(state, fetchAllPokemonIndex.fulfilled([mockPokemonIndex], ''));
 
     expect(state).toEqual(
       expect.objectContaining({
@@ -43,10 +33,7 @@ describe('pokemonIndex reducer', () => {
       })
     );
 
-    state = pokemonIndexReducer(
-      state,
-      fetchAllPokemonIndex.rejected(new Error('Uh oh'), '')
-    );
+    state = pokemonIndexReducer(state, fetchAllPokemonIndex.rejected(new Error('Uh oh'), ''));
 
     expect(state).toEqual(
       expect.objectContaining({

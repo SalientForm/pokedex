@@ -27,30 +27,22 @@ export interface PokemonState extends EntityState<PokemonEntity> {
 
 export const pokemonAdapter = createEntityAdapter<PokemonEntity>();
 
-export const fetchPokemonById = createAsyncThunk(
-  'pokemon/fetchStatus',
-  async (pokemonId: number, thunkAPI) => {
-    const pokedexFeatureState: PokedexFeatureState =
-      thunkAPI.getState() as PokedexFeatureState;
-    const cachedPokemon = selectPokemonById(pokemonId)(pokedexFeatureState);
-    if (cachedPokemon) {
-      return Promise.resolve(cachedPokemon);
-    }
-
-    const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
-    );
-    const loadedPokemon: PokemonEntity = await response.json();
-    return Promise.resolve(loadedPokemon);
+export const fetchPokemonById = createAsyncThunk('pokemon/fetchStatus', async (pokemonId: number, thunkAPI) => {
+  const pokedexFeatureState: PokedexFeatureState = thunkAPI.getState() as PokedexFeatureState;
+  const cachedPokemon = selectPokemonById(pokemonId)(pokedexFeatureState);
+  if (cachedPokemon) {
+    return Promise.resolve(cachedPokemon);
   }
-);
 
-export const initialPokemonState: PokemonState = pokemonAdapter.getInitialState(
-  {
-    loadingStatus: 'not loaded',
-    error: '',
-  }
-);
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
+  const loadedPokemon: PokemonEntity = await response.json();
+  return Promise.resolve(loadedPokemon);
+});
+
+export const initialPokemonState: PokemonState = pokemonAdapter.getInitialState({
+  loadingStatus: 'not loaded',
+  error: '',
+});
 
 export const pokemonSlice = createSlice({
   name: POKEMON_FEATURE_KEY,
@@ -64,20 +56,14 @@ export const pokemonSlice = createSlice({
       .addCase(fetchPokemonById.pending, (state: PokemonState, { meta }) => {
         state.loadingStatus = 'loading';
       })
-      .addCase(
-        fetchPokemonById.fulfilled,
-        (state: PokemonState, action: PayloadAction<PokemonEntity>) => {
-          pokemonAdapter.addOne(state, action.payload);
-          state.loadingStatus = 'loaded';
-        }
-      )
-      .addCase(
-        fetchPokemonById.rejected,
-        (state: PokemonState, action) => {
-          state.loadingStatus = 'error';
-          state.error = action.error.message ?? '';
-        }
-      );
+      .addCase(fetchPokemonById.fulfilled, (state: PokemonState, action: PayloadAction<PokemonEntity>) => {
+        pokemonAdapter.addOne(state, action.payload);
+        state.loadingStatus = 'loaded';
+      })
+      .addCase(fetchPokemonById.rejected, (state: PokemonState, action) => {
+        state.loadingStatus = 'error';
+        state.error = action.error.message ?? '';
+      });
   },
 });
 
@@ -122,16 +108,12 @@ export const pokemonActions = pokemonSlice.actions;
  */
 const { selectAll, selectEntities } = pokemonAdapter.getSelectors();
 
-export const selectPokemonState = (
-  rootState: PokedexFeatureState
-): PokemonState => rootState[POKEMON_FEATURE_KEY] as PokemonState;
+export const selectPokemonState = (rootState: PokedexFeatureState): PokemonState =>
+  rootState[POKEMON_FEATURE_KEY] as PokemonState;
 
 export const selectAllPokemon = createSelector(selectPokemonState, selectAll);
 
-export const selectPokemonEntities = createSelector(
-  selectPokemonState,
-  selectEntities
-);
+export const selectPokemonEntities = createSelector(selectPokemonState, selectEntities);
 
 export const selectPokemonById = (pokemonId: number) =>
   createSelector(selectPokemonState, (state) => {

@@ -13,10 +13,7 @@ describe('viewHistory reducer', () => {
   });
 
   it('should handle fetchViewHistorys', () => {
-    let state = viewHistoryReducer(
-      undefined,
-      addViewHistoryItemByPokemonId.pending('', 1)
-    );
+    let state = viewHistoryReducer(undefined, addViewHistoryItemByPokemonId.pending('', 1));
 
     const mockViewHistoryItem: ViewHistoryEntity = {
       id: '123XYZ',
@@ -25,10 +22,7 @@ describe('viewHistory reducer', () => {
       pokemonId: 1,
     };
 
-    state = viewHistoryReducer(
-      state,
-      addViewHistoryItemByPokemonId.fulfilled([mockViewHistoryItem], '', 1)
-    );
+    state = viewHistoryReducer(state, addViewHistoryItemByPokemonId.fulfilled([mockViewHistoryItem], '', 1));
 
     expect(state).toEqual(
       expect.objectContaining({

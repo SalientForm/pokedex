@@ -1,14 +1,10 @@
-import {
-  fetchPokemonById,
-  pokemonAdapter,
-  pokemonReducer,
-} from './pokemon.slice';
+import { fetchPokemonById, pokemonAdapter, pokemonReducer } from './pokemon.slice';
 
 describe('pokemon reducer', () => {
   it('should handle initial state', () => {
     const expected = pokemonAdapter.getInitialState({
       loadingStatus: 'not loaded',
-      error: ''
+      error: '',
     });
 
     expect(pokemonReducer(undefined, { type: '' })).toEqual(expected);
@@ -27,10 +23,7 @@ describe('pokemon reducer', () => {
 
     const mockPokemonEntity = { id: 1, name: 'test' };
 
-    state = pokemonReducer(
-      state,
-      fetchPokemonById.fulfilled(mockPokemonEntity, '', 1)
-    );
+    state = pokemonReducer(state, fetchPokemonById.fulfilled(mockPokemonEntity, '', 1));
 
     expect(state).toEqual(
       expect.objectContaining({
@@ -40,10 +33,7 @@ describe('pokemon reducer', () => {
       })
     );
 
-    state = pokemonReducer(
-      state,
-      fetchPokemonById.rejected(new Error('Uh oh'), '', 1)
-    );
+    state = pokemonReducer(state, fetchPokemonById.rejected(new Error('Uh oh'), '', 1));
 
     console.log(state);
 

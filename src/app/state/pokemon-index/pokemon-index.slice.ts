@@ -10,11 +10,7 @@ import {
 import Fuse from 'fuse.js';
 import { PokedexFeatureState } from '../pokedex-feature-state';
 import { PokeApiListResponse } from '../pokeapi.model';
-import {
-  selectPokemonById,
-  selectPokemonEntities,
-  selectPokemonState,
-} from '../pokemon/pokemon.slice';
+import { selectPokemonById, selectPokemonEntities, selectPokemonState } from '../pokemon/pokemon.slice';
 
 export const POKEMON_INDEX_FEATURE_KEY = 'pokemonIndex';
 
@@ -52,24 +48,18 @@ export const pokemonIndexAdapter = createEntityAdapter<PokemonIndexEntity>();
  * }, [dispatch]);
  * ```
  */
-export const fetchAllPokemonIndex = createAsyncThunk(
-  'pokemonIndex/fetchStatus',
-  async (_, thunkAPI) => {
-    // SUGGESTION: instead of utilizing fetch here, consider a query library or request library
-    const POKEMON_LIMIT = 2000;
-    const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=${POKEMON_LIMIT}`
-    );
-    const responseBody: PokeApiListResponse<PokemonIndexEntity[]> =
-      await response.json();
-    responseBody.results?.map((pokemonIndex) => {
-      pokemonIndex.id = getIdFromUrl(pokemonIndex.url);
-      return pokemonIndex;
-    });
-    const pokemonIndex: PokemonIndexEntity[] = responseBody.results ?? [];
-    return Promise.resolve(pokemonIndex);
-  }
-);
+export const fetchAllPokemonIndex = createAsyncThunk('pokemonIndex/fetchStatus', async (_, thunkAPI) => {
+  // SUGGESTION: instead of utilizing fetch here, consider a query library or request library
+  const POKEMON_LIMIT = 2000;
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=${POKEMON_LIMIT}`);
+  const responseBody: PokeApiListResponse<PokemonIndexEntity[]> = await response.json();
+  responseBody.results?.map((pokemonIndex) => {
+    pokemonIndex.id = getIdFromUrl(pokemonIndex.url);
+    return pokemonIndex;
+  });
+  const pokemonIndex: PokemonIndexEntity[] = responseBody.results ?? [];
+  return Promise.resolve(pokemonIndex);
+});
 
 // NOTE: api does not provide id, only url
 function getIdFromUrl(url: string) {
@@ -77,11 +67,10 @@ function getIdFromUrl(url: string) {
   return parseInt(url.substring(idIndex, url.length - 1) ?? 0);
 }
 
-export const initialPokemonIndexState: PokemonIndexState =
-  pokemonIndexAdapter.getInitialState({
-    loadingStatus: 'not loaded',
-    error: '',
-  });
+export const initialPokemonIndexState: PokemonIndexState = pokemonIndexAdapter.getInitialState({
+  loadingStatus: 'not loaded',
+  error: '',
+});
 
 export const pokemonIndexSlice = createSlice({
   name: POKEMON_INDEX_FEATURE_KEY,
@@ -100,21 +89,15 @@ export const pokemonIndexSlice = createSlice({
       })
       .addCase(
         fetchAllPokemonIndex.fulfilled,
-        (
-          state: PokemonIndexState,
-          action: PayloadAction<PokemonIndexEntity[]>
-        ) => {
+        (state: PokemonIndexState, action: PayloadAction<PokemonIndexEntity[]>) => {
           pokemonIndexAdapter.setAll(state, action.payload);
           state.loadingStatus = 'loaded';
         }
       )
-      .addCase(
-        fetchAllPokemonIndex.rejected,
-        (state: PokemonIndexState, action) => {
-          state.loadingStatus = 'error';
-          state.error = action.error.message ?? '';
-        }
-      );
+      .addCase(fetchAllPokemonIndex.rejected, (state: PokemonIndexState, action) => {
+        state.loadingStatus = 'error';
+        state.error = action.error.message ?? '';
+      });
   },
 });
 
@@ -158,51 +141,32 @@ export const pokemonIndexActions = pokemonIndexSlice.actions;
  */
 const { selectAll, selectEntities } = pokemonIndexAdapter.getSelectors();
 
-export const selectPokemonIndexState = (
-  rootState: PokedexFeatureState
-): PokemonIndexState =>
+export const selectPokemonIndexState = (rootState: PokedexFeatureState): PokemonIndexState =>
   rootState[POKEMON_INDEX_FEATURE_KEY] as PokemonIndexState;
 
-export const selectAllPokemonIndex = createSelector(
-  selectPokemonIndexState,
-  selectAll
-);
+export const selectAllPokemonIndex = createSelector(selectPokemonIndexState, selectAll);
 
-export const selectPokemonIndexEntities = createSelector(
-  selectPokemonIndexState,
-  selectEntities
-);
+export const selectPokemonIndexEntities = createSelector(selectPokemonIndexState, selectEntities);
 
 export const selectPokemonFromIndexByName = (searchText: string, limit = 20) =>
-  createSelector(
-    selectPokemonIndexState,
-    selectAllPokemonIndex,
-    (state, pokemonIndex) => {
-      const fuse = new Fuse(pokemonIndex, {
-        keys: ['name'],
-        findAllMatches: false,
-        threshold: 0.4,
-        distance: 3,
-      });
-      return fuse.search<PokemonIndexEntity>(searchText, { limit });
-    }
-  );
+  createSelector(selectPokemonIndexState, selectAllPokemonIndex, (state, pokemonIndex) => {
+    const fuse = new Fuse(pokemonIndex, {
+      keys: ['name'],
+      findAllMatches: false,
+      threshold: 0.4,
+      distance: 3,
+    });
+    return fuse.search<PokemonIndexEntity>(searchText, { limit });
+  });
 
 export const selectPokemonIndexItemById = (pokemonId: number) =>
   createSelector(selectPokemonIndexEntities, (entities) => {
     return entities[pokemonId];
   });
 
-export const selectSelected = createSelector(
-  selectPokemonIndexState,
-  (state) => state.selected
-);
+export const selectSelected = createSelector(selectPokemonIndexState, (state) => state.selected);
 
 // TODO: should be moved to different location because circular references can occur once many complex selectors are created
-export const selectSelectedPokemon = createSelector(
-  selectSelected,
-  selectPokemonEntities,
-  (id, pokemonEntities) => {
-    return id ? pokemonEntities[id] : undefined;
-  }
-);
+export const selectSelectedPokemon = createSelector(selectSelected, selectPokemonEntities, (id, pokemonEntities) => {
+  return id ? pokemonEntities[id] : undefined;
+});

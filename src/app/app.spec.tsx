@@ -5,11 +5,12 @@ import { rootStore } from './state/root-store';
 
 vi.mock('./pokedex/pokedex');
 
-const getDefaultRender = () => render(
-  <Provider store={rootStore}>
-    <App />
-  </Provider>
-);
+const getDefaultRender = () =>
+  render(
+    <Provider store={rootStore}>
+      <App />
+    </Provider>
+  );
 
 describe('App', () => {
   it('should render successfully', () => {

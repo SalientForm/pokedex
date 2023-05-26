@@ -6,7 +6,7 @@ import { PokemonEntity } from '../state/pokemon/pokemon.slice';
 
 const getAbilities = (pokemon: PokemonEntity) => {
   return pokemon.abilities?.map((item) => (
-    <Badge key={item.ability.name} bg="secondary" className={styles[`badge`]}>
+    <Badge key={item.ability.name} bg='secondary' className={styles[`badge`]}>
       {item.ability.name}
     </Badge>
   ));
@@ -28,12 +28,12 @@ export function PokemonDetail() {
             ) : null}
           </div>
           <div className={`${styles['card-title']}`}>
-            <div><strong>{`${pokemon$.name}`}</strong></div>
+            <div>
+              <strong>{`${pokemon$.name}`}</strong>
+            </div>
             <div>{`#${pokemon$?.id.toString().padStart(4, '0')}`}</div>
           </div>
-          <div className={`${styles['abilities']}`}>
-            {getAbilities(pokemon$)}
-          </div>
+          <div className={`${styles['abilities']}`}>{getAbilities(pokemon$)}</div>
         </div>
       )}
     </Card>

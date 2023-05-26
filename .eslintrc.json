@@ -1,9 +1,11 @@
 {
-  "extends": ["plugin:@nx/react"],
+  "extends": ["plugin:@nx/react", "prettier"],
   "root": true,
   "ignorePatterns": ["!**/*"],
   "plugins": ["@nx"],
+
   "overrides": [
+
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nx/typescript"],

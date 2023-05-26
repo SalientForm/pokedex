@@ -27,10 +27,8 @@ export const viewHistoryAdapter = createEntityAdapter<ViewHistoryEntity>();
 export const addViewHistoryItemByPokemonId = createAsyncThunk(
   'viewHistory/addHydratedItem',
   async (pokemonId: number, thunkAPI) => {
-    const pokedexFeatureState: PokedexFeatureState =
-      thunkAPI.getState() as PokedexFeatureState;
-    const pokemonIndexItem =
-      selectPokemonIndexItemById(pokemonId)(pokedexFeatureState);
+    const pokedexFeatureState: PokedexFeatureState = thunkAPI.getState() as PokedexFeatureState;
+    const pokemonIndexItem = selectPokemonIndexItemById(pokemonId)(pokedexFeatureState);
     let viewHistory = selectAllViewHistory(pokedexFeatureState);
     viewHistory = viewHistory.filter((item) => item.pokemonId !== pokemonId);
     const newHistoryItem: ViewHistoryEntity = {
@@ -45,8 +43,7 @@ export const addViewHistoryItemByPokemonId = createAsyncThunk(
   }
 );
 
-export const initialViewHistoryState: ViewHistoryState =
-  viewHistoryAdapter.getInitialState({});
+export const initialViewHistoryState: ViewHistoryState = viewHistoryAdapter.getInitialState({});
 
 export const viewHistorySlice = createSlice({
   name: VIEW_HISTORY_FEATURE_KEY,
@@ -106,16 +103,9 @@ export const viewHistoryActions = viewHistorySlice.actions;
  */
 const { selectAll, selectEntities } = viewHistoryAdapter.getSelectors();
 
-export const getViewHistoryState = (
-  rootState: PokedexFeatureState
-): ViewHistoryState => rootState[VIEW_HISTORY_FEATURE_KEY];
+export const getViewHistoryState = (rootState: PokedexFeatureState): ViewHistoryState =>
+  rootState[VIEW_HISTORY_FEATURE_KEY];
 
-export const selectAllViewHistory = createSelector(
-  getViewHistoryState,
-  selectAll
-);
+export const selectAllViewHistory = createSelector(getViewHistoryState, selectAll);
 
-export const selectViewHistoryEntities = createSelector(
-  getViewHistoryState,
-  selectEntities
-);
+export const selectViewHistoryEntities = createSelector(getViewHistoryState, selectEntities);
