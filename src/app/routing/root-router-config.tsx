@@ -1,13 +1,13 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import App from "../app";
-import Pokedex from "../pokedex/pokedex";
-import PokemonDetail from "../pokemon/detail/pokemon-detail";
-import ErrorPage from "./error-page/route-error";
+import App from '../app';
+import Pokedex from '../pokedex/pokedex';
+import PokemonDetail from '../pokemon/detail/pokemon-detail';
+import ErrorPage from './error-page/route-error';
 
 export const pokedexRouter = createBrowserRouter([
   {
     path: '',
-    element: <Navigate to="/pokedex/search" replace={true} />
+    element: <Navigate to='/pokedex/search' replace={true} />,
   },
   {
     path: '/',
@@ -15,21 +15,21 @@ export const pokedexRouter = createBrowserRouter([
     children: [
       {
         path: 'pokedex/search',
-        element: <Pokedex />
+        element: <Pokedex />,
       },
       {
         path: 'pokemon/detail/:id',
-        element: <PokemonDetail />
+        element: <PokemonDetail />,
       },
       {
         path: '**',
-        element: <Navigate to="/pokedex/search" replace={true} />,
-      }
-    ]
+        element: <Navigate to='/pokedex/search' replace={true} />,
+      },
+    ],
   },
   {
     path: '*',
-    element: <Navigate to="/pokedex/search" replace={true} />,
-    errorElement: <ErrorPage />
-  }
+    element: <Navigate to='/pokedex/search' replace={true} />,
+    errorElement: <ErrorPage />,
+  },
 ]);
