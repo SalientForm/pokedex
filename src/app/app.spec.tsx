@@ -1,14 +1,15 @@
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import App from './app';
 import { rootStore } from './state/root-store';
-
-vi.mock('./pokedex/pokedex');
 
 const getDefaultRender = () =>
   render(
     <Provider store={rootStore}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Provider>
   );
 

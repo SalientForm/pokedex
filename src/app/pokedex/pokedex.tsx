@@ -1,6 +1,6 @@
+import PokemonSummaryDetail from "../pokemon/summary-card/summary-detail/pokemon-summary-detail";
 import PokedexSearch from './search/pokedex-search';
 import PokedexViewHistory from './view-history/pokedex-view-history';
-import PokemonDetail from "../pokemon/detail/pokemon-detail";
 import styles from './pokedex.module.scss';
 
 export function Pokedex() {
@@ -10,7 +10,8 @@ export function Pokedex() {
         <PokedexSearch />
       </div>
       <div className={'ms-3 flex-shrink-0'}>
-        <PokemonDetail />
+        {/*TODO: add pokemon provider*/}
+        <PokemonSummaryDetail />
         <PokedexViewHistory />
       </div>
     </div>
