@@ -6,10 +6,13 @@
   > Button {
     margin-left: 1rem;
     height: 2.5rem;
+    color: #aaaaaa;
   }
   border-bottom: 1px solid #6f6f6f;
 }
 
 .title {
   font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 6px rgba(255,255,255,0.25);
 }
