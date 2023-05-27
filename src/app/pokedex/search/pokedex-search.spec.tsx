@@ -6,8 +6,8 @@ import { PokedexDispatch, rootStore } from '../../state/root-store';
 import PokedexSearch from './pokedex-search';
 import { PokedexSearchResultProps } from './search-result/pokedex-search-result';
 
-vi.mock('../state/pokemon-index/pokemon-index.slice', async () => {
-  const actual = (await vi.importActual('../state/pokemon-index/pokemon-index.slice')) as module;
+vi.mock('./state/pokemon-index/pokemon-index.slice', async () => {
+  const actual = (await vi.importActual('./state/pokemon-index/pokemon-index.slice')) as module;
   return {
     ...actual,
     fetchAllPokemonIndex: () => ({
