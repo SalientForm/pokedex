@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import * as pokemonIndexSlice from './state/pokemon-index/pokemon-index.slice';
 import { PokedexDispatch, rootStore } from '../../state/root-store';
 import PokedexSearch from './pokedex-search';
-import { PokedexSearchResultProps } from './search-result/pokedex-search-result';
+import { PokedexSearchResultProps } from './result/pokedex-search-result';
 
 vi.mock('./state/pokemon-index/pokemon-index.slice', async () => {
   const actual = (await vi.importActual('./state/pokemon-index/pokemon-index.slice')) as module;
@@ -16,7 +16,7 @@ vi.mock('./state/pokemon-index/pokemon-index.slice', async () => {
   };
 });
 
-vi.mock('./search-result/pokedex-search-result', () => ({
+vi.mock('./result/pokedex-search-result', () => ({
   default: (props: PokedexSearchResultProps) => <div data-testid='pokedexSearchResult'>{props.searchText}</div>,
 }));
 

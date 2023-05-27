@@ -13,6 +13,9 @@ export interface PokemonCardSummaryProps {
 }
 
 const getAbilities = (pokemon?: PokemonEntity) => {
+  if (!pokemon) {
+    return '';
+  }
   return (
     <div className={`${styles['abilities']}`}>
       {pokemon?.abilities?.map((item) => (
@@ -47,7 +50,8 @@ export function PokemonSummaryCard(props: PokemonCardSummaryProps) {
       </div>
       <div className={`${styles['card-title']}`}>
         {`${props.pokemonName}`}
-        <div>{`#${props.pokemonId}`}</div>
+        {/*TODO: add prop to pokemon: idDisplayText*/}
+        <div>{`#${props.pokemonId.toString().padStart(4, '0')}`}</div>
       </div>
       {getAbilities(pokemon$)}
     </Card>
