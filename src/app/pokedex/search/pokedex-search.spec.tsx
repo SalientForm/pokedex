@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import * as module from 'module';
 import { Provider } from 'react-redux';
-import * as pokemonIndexSlice from '../state/pokemon-index/pokemon-index.slice';
-import { PokedexDispatch, rootStore } from '../state/root-store';
+import * as pokemonIndexSlice from './state/pokemon-index/pokemon-index.slice';
+import { PokedexDispatch, rootStore } from '../../state/root-store';
 import PokedexSearch from './pokedex-search';
 import { PokedexSearchResultProps } from './search-result/pokedex-search-result';
 

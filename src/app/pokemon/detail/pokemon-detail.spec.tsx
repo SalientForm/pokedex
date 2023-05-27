@@ -1,13 +1,13 @@
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { rootStore } from '../state/root-store';
-import PokedexViewHistory from './pokedex-view-history';
+import { rootStore } from '../../state/root-store';
+import PokemonDetail from './pokemon-detail';
 
-describe('PokedexViewHistory', () => {
+describe('PokemonDetail', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
       <Provider store={rootStore}>
-        <PokedexViewHistory />
+        <PokemonDetail />
       </Provider>
     );
     expect(baseElement).toBeTruthy();

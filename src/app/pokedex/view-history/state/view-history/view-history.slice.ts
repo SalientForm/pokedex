@@ -6,11 +6,11 @@ import {
   EntityState,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import { PokedexFeatureState } from '../pokedex-feature-state';
-import { selectPokemonIndexItemById } from '../pokemon-index/pokemon-index.slice';
+import { PokedexFeatureState } from '../../../../state/pokedex-feature-state';
+import { selectPokemonIndexItemById } from '../../../search/state/pokemon-index/pokemon-index.slice';
 import { v4 as uuidv4 } from 'uuid';
 
-export const VIEW_HISTORY_FEATURE_KEY = 'viewHistory';
+export const POKEMON_VIEW_HISTORY_FEATURE_KEY = 'viewHistory';
 
 export interface ViewHistoryEntity {
   id: string;
@@ -46,7 +46,7 @@ export const addViewHistoryItemByPokemonId = createAsyncThunk(
 export const initialViewHistoryState: ViewHistoryState = viewHistoryAdapter.getInitialState({});
 
 export const viewHistorySlice = createSlice({
-  name: VIEW_HISTORY_FEATURE_KEY,
+  name: POKEMON_VIEW_HISTORY_FEATURE_KEY,
   initialState: initialViewHistoryState,
   reducers: {
     add: viewHistoryAdapter.addOne,
@@ -65,7 +65,7 @@ export const viewHistorySlice = createSlice({
 /*
  * Export reducer for store configuration.
  */
-export const viewHistoryReducer = viewHistorySlice.reducer;
+export const pokemonViewHistoryReducer = viewHistorySlice.reducer;
 
 /*
  * Export action creators to be dispatched. For use with the `useDispatch` hook.
@@ -104,7 +104,7 @@ export const viewHistoryActions = viewHistorySlice.actions;
 const { selectAll, selectEntities } = viewHistoryAdapter.getSelectors();
 
 export const getViewHistoryState = (rootState: PokedexFeatureState): ViewHistoryState =>
-  rootState[VIEW_HISTORY_FEATURE_KEY];
+  rootState[POKEMON_VIEW_HISTORY_FEATURE_KEY];
 
 export const selectAllViewHistory = createSelector(getViewHistoryState, selectAll);
 

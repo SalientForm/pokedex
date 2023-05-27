@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { fetchAllPokemonIndex } from '../state/pokemon-index/pokemon-index.slice';
-import { PokedexDispatch } from '../state/root-store';
-import PokedexSearchForm from './pokedex-search-form/pokedex-search-form';
+import { fetchAllPokemonIndex } from './state/pokemon-index/pokemon-index.slice';
+import { PokedexDispatch } from '../../state/root-store';
+import PokedexSearchForm from './search-form/pokedex-search-form';
 import styles from './pokedex-search.module.scss';
 import PokedexSearchResult from './search-result/pokedex-search-result';
 

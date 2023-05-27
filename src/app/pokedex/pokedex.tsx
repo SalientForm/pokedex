@@ -1,6 +1,6 @@
-import PokedexSearch from '../pokedex-search/pokedex-search';
-import PokedexViewHistory from '../pokedex-view-history/pokedex-view-history';
-import PokemonDetail from '../pokemon-detail/pokemon-detail';
+import PokedexSearch from './search/pokedex-search';
+import PokedexViewHistory from './view-history/pokedex-view-history';
+import PokemonDetail from "../pokemon/detail/pokemon-detail";
 import styles from './pokedex.module.scss';
 
 export function Pokedex() {

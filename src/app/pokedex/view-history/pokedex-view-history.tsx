@@ -1,6 +1,6 @@
 import styles from './pokedex-view-history.module.scss';
 import { useSelector } from 'react-redux';
-import { selectAllViewHistory } from '../state/view-history/view-history.slice';
+import { selectAllViewHistory } from './state/view-history/view-history.slice';
 import ViewHistoryItem from './view-history-item/view-history-item';
 import { useEffect, useState } from 'react';
 

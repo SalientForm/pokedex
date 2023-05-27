@@ -1,6 +1,6 @@
 import { Badge, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPokemonById, PokemonEntity, selectPokemonById } from '../../state/pokemon/pokemon.slice';
+import { fetchPokemonById, PokemonEntity, selectPokemonById } from '../state/pokemon/pokemon.slice';
 import { PokedexDispatch } from '../../state/root-store';
 import styles from './pokemon-summary-card.module.scss';
 import { useEffect } from 'react';

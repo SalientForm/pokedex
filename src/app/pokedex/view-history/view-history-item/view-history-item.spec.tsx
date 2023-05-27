@@ -1,8 +1,8 @@
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { rootStore } from '../../state/root-store';
+import { rootStore } from '../../../state/root-store';
 import ViewHistoryItem from './view-history-item';
-import { ViewHistoryEntity } from '../../state/view-history/view-history.slice';
+import { ViewHistoryEntity } from '../state/view-history/view-history.slice';
 
 const mockViewHistoryItem: ViewHistoryEntity = {
   id: 'id',

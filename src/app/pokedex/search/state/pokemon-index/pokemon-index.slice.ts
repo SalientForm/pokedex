@@ -7,9 +7,9 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit';
 import Fuse from 'fuse.js';
-import { PokeApiListResponse } from '../pokeapi.model';
-import { PokedexFeatureState } from '../pokedex-feature-state';
-import { selectPokemonEntities } from '../pokemon/pokemon.slice';
+import { PokeApiListResponse } from '../../../../state/pokeapi.model';
+import { PokedexFeatureState } from '../../../../state/pokedex-feature-state';
+import { selectPokemonEntities } from '../../../../pokemon/state/pokemon/pokemon.slice';
 
 export const POKEMON_INDEX_FEATURE_KEY = 'pokemonIndex';
 

@@ -2,18 +2,18 @@ import {
   addViewHistoryItemByPokemonId,
   viewHistoryAdapter,
   ViewHistoryEntity,
-  viewHistoryReducer,
+  pokemonViewHistoryReducer,
 } from './view-history.slice';
 
 describe('viewHistory reducer', () => {
   it('should handle initial state', () => {
     const expected = viewHistoryAdapter.getInitialState({});
 
-    expect(viewHistoryReducer(undefined, { type: '' })).toEqual(expected);
+    expect(pokemonViewHistoryReducer(undefined, { type: '' })).toEqual(expected);
   });
 
   it('should handle fetchViewHistorys', () => {
-    let state = viewHistoryReducer(undefined, addViewHistoryItemByPokemonId.pending('', 1));
+    let state = pokemonViewHistoryReducer(undefined, addViewHistoryItemByPokemonId.pending('', 1));
 
     const mockViewHistoryItem: ViewHistoryEntity = {
       id: '123XYZ',
@@ -22,7 +22,7 @@ describe('viewHistory reducer', () => {
       pokemonId: 1,
     };
 
-    state = viewHistoryReducer(state, addViewHistoryItemByPokemonId.fulfilled([mockViewHistoryItem], '', 1));
+    state = pokemonViewHistoryReducer(state, addViewHistoryItemByPokemonId.fulfilled([mockViewHistoryItem], '', 1));
 
     expect(state).toEqual(
       expect.objectContaining({
