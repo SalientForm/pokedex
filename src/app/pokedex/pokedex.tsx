@@ -1,4 +1,4 @@
-import PokemonSummaryDetail from "../pokemon/summary-card/detail/pokemon-summary-detail";
+import PokemonSummaryDetail from '../pokemon/summary-card/detail/pokemon-summary-detail';
 import PokedexSearch from './search/pokedex-search';
 import PokedexViewHistory from './view-history/pokedex-view-history';
 import styles from './pokedex.module.scss';

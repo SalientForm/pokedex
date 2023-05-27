@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { DefaultLayoutProps } from "./default-layout.model";
+import { DefaultLayoutProps } from './default-layout.model';
 import styles from './default-layout.module.scss';
 import Header from './header/header';
 

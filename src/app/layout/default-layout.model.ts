@@ -3,7 +3,7 @@ export interface MenuItemConfig {
   icon?: string; // icon class name 'theme:name'
   config?: unknown; // config data for item
   action: string; // link | dispatch | query | custom
-  shortcut?: string
+  shortcut?: string;
 }
 
 export interface DefaultLayoutProps {

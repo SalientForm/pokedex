@@ -1,7 +1,7 @@
 import { Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { PokedexDispatch } from "../../../state/root-store";
-import { addViewHistoryItemByPokemonId } from "../../view-history/state/view-history/view-history.slice";
+import { PokedexDispatch } from '../../../state/root-store';
+import { addViewHistoryItemByPokemonId } from '../../view-history/state/view-history/view-history.slice';
 import { pokemonIndexActions, selectPokemonFromIndexByName } from '../state/pokemon-index/pokemon-index.slice';
 import PokemonSummaryCard from '../../../pokemon/summary-card/pokemon-summary-card';
 import styles from './pokedex-search-result.module.scss';
