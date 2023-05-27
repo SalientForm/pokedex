@@ -4,7 +4,7 @@ import { rootStore } from '../state/root-store';
 import Pokedex from './pokedex';
 
 vi.mock('../pokedex-search/pokedex-search');
-vi.mock('../pokedex-view-history/pokedex-view-history');
+vi.mock('../pokedex-pokemon-view-history/pokedex-pokemon-view-history');
 vi.mock('../pokemon-detail/pokemon-detail');
 
 describe('Pokedex', () => {

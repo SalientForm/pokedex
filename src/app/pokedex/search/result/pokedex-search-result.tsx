@@ -1,8 +1,8 @@
 import { Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { PokedexDispatch } from '../../../state/root-store';
-import { addViewHistoryItemByPokemonId } from '../../view-history/state/view-history/view-history.slice';
-import { pokemonIndexActions, selectPokemonFromIndexByName } from '../state/pokemon-index/pokemon-index.slice';
+import { addPokemonViewHistoryItemByPokemonId } from '../../state/pokemon-view-history/pokemon-view-history.slice';
+import { pokemonIndexActions, selectPokemonFromIndexByName } from '../../state/pokemon-index/pokemon-index.slice';
 import PokemonSummaryCard from '../../../pokemon/summary-card/pokemon-summary-card';
 import styles from './pokedex-search-result.module.scss';
 
@@ -14,7 +14,7 @@ export function PokedexSearchResult(props: PokedexSearchResultProps) {
   const dispatch = useDispatch<PokedexDispatch>();
   const handleClickPokemonCard = (pokemonId: number) => {
     dispatch(pokemonIndexActions.setSelectedPokemon(pokemonId));
-    dispatch(addViewHistoryItemByPokemonId(pokemonId));
+    dispatch(addPokemonViewHistoryItemByPokemonId(pokemonId));
   };
   const searchResults$ = useSelector(selectPokemonFromIndexByName(props.searchText));
 

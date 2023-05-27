@@ -1,18 +1,18 @@
-import styles from './view-history-item.module.scss';
-import { addViewHistoryItemByPokemonId, ViewHistoryEntity } from '../state/view-history/view-history.slice';
-import { pokemonIndexActions } from '../../search/state/pokemon-index/pokemon-index.slice';
+import styles from './pokemon-view-history-item.module.scss';
+import { addPokemonViewHistoryItemByPokemonId, PokemonViewHistoryEntity } from '../../state/pokemon-view-history/pokemon-view-history.slice';
+import { pokemonIndexActions } from '../../state/pokemon-index/pokemon-index.slice';
 import { useDispatch } from 'react-redux';
 import { PokedexDispatch } from '../../../state/root-store';
 
 export interface ViewHistoryItemProps {
-  viewHistoryItem: ViewHistoryEntity;
+  viewHistoryItem: PokemonViewHistoryEntity;
 }
 
-export function ViewHistoryItem(props: ViewHistoryItemProps) {
+export function PokemonViewHistoryItem(props: ViewHistoryItemProps) {
   const dispatch = useDispatch<PokedexDispatch>();
   const handleClickItem = () => {
     dispatch(pokemonIndexActions.setSelectedPokemon(props.viewHistoryItem.pokemonId));
-    dispatch(addViewHistoryItemByPokemonId(props.viewHistoryItem.pokemonId));
+    dispatch(addPokemonViewHistoryItemByPokemonId(props.viewHistoryItem.pokemonId));
   };
 
   return (
@@ -22,4 +22,4 @@ export function ViewHistoryItem(props: ViewHistoryItemProps) {
   );
 }
 
-export default ViewHistoryItem;
+export default PokemonViewHistoryItem;

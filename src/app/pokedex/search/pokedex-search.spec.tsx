@@ -1,13 +1,13 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import * as module from 'module';
 import { Provider } from 'react-redux';
-import * as pokemonIndexSlice from './state/pokemon-index/pokemon-index.slice';
+import * as pokemonIndexSlice from '../state/pokemon-index/pokemon-index.slice';
 import { PokedexDispatch, rootStore } from '../../state/root-store';
 import PokedexSearch from './pokedex-search';
 import { PokedexSearchResultProps } from './result/pokedex-search-result';
 
-vi.mock('./state/pokemon-index/pokemon-index.slice', async () => {
-  const actual = (await vi.importActual('./state/pokemon-index/pokemon-index.slice')) as module;
+vi.mock('../state/pokemon-index/pokemon-index.slice', async () => {
+  const actual = (await vi.importActual('../state/pokemon-index/pokemon-index.slice')) as module;
   return {
     ...actual,
     fetchAllPokemonIndex: () => ({

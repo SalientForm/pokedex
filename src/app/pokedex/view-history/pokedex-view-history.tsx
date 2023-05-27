@@ -1,12 +1,12 @@
 import styles from './pokedex-view-history.module.scss';
 import { useSelector } from 'react-redux';
-import { selectAllViewHistory } from './state/view-history/view-history.slice';
-import ViewHistoryItem from './view-history-item/view-history-item';
+import { selectAllPokemonViewHistory } from '../state/pokemon-view-history/pokemon-view-history.slice';
+import PokemonViewHistoryItem from './item/pokemon-view-history-item';
 import { useEffect, useState } from 'react';
 
 export function PokedexViewHistory() {
   const [message, setMessage] = useState('');
-  const viewHistory$ = useSelector(selectAllViewHistory);
+  const viewHistory$ = useSelector(selectAllPokemonViewHistory);
 
   useEffect(() => {
     switch (viewHistory$?.length) {
@@ -23,7 +23,7 @@ export function PokedexViewHistory() {
     <div className={styles['container']}>
       <div className={styles['title']}>View History</div>
       {viewHistory$.map((i) => (
-        <ViewHistoryItem key={i.id} viewHistoryItem={i}></ViewHistoryItem>
+        <PokemonViewHistoryItem key={i.id} viewHistoryItem={i}></PokemonViewHistoryItem>
       ))}
       {message ? <div>{message}</div> : ''}
     </div>
