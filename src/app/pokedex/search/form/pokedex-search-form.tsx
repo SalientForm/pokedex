@@ -2,7 +2,7 @@ import { useLocalStorageState } from '../../../hooks/useLocalStorageState';
 import { PokedexSearchFormModel } from './pokedex-search-form.model';
 import styles from './pokedex-search-form.module.scss';
 import { Form } from 'react-bootstrap';
-import { FormEventHandler, useEffect, useState } from 'react';
+import { FormEventHandler, useEffect } from 'react';
 
 export interface PokedexSearchFormProps {
   handlePokemonSearch: (searchText: string) => void;
@@ -14,7 +14,7 @@ export function PokedexSearchForm(props: PokedexSearchFormProps) {
   const [formData, setFormData] = useLocalStorageState<PokedexSearchFormModel>(componentGuid, { searchText: '' });
 
   const updateFormData = (formUpdateData: Partial<PokedexSearchFormModel>) => {
-    setFormData({...formData, ...formUpdateData});
+    setFormData({ ...formData, ...formUpdateData });
   };
 
   useEffect(() => {

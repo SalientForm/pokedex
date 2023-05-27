@@ -1,5 +1,8 @@
 import styles from './pokemon-view-history-item.module.scss';
-import { addPokemonViewHistoryItemByPokemonId, PokemonViewHistoryEntity } from '../../state/pokemon-view-history/pokemon-view-history.slice';
+import {
+  addPokemonViewHistoryItemByPokemonId,
+  PokemonViewHistoryEntity,
+} from '../../state/pokemon-view-history/pokemon-view-history.slice';
 import { pokemonIndexActions } from '../../state/pokemon-index/pokemon-index.slice';
 import { useDispatch } from 'react-redux';
 import { PokedexDispatch } from '../../../state/root-store';

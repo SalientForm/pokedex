@@ -66,7 +66,6 @@ export const pokemonViewHistoryReducer = pokemonViewHistorySlice.reducer;
 
 export const pokemonViewHistoryActions = pokemonViewHistorySlice.actions;
 
-
 const { selectAll, selectEntities } = pokemonViewHistoryAdapter.getSelectors();
 
 export const selectPokemonViewHistoryState = (rootState: PokedexFeatureState): PokemonViewHistoryState =>

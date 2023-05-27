@@ -22,7 +22,10 @@ describe('pokemonViewHistory reducer', () => {
       pokemonId: 1,
     };
 
-    state = pokemonViewHistoryReducer(state, addPokemonViewHistoryItemByPokemonId.fulfilled([mockViewHistoryItem], '', 1));
+    state = pokemonViewHistoryReducer(
+      state,
+      addPokemonViewHistoryItemByPokemonId.fulfilled([mockViewHistoryItem], '', 1)
+    );
 
     expect(state).toEqual(
       expect.objectContaining({
