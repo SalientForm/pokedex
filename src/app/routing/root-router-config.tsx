@@ -18,18 +18,22 @@ export const pokedexRouter = createBrowserRouter([
         element: <Pokedex />,
       },
       {
+        path: 'pokemon/detail',
+        element: <PokemonDetail />,
+      },
+      {
         path: 'pokemon/detail/:id',
         element: <PokemonDetail />,
       },
       {
-        path: '**',
-        element: <Navigate to='/pokedex/search' replace={true} />,
+        path: '*',
+        element: <Navigate to='/pokedex/search' replace={false} />,
       },
     ],
   },
   {
     path: '*',
-    element: <Navigate to='/pokedex/search' replace={true} />,
+    element: <Navigate to='/pokedex/search' replace={false} />,
     errorElement: <ErrorPage />,
   },
 ]);

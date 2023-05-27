@@ -1,10 +1,11 @@
+import { Outlet } from 'react-router';
+import { defaultLayoutConfig } from './config/default-layout.config';
 import DefaultLayout from './layout/default-layout';
-import Pokedex from './pokedex/pokedex';
 
 export function App() {
   return (
-    <DefaultLayout>
-      <Pokedex />
+    <DefaultLayout layoutProps={defaultLayoutConfig}>
+      <Outlet />
     </DefaultLayout>
   );
 }

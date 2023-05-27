@@ -17,7 +17,7 @@ export function PokemonDetail() {
 
   return (
     <Card className={styles['container']}>
-      <div className={styles['title']}>Detail</div>
+      <div className={styles['title']}>Pokemon</div>
       {!pokemon$ ? (
         <div className={styles['message']}>(No pokemon selected.)</div>
       ) : (
