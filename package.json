@@ -1,11 +1,9 @@
 {
-  "name": "@pokedex/source",
-  "version": "0.0.0",
+  "name": "pokedex",
+  "version": "0.0.3",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve",
-    "build": "nx build",
-    "test": "nx test"
+    "reload": "rm -Rf ./node_modules && npm cache verify && npm i && nx reset"
   },
   "private": true,
   "dependencies": {
