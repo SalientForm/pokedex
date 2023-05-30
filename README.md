@@ -21,7 +21,7 @@
 - Added `PokemonProvider` / `usePokemon` context
 - Added [React Router](https://reactrouter.com/en/main)
 - Added full-detail view
-    - Evolutions are scafolded but still **TBD**
+    - Evolutions are scaffolded but still **TBD**
 - Added `useLocalStorage` hook
     - SearchText restores to last value
 
