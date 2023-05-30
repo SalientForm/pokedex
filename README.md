@@ -15,8 +15,8 @@
     - Updated prettier configuration for JSX
     - Removed ts-ignore lines
     - Applied prettier to entire codebase
-    - Impoved feature-orientation of code structure
-    - Moved state-slices to assocated features
+    - Improved feature-orientation of code structure
+    - Moved state-slices to associated features
     - Added `{ "curly": "error" }` eslint rule
 - Added `PokemonProvider` / `usePokemon` context
 - Added [React Router](https://reactrouter.com/en/main)
