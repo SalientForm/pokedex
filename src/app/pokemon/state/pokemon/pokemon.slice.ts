@@ -7,7 +7,7 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit';
 import { PokedexFeatureState } from '../../../state/pokedex-feature-state';
-import { Pokemon } from '../pokemon.model';
+import { Pokemon } from './pokemon.model';
 
 export const POKEMON_FEATURE_KEY = 'pokemon';
 
@@ -35,10 +35,6 @@ export const fetchPokemonById = createAsyncThunk('pokemon/fetchStatus', async (p
 
   const basePokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
   const loadedPokemon: PokemonEntity = await basePokemon.json();
-
-  // TODO: obtain evolution chain
-  // const evolutions= await fetch(`https://pokeapi.co/api/v2/evolution-chain/${pokemonId}`);
-  // loadedPokemon.evolutions = await evolutions.json();
 
   return Promise.resolve(loadedPokemon);
 });
