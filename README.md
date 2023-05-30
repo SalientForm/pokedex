@@ -1,5 +1,29 @@
 # Pokedex Assessment
 
+## Update 5/30/23
+
+### Update Targets
+- Provide "PR-ready" code
+- Implement remaining bonus features
+- Apply what we covered in the interview
+- Improve unit test coverage
+
+### Update Details
+
+- Cleaned up code and structure
+    - Updated prettier configuration for JSX
+    - Removed ts-ignore lines
+    - Applied prettier to entire codebase
+    - Impoved feature-orientation of code structure
+    - Moved state-slices to assocated features
+    - Added `{ "curly": "error" }` eslint rule
+- Added `PokemonProvider` / `usePokemon` context
+- Added [React Router](https://reactrouter.com/en/main)
+- Added full-detail view
+    - Evolutions are TBD
+- Added `useLocalStorage` hook
+    - SearchText restores to last value
+
 ## Features
 
 1. Search with the search bar to search by name
