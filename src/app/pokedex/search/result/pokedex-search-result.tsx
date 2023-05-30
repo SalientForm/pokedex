@@ -1,5 +1,6 @@
 import { Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from "react-router";
 import { PokemonProvider } from '../../../common/providers/pokemon-provider';
 import { PokedexDispatch } from '../../../state/root-store';
 import { addPokemonViewHistoryItemByPokemonId } from '../../state/pokemon-view-history/pokemon-view-history.slice';
@@ -12,11 +13,10 @@ export interface PokedexSearchResultProps {
 }
 
 export function PokedexSearchResult(props: PokedexSearchResultProps) {
+  const navigate = useNavigate();
   const dispatch = useDispatch<PokedexDispatch>();
   const handleClickPokemonCard = (pokemonId: number) => {
-    // TODO: move to redux-observable once redux-observable is implemented
-    dispatch(pokemonIndexActions.setSelectedPokemon(pokemonId));
-    dispatch(addPokemonViewHistoryItemByPokemonId(pokemonId));
+    navigate(`/pokemon/detail/${pokemonId}`);
   };
   const searchResults$ = useSelector(selectPokemonFromIndexByName(props.searchText));
 

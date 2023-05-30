@@ -33,8 +33,12 @@ export const fetchPokemonById = createAsyncThunk('pokemon/fetchStatus', async (p
     return Promise.resolve(cachedPokemon);
   }
 
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
-  const loadedPokemon: PokemonEntity = await response.json();
+  const basePokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
+  const evolutions= await fetch(`https://pokeapi.co/api/v2/evolution-chain/${pokemonId}`);
+  const loadedEvolutions = await evolutions.json();
+  const loadedPokemon: PokemonEntity = await basePokemon.json();
+  loadedPokemon.evolutions = loadedEvolutions;
+
   return Promise.resolve(loadedPokemon);
 });
 

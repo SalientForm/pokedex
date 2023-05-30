@@ -1,8 +1,12 @@
 .container {
-  margin: 0 0 1rem 0;
+  width: 16rem;
+  margin: 0 1rem 1rem 0;
+  padding: 0.5rem;
+  background-color: #aaaaaa;
+  flex-grow: 1;
   display: flex;
-  flex-direction: row;
-  width: 100%;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
@@ -14,17 +18,6 @@
   align-items: center;
   flex-direction: column;
   text-transform: capitalize;
-}
-
-.detail {
-  width: 16rem;
-  margin: 0 1rem 1rem 0;
-  padding: 0.5rem;
-  background-color: #aaaaaa;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .detail-summary {
@@ -50,6 +43,7 @@
 
 .primary-image {
   margin: 0 0 2rem 0;
+  height: 288px;
 }
 
 .primary-image img {

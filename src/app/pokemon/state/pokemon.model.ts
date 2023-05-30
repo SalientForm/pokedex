@@ -19,6 +19,7 @@ export interface Pokemon {
   stats: Stat[];
   types: Type[];
   past_types: PastType[];
+  evolutions: Record<string, unknown>;
 }
 
 export interface Ability {
