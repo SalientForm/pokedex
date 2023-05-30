@@ -10,6 +10,7 @@ export interface PokedexSearchFormProps {
 }
 
 const componentGuid = '544b1b48-6b94-4663-bbd5-bf518731d41b';
+const debounceTime = 250;
 
 export function PokedexSearchForm(props: PokedexSearchFormProps) {
   const [formData, setFormData] = useLocalStorageState<PokedexSearchFormModel>(componentGuid, { searchText: '' });
@@ -25,7 +26,7 @@ export function PokedexSearchForm(props: PokedexSearchFormProps) {
     setUpdateTimeout(
       setTimeout(() => {
         props.handlePokemonSearch(formData.searchText);
-      }, 250)
+      }, debounceTime)
     );
   }, [formData.searchText]);
 

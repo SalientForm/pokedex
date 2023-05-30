@@ -1,8 +1,9 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import * as module from 'module';
 import { Provider } from 'react-redux';
 import * as pokemonIndexSlice from '../state/pokemon-index/pokemon-index.slice';
 import { PokedexDispatch, rootStore } from '../../state/root-store';
+import { PokedexSearchFormProps } from './form/pokedex-search-form';
 import PokedexSearch from './pokedex-search';
 import { PokedexSearchResultProps } from './result/pokedex-search-result';
 
@@ -21,6 +22,14 @@ vi.mock('./result/pokedex-search-result', () => ({
 }));
 
 describe('PokedexSearch', () => {
+  beforeEach(() => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it('should render and dispatch fetchAllPokemonIndex successfully', () => {
     rootStore.dispatch = vi.fn() as PokedexDispatch;
     render(
@@ -34,6 +43,8 @@ describe('PokedexSearch', () => {
   });
 
   it('updates search text when a new value is inputted', () => {
+    rootStore.dispatch = vi.fn() as PokedexDispatch;
+
     render(
       <Provider store={rootStore}>
         <PokedexSearch />
@@ -43,6 +54,11 @@ describe('PokedexSearch', () => {
     fireEvent.change(screen.getByRole('textbox'), {
       target: { value: 'bulb' },
     });
+
+    act(() => {
+      vi.runAllTimers();
+    });
+
     expect(screen.getByTestId('pokedexSearchResult').textContent).toEqual('bulb');
   });
 });

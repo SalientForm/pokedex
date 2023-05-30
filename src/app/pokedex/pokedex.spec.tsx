@@ -3,9 +3,8 @@ import { Provider } from 'react-redux';
 import { rootStore } from '../state/root-store';
 import Pokedex from './pokedex';
 
-vi.mock('../pokedex-search/pokedex-search');
-vi.mock('../pokedex-pokemon-view-history/pokedex-pokemon-view-history');
-vi.mock('../pokemon-detail/pokemon-detail');
+vi.mock('./search/pokedex-search');
+vi.mock('./view-history/pokedex-pokemon-view-history');
 
 describe('Pokedex', () => {
   it('should render successfully', () => {
