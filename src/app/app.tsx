@@ -1,10 +1,10 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router';
 import { defaultLayoutConfig } from './config/default-layout.config';
 import DefaultLayout from './layout/default-layout';
-import { fetchAllPokemonIndex } from "./pokedex/state/pokemon-index/pokemon-index.slice";
-import { PokedexDispatch } from "./state/root-store";
+import { fetchAllPokemonIndex } from './pokedex/state/pokemon-index/pokemon-index.slice';
+import { PokedexDispatch } from './state/root-store';
 
 export function App() {
   const dispatch = useDispatch<PokedexDispatch>();

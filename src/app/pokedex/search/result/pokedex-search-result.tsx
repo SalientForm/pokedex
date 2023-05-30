@@ -1,6 +1,6 @@
 import { Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from "react-router";
+import { useNavigate } from 'react-router';
 import { PokemonProvider } from '../../../common/providers/pokemon-provider';
 import { PokedexDispatch } from '../../../state/root-store';
 import { addPokemonViewHistoryItemByPokemonId } from '../../state/pokemon-view-history/pokemon-view-history.slice';

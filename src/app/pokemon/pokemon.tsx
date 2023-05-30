@@ -1,11 +1,12 @@
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router";
-import { PokemonProvider } from "../common/providers/pokemon-provider";
-import { pokemonIndexActions } from "../pokedex/state/pokemon-index/pokemon-index.slice";
-import { addPokemonViewHistoryItemByPokemonId } from "../pokedex/state/pokemon-view-history/pokemon-view-history.slice";
-import PokedexViewHistory from "../pokedex/view-history/pokedex-view-history";
-import { PokedexDispatch } from "../state/root-store";
-import PokemonDetail from "./detail/pokemon-detail";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router';
+import { PokemonProvider } from '../common/providers/pokemon-provider';
+import { pokemonIndexActions, selectSelected } from '../pokedex/state/pokemon-index/pokemon-index.slice';
+import { addPokemonViewHistoryItemByPokemonId } from '../pokedex/state/pokemon-view-history/pokemon-view-history.slice';
+import PokedexViewHistory from '../pokedex/view-history/pokedex-view-history';
+import { PokedexDispatch } from '../state/root-store';
+import PokemonDetail from './detail/pokemon-detail';
 import styles from './pokemon.module.scss';
 
 /* eslint-disable-next-line */
@@ -13,17 +14,25 @@ export interface PokemonProps {}
 
 export function Pokemon(props: PokemonProps) {
   const { id: pokemonIdUrlParam } = useParams();
-  const pokemonId = (pokemonIdUrlParam) ? parseInt(pokemonIdUrlParam) : 1 ;
+  const selectedPokemonId = useSelector(selectSelected);
+  // param value is priority
+  const pokemonId = pokemonIdUrlParam ? parseInt(pokemonIdUrlParam) : selectedPokemonId ?? 1;
   const dispatch = useDispatch<PokedexDispatch>();
+  const navigate = useNavigate();
 
-  if(pokemonId) {
+  useEffect(() => {
     dispatch(pokemonIndexActions.setSelectedPokemon(pokemonId));
     dispatch(addPokemonViewHistoryItemByPokemonId(pokemonId));
-  }
+    if (!pokemonIdUrlParam) {
+      navigate(`pokemon/detail/${pokemonId}`, { replace: true });
+    }
+  }, [navigate]);
 
   return (
     <div className={styles['container']}>
-      <PokemonProvider><PokemonDetail></PokemonDetail></PokemonProvider>
+      <PokemonProvider>
+        <PokemonDetail></PokemonDetail>
+      </PokemonProvider>
       <PokedexViewHistory></PokedexViewHistory>
     </div>
   );

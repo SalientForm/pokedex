@@ -1,9 +1,7 @@
 import { createContext, PropsWithChildren, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectSelected, selectSelectedPokemon } from '../../pokedex/state/pokemon-index/pokemon-index.slice';
-import {
-  addPokemonViewHistoryItemByPokemonId
-} from '../../pokedex/state/pokemon-view-history/pokemon-view-history.slice';
+import { addPokemonViewHistoryItemByPokemonId } from '../../pokedex/state/pokemon-view-history/pokemon-view-history.slice';
 import { fetchPokemonById, PokemonEntity, selectPokemonById } from '../../pokemon/state/pokemon/pokemon.slice';
 import { PokedexDispatch } from '../../state/root-store';
 
@@ -30,8 +28,8 @@ export const PokemonProvider = (props: PokemonProviderProps) => {
 
   const dispatch = useDispatch<PokedexDispatch>();
 
-  useEffect(()=>{
-    if(selectedPokemonId$ && useSelectedPokemon) {
+  useEffect(() => {
+    if (selectedPokemonId$ && useSelectedPokemon) {
       dispatch(addPokemonViewHistoryItemByPokemonId(selectedPokemonId$));
     }
   }, [dispatch, useSelectedPokemon, selectedPokemonId$]);

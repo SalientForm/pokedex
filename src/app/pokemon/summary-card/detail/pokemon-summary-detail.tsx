@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { PokemonContext } from "../../../common/providers/pokemon-provider";
+import { useContext } from 'react';
+import { PokemonContext } from '../../../common/providers/pokemon-provider';
 import styles from './pokemon-summary-detail.module.scss';
 import { useSelector } from 'react-redux';
 import { selectSelectedPokemon } from '../../../pokedex/state/pokemon-index/pokemon-index.slice';

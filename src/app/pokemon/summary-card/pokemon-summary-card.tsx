@@ -46,7 +46,7 @@ export function PokemonSummaryCard(props: PokemonCardSummaryProps) {
       onClick={handleCardClick}
       className={`${styles['container']} ${props.className} ${props.rolloverEffect && styles['rolloverEffect']}`}
     >
-      { props.title ? <div className={styles['title']}>{props.title}</div> : '' }
+      {props.title ? <div className={styles['title']}>{props.title}</div> : ''}
       <div className={styles['primary-image']}>
         {pokemon?.sprites?.front_default ? <img alt={pokemon.name} src={pokemon?.sprites?.front_default} /> : ''}
       </div>

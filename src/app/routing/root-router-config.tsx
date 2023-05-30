@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import App from '../app';
 import Pokedex from '../pokedex/pokedex';
-import Pokemon from "../pokemon/pokemon";
+import Pokemon from '../pokemon/pokemon';
 import ErrorPage from './error-page/route-error';
 
 export const pokedexRouter = createBrowserRouter([

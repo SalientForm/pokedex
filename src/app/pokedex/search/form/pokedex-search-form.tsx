@@ -1,4 +1,4 @@
-import { TimeoutId } from "@reduxjs/toolkit/dist/query/core/buildMiddleware/types";
+import { TimeoutId } from '@reduxjs/toolkit/dist/query/core/buildMiddleware/types';
 import { useLocalStorageState } from '../../../common/hooks/useLocalStorageState';
 import { PokedexSearchFormModel } from './pokedex-search-form.model';
 import styles from './pokedex-search-form.module.scss';

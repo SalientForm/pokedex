@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
-import module from "module";
+import module from 'module';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import App from './app';
-import * as pokemonIndexSlice from "./pokedex/state/pokemon-index/pokemon-index.slice";
+import * as pokemonIndexSlice from './pokedex/state/pokemon-index/pokemon-index.slice';
 import { PokedexDispatch, rootStore } from './state/root-store';
 
 vi.mock('./pokedex/state/pokemon-index/pokemon-index.slice', async () => {

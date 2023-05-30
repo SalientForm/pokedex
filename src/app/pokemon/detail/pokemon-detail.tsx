@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { useParams } from 'react-router';
 import { PokemonContext } from '../../common/providers/pokemon-provider';
 import PokedexViewHistory from '../../pokedex/view-history/pokedex-view-history';
-import { PokedexDispatch } from "../../state/root-store";
+import { PokedexDispatch } from '../../state/root-store';
 import styles from './pokemon-detail.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { pokemonIndexActions, selectSelectedPokemon } from '../../pokedex/state/pokemon-index/pokemon-index.slice';

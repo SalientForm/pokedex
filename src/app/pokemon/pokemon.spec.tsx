@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
-import { Provider } from "react-redux";
+import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router';
 import { PokedexDispatch, rootStore } from '../state/root-store';
 import Pokemon from './pokemon';
 
@@ -8,7 +9,9 @@ describe('Pokemon', () => {
     rootStore.dispatch = vi.fn() as PokedexDispatch;
     const { baseElement } = render(
       <Provider store={rootStore}>
-        <Pokemon />
+        <MemoryRouter>
+          <Pokemon />
+        </MemoryRouter>
       </Provider>
     );
     expect(baseElement).toBeTruthy();
