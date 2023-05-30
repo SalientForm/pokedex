@@ -2,13 +2,14 @@
 
 ## Update 5/30/23
 
-### Update Targets
+### Targets
+
 - Provide "PR-ready" code
 - Implement remaining bonus features
 - Apply what we covered in the interview
 - Improve unit test coverage
 
-### Update Details
+### Details
 
 - Cleaned up code and structure
     - Updated prettier configuration for JSX
