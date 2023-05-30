@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import App from '../app';
 import Pokedex from '../pokedex/pokedex';
-import PokemonDetail from '../pokemon/detail/pokemon-detail';
+import Pokemon from '../pokemon/pokemon';
 import ErrorPage from './error-page/route-error';
 
 export const pokedexRouter = createBrowserRouter([
@@ -19,11 +19,11 @@ export const pokedexRouter = createBrowserRouter([
       },
       {
         path: 'pokemon/detail',
-        element: <PokemonDetail />,
+        element: <Pokemon />,
       },
       {
         path: 'pokemon/detail/:id',
-        element: <PokemonDetail />,
+        element: <Pokemon />,
       },
       {
         path: '*',

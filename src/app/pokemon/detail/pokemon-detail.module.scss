@@ -1,27 +1,26 @@
 .container {
   width: 16rem;
-  margin: 0 0 1rem 0;
+  margin: 0 1rem 1rem 0;
   padding: 0.5rem;
   background-color: #aaaaaa;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
   font-size: 1.5rem;
   align-self: center;
-}
-
-.message {
-  align-self: center;
-}
-
-.card-title {
+  border-bottom: #999999 solid 1px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   text-transform: capitalize;
 }
 
-.detail {
+.detail-summary {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -30,7 +29,7 @@
   margin-bottom: 1rem;
 }
 
-.abilities {
+.detail-abilities {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -39,9 +38,14 @@
 
 .badge {
   margin: 0.125rem;
+  font-size: 1.5rem;
 }
 
 .primary-image {
-  width: 96px;
-  height: 96px;
+  margin: 0 0 2rem 0;
+  height: 288px;
+}
+
+.primary-image img {
+  width: 18rem;
 }

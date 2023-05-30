@@ -1,15 +1,16 @@
 import { Badge, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { PokemonContext } from '../../common/providers/pokemon-provider';
 import { fetchPokemonById, PokemonEntity, selectPokemonById } from '../state/pokemon/pokemon.slice';
 import { PokedexDispatch } from '../../state/root-store';
 import styles from './pokemon-summary-card.module.scss';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 
 export interface PokemonCardSummaryProps {
-  pokemonId: number;
-  pokemonName?: string;
+  title?: string;
   className?: string;
   onClick?: (pokemonId: number) => void;
+  rolloverEffect?: boolean;
 }
 
 const getAbilities = (pokemon?: PokemonEntity) => {
@@ -28,32 +29,33 @@ const getAbilities = (pokemon?: PokemonEntity) => {
 };
 
 export function PokemonSummaryCard(props: PokemonCardSummaryProps) {
-  const pokemon$ = useSelector(selectPokemonById(props.pokemonId));
-  const dispatch = useDispatch<PokedexDispatch>();
-
-  useEffect(() => {
-    if (!pokemon$) {
-      dispatch(fetchPokemonById(props.pokemonId));
-    }
-  }, [props, dispatch, pokemon$]);
+  const pokemon = useContext(PokemonContext);
 
   const handleCardClick = () => {
-    if (props.onClick) {
-      props.onClick(props.pokemonId);
+    if (props.onClick && pokemon) {
+      props.onClick(pokemon.id);
     }
   };
 
+  if (!pokemon) {
+    return <Card onClick={handleCardClick} className={`${styles['container']} ${props.className}}`}></Card>;
+  }
+
   return (
-    <Card onClick={handleCardClick} className={`${styles['container']} ${props.className}`}>
+    <Card
+      onClick={handleCardClick}
+      className={`${styles['container']} ${props.className} ${props.rolloverEffect && styles['rolloverEffect']}`}
+    >
+      {props.title ? <div className={styles['title']}>{props.title}</div> : ''}
       <div className={styles['primary-image']}>
-        {pokemon$?.sprites?.front_default ? <img alt={props.pokemonName} src={pokemon$?.sprites?.front_default} /> : ''}
+        {pokemon?.sprites?.front_default ? <img alt={pokemon.name} src={pokemon?.sprites?.front_default} /> : ''}
       </div>
-      <div className={`${styles['card-title']}`}>
-        {`${props.pokemonName}`}
+      <div className={`${styles['name']}`}>
+        {`${pokemon.name}`}
         {/*TODO: add prop to pokemon: idDisplayText*/}
-        <div>{`#${props.pokemonId.toString().padStart(4, '0')}`}</div>
+        <div>{`#${pokemon.id.toString().padStart(4, '0')}`}</div>
       </div>
-      {getAbilities(pokemon$)}
+      {getAbilities(pokemon)}
     </Card>
   );
 }

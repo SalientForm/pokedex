@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { PokemonContext } from '../../../common/providers/pokemon-provider';
 import styles from './pokemon-summary-detail.module.scss';
 import { useSelector } from 'react-redux';
 import { selectSelectedPokemon } from '../../../pokedex/state/pokemon-index/pokemon-index.slice';
@@ -13,7 +15,7 @@ const getAbilities = (pokemon: PokemonEntity) => {
 };
 
 export function PokemonSummaryDetail() {
-  const pokemon$ = useSelector(selectSelectedPokemon);
+  const pokemon$ = useContext(PokemonContext);
 
   return (
     <Card className={styles['container']}>

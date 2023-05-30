@@ -1,17 +1,16 @@
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router';
-import { rootStore } from '../../../state/root-store';
-import PokedexSearchResult, { PokedexSearchResultProps } from './pokedex-search-result';
+import { PokedexDispatch, rootStore } from '../state/root-store';
+import Pokemon from './pokemon';
 
-const mockProps: PokedexSearchResultProps = { searchText: 'text' };
-
-describe('PokedexSearchResult', () => {
+describe('Pokemon', () => {
   it('should render successfully', () => {
+    rootStore.dispatch = vi.fn() as PokedexDispatch;
     const { baseElement } = render(
       <Provider store={rootStore}>
         <MemoryRouter>
-          <PokedexSearchResult searchText={mockProps.searchText} />
+          <Pokemon />
         </MemoryRouter>
       </Provider>
     );
