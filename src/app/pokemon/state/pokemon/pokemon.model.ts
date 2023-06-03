@@ -1,3 +1,5 @@
+// TODO: switch to app/models
+
 // types generated from https://app.quicktype.io/
 
 export interface Pokemon {

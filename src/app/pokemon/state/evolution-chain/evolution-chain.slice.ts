@@ -21,14 +21,13 @@ export interface EvolutionChainState extends EntityState<EvolutionChainEntity> {
 
 export const evolutionChainAdapter = createEntityAdapter<EvolutionChainEntity>();
 
-export const fetchEvolutionChain = createAsyncThunk('evolutionChain/fetchStatus', async (pokemonSpeciesName: string) => {
+export const fetchEvolutionChain = createAsyncThunk('evolutionChain/fetchStatus', async (pokemonSpeciesName: string, thunkAPI) => {
 
-  // const basePokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
-  // const loadedPokemon: PokemonEntity = await basePokemon.json();
+  const speciesResponse= await fetch(`https://pokeapi.co/api/v2/evolution-chain/${pokemonSpeciesName}`);
+  const species = await speciesResponse.json();
 
-  // TODO: obtain evolution chain
-  // const evolutions= await fetch(`https://pokeapi.co/api/v2/evolution-chain/${pokemonId}`);
-  // loadedPokemon.evolutions = await evolutions.json();
+  const evolutionsResponse= await fetch(`https://pokeapi.co/api/v2/evolution-chain/${species.evolution_chain}`);
+  const evolutions = await evolutionsResponse.json();
 
   return Promise.resolve({} as EvolutionChainEntity);
 });
