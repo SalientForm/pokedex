@@ -6,8 +6,9 @@ import {
   EntityState,
   PayloadAction,
 } from '@reduxjs/toolkit';
+import { Pokemon } from "../../../pokeapi/model";
 import { PokedexFeatureState } from '../../../state/pokedex-feature-state';
-import { Pokemon } from './pokemon.model';
+
 
 export const POKEMON_FEATURE_KEY = 'pokemon';
 
