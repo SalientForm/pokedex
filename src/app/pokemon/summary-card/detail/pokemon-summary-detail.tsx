@@ -1,44 +1,42 @@
 import { useContext } from 'react';
+import { Badge } from 'react-bootstrap';
 import { PokemonContext } from '../../../common/providers/pokemon-provider';
-import styles from './pokemon-summary-detail.module.scss';
-import { useSelector } from 'react-redux';
-import { selectSelectedPokemon } from '../../../pokedex/state/pokemon-index/pokemon-index.slice';
-import { Badge, Card } from 'react-bootstrap';
 import { PokemonEntity } from '../../state/pokemon/pokemon.slice';
+import styles from './pokemon-summary-detail.module.scss';
 
 const getAbilities = (pokemon: PokemonEntity) => {
-  return pokemon.abilities?.map((item) => (
-    <Badge key={item.ability.name} bg='secondary' className={styles[`badge`]}>
-      {item.ability.name}
-    </Badge>
-  ));
+  return (
+    <div className={`${styles['abilities']}`}>
+      {pokemon?.abilities
+        ?.filter((i) => !i.is_hidden)
+        .map((item, index) => (
+          <Badge key={item.ability.name} bg='secondary' className={styles[`badge`]}>
+            {item.ability.name}
+          </Badge>
+        ))}
+    </div>
+  );
 };
 
-export function PokemonSummaryDetail() {
+export function PokemonSummaryDetail(props: { title?: string }) {
   const pokemon$ = useContext(PokemonContext);
 
+  if (!pokemon$) {
+    return <div className={styles['message']}>(No pokemon selected.)</div>;
+  }
+
   return (
-    <Card className={styles['container']}>
-      <div className={styles['title']}>Pokemon</div>
-      {!pokemon$ ? (
-        <div className={styles['message']}>(No pokemon selected.)</div>
-      ) : (
-        <div className={styles['detail']}>
-          <div className={styles['primary-image']}>
-            {pokemon$?.sprites?.front_default ? (
-              <img alt={pokemon$.name} src={pokemon$?.sprites?.front_default} />
-            ) : null}
-          </div>
-          <div className={`${styles['card-title']}`}>
-            <div>
-              <strong>{`${pokemon$.name}`}</strong>
-            </div>
-            <div>{`#${pokemon$?.id.toString().padStart(4, '0')}`}</div>
-          </div>
-          <div className={`${styles['abilities']}`}>{getAbilities(pokemon$)}</div>
-        </div>
-      )}
-    </Card>
+    <div className={styles['container']}>
+      {props.title ? <div className={styles['card-title']}>{props.title}</div> : ''}
+      <div className={styles['primary-image']}>
+        {pokemon$?.sprites?.front_default ? <img alt={pokemon$.name} src={pokemon$?.sprites?.front_default} /> : null}
+      </div>
+      <div className={`${styles['card-title']}`}>
+        <div className={`${styles['name']}`}>{`${pokemon$.name}`}</div>
+        <div>{`#${pokemon$?.id.toString().padStart(4, '0')}`}</div>
+      </div>
+      <div className={`${styles['abilities']}`}>{getAbilities(pokemon$)}</div>
+    </div>
   );
 }
 

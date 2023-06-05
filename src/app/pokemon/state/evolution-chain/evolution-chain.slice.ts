@@ -7,7 +7,6 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit';
 import { PokedexFeatureState } from '../../../state/pokedex-feature-state';
-import { PokemonEntity, selectPokemonById } from '../pokemon/pokemon.slice';
 import { EvolutionChain } from './evolution-chain.model';
 
 export const EVOLUTION_CHAIN_FEATURE_KEY = 'evolutionChain';

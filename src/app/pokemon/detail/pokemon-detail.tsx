@@ -10,16 +10,26 @@ import { Badge, Card } from 'react-bootstrap';
 import { PokemonEntity } from '../state/pokemon/pokemon.slice';
 
 const getAbilities = (pokemon: PokemonEntity) => {
-  return pokemon.abilities?.map((item) => (
-    <Badge key={item.ability.name} bg='secondary' className={styles[`badge`]}>
-      {item.ability.name}
-    </Badge>
-  ));
+  return pokemon.abilities
+    ?.filter((i) => !i.is_hidden)
+    .map((item, index) => (
+      <Badge key={index} bg='secondary' className={styles[`badge`]}>
+        {item.ability.name}
+      </Badge>
+    ));
+};
+
+const getBestImage = (pokemon$: PokemonEntity) => {
+  return (
+    pokemon$?.sprites?.other?.home.front_default ||
+    pokemon$?.sprites?.other?.['official-artwork']?.front_default ||
+    pokemon$?.sprites?.front_default
+  );
 };
 
 export function PokemonDetail() {
   const pokemon$ = useContext(PokemonContext);
-
+  console.log(pokemon$);
   return (
     <Card className={styles['container']}>
       <div className={styles['title']}>
@@ -30,9 +40,7 @@ export function PokemonDetail() {
       ) : (
         <div className={styles['detail-summary']}>
           <div className={styles['primary-image']}>
-            {pokemon$?.sprites?.front_default ? (
-              <img alt={pokemon$.name} src={pokemon$?.sprites?.other?.home.front_default} />
-            ) : null}
+            {pokemon$?.sprites?.front_default ? <img alt={pokemon$.name} src={getBestImage(pokemon$)} /> : null}
           </div>
           <div className={`${styles['detail-abilities']}`}>{getAbilities(pokemon$)}</div>
         </div>
