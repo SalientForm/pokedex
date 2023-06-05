@@ -24,7 +24,10 @@ describe('evolutionChain reducer', () => {
       })
     );
 
-    state = evolutionChainReducer(state, fetchEvolutionChain.fulfilled(mockEvolutionChain, testSpeciesName, testSpeciesName));
+    state = evolutionChainReducer(
+      state,
+      fetchEvolutionChain.fulfilled(mockEvolutionChain, testSpeciesName, testSpeciesName)
+    );
 
     expect(state).toEqual(
       expect.objectContaining({
@@ -34,7 +37,10 @@ describe('evolutionChain reducer', () => {
       })
     );
 
-    state = evolutionChainReducer(state, fetchEvolutionChain.rejected(new Error('Uh oh'), testSpeciesName, testSpeciesName));
+    state = evolutionChainReducer(
+      state,
+      fetchEvolutionChain.rejected(new Error('Uh oh'), testSpeciesName, testSpeciesName)
+    );
 
     expect(state).toEqual(
       expect.objectContaining({

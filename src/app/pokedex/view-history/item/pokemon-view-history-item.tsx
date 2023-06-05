@@ -11,7 +11,8 @@ export interface ViewHistoryItemProps {
   viewHistoryItem: PokemonViewHistoryEntity;
 }
 
-const  getTitle = (viewHistoryItem: PokemonViewHistoryEntity) => (`${viewHistoryItem.name} #${viewHistoryItem.pokemonId.toString().padStart(4, '0')}`);
+const getTitle = (viewHistoryItem: PokemonViewHistoryEntity) =>
+  `${viewHistoryItem.name} #${viewHistoryItem.pokemonId.toString().padStart(4, '0')}`;
 
 export function PokemonViewHistoryItem(props: ViewHistoryItemProps) {
   const dispatch = useDispatch<PokedexDispatch>();
@@ -21,7 +22,12 @@ export function PokemonViewHistoryItem(props: ViewHistoryItemProps) {
   };
 
   return (
-    <div title={getTitle(props.viewHistoryItem)} onClick={handleClickItem} key={props.viewHistoryItem.pokemonId} className={styles['container']}>
+    <div
+      title={getTitle(props.viewHistoryItem)}
+      onClick={handleClickItem}
+      key={props.viewHistoryItem.pokemonId}
+      className={styles['container']}
+    >
       {getTitle(props.viewHistoryItem)}
     </div>
   );

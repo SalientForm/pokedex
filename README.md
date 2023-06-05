@@ -12,18 +12,18 @@
 ### Details
 
 - Cleaned up code and structure
-    - Updated prettier configuration for JSX
-    - Removed ts-ignore lines
-    - Applied prettier to entire codebase
-    - Improved feature-orientation of code structure
-    - Moved state-slices to associated features
-    - Added `{ "curly": "error" }` eslint rule
+  - Updated prettier configuration for JSX
+  - Removed ts-ignore lines
+  - Applied prettier to entire codebase
+  - Improved feature-orientation of code structure
+  - Moved state-slices to associated features
+  - Added `{ "curly": "error" }` eslint rule
 - Added `PokemonProvider` / `usePokemon` context
 - Added [React Router](https://reactrouter.com/en/main)
 - Added full-detail view
-    - Evolutions are scaffolded but still **TBD**
+  - Evolutions are scaffolded but still **TBD**
 - Added `useLocalStorage` hook
-    - SearchText restores to last value
+  - SearchText restores to last value
 
 ## Features
 

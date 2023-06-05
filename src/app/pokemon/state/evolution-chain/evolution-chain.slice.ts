@@ -20,17 +20,19 @@ export interface EvolutionChainState extends EntityState<EvolutionChainEntity> {
 
 export const evolutionChainAdapter = createEntityAdapter<EvolutionChainEntity>();
 
-export const fetchEvolutionChain = createAsyncThunk('evolutionChain/fetchStatus', async (pokemonSpeciesName: string) => {
+export const fetchEvolutionChain = createAsyncThunk(
+  'evolutionChain/fetchStatus',
+  async (pokemonSpeciesName: string) => {
+    // const basePokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
+    // const loadedPokemon: PokemonEntity = await basePokemon.json();
 
-  // const basePokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
-  // const loadedPokemon: PokemonEntity = await basePokemon.json();
+    // TODO: obtain evolution chain
+    // const evolutions= await fetch(`https://pokeapi.co/api/v2/evolution-chain/${pokemonId}`);
+    // loadedPokemon.evolutions = await evolutions.json();
 
-  // TODO: obtain evolution chain
-  // const evolutions= await fetch(`https://pokeapi.co/api/v2/evolution-chain/${pokemonId}`);
-  // loadedPokemon.evolutions = await evolutions.json();
-
-  return Promise.resolve({} as EvolutionChainEntity);
-});
+    return Promise.resolve({} as EvolutionChainEntity);
+  }
+);
 
 export const initialEvolutionChainState: EvolutionChainState = evolutionChainAdapter.getInitialState({
   loadingStatus: 'not loaded',
@@ -41,7 +43,7 @@ export const evolutionChainSlice = createSlice({
   name: EVOLUTION_CHAIN_FEATURE_KEY,
   initialState: initialEvolutionChainState,
   reducers: {
-    set: evolutionChainAdapter.setOne
+    set: evolutionChainAdapter.setOne,
   },
   extraReducers: (builder) => {
     builder
