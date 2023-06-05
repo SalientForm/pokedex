@@ -29,7 +29,7 @@ const getBestImage = (pokemon$: PokemonEntity) => {
 
 export function PokemonDetail() {
   const pokemon$ = useContext(PokemonContext);
-  console.log(pokemon$);
+
   return (
     <Card className={styles['container']}>
       <div className={styles['title']}>

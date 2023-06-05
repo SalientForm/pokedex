@@ -28,16 +28,16 @@ export function PokedexSearchForm(props: PokedexSearchFormProps) {
         props.handlePokemonSearch(formData.searchText);
       }, debounceTime)
     );
+    return () => {
+      if (updateTimeout) {
+        clearTimeout(updateTimeout);
+      }
+    };
   }, [formData.searchText]);
-
-  const handleOnSubmit: FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
 
   return (
     <div className={styles['container']}>
-      <Form data-testid='pokedex-search-form' onSubmit={handleOnSubmit}>
+      <Form data-testid='pokedex-search-form'>
         <Form.Group className='d-flex flex-row' controlId='searchText'>
           <Form.Control
             type='text'
