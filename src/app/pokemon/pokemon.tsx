@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 import { PokemonProvider } from '../common/providers/pokemon-provider';
-import { pokemonIndexActions, selectSelected } from '../pokedex/state/pokemon-index/pokemon-index.slice';
+import { pokemonIndexActions, selectSelectedPokemonId } from '../pokedex/state/pokemon-index/pokemon-index.slice';
 import { addPokemonViewHistoryItemByPokemonId } from '../pokedex/state/pokemon-view-history/pokemon-view-history.slice';
 import PokedexViewHistory from '../pokedex/view-history/pokedex-view-history';
 import { PokedexDispatch } from '../state/root-store';
@@ -14,7 +14,7 @@ export interface PokemonProps {}
 
 export function Pokemon(props: PokemonProps) {
   const { id: pokemonIdUrlParam } = useParams();
-  const selectedPokemonId = useSelector(selectSelected);
+  const selectedPokemonId = useSelector(selectSelectedPokemonId);
   // param value is priority
   const pokemonId = pokemonIdUrlParam ? parseInt(pokemonIdUrlParam) : selectedPokemonId ?? 1;
   const dispatch = useDispatch<PokedexDispatch>();

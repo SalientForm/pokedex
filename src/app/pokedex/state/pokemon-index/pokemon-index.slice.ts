@@ -9,7 +9,6 @@ import {
 import Fuse from 'fuse.js';
 import { PokeApiListResponse } from '../../../state/pokeapi.model';
 import { PokedexFeatureState } from '../../../state/pokedex-feature-state';
-import { selectPokemonEntities } from '../../../pokemon/state/pokemon/pokemon.slice';
 
 export const POKEMON_INDEX_FEATURE_KEY = 'pokemonIndex';
 
@@ -163,9 +162,5 @@ export const selectPokemonIndexItemById = (pokemonId: number) =>
     return entities[pokemonId];
   });
 
-export const selectSelected = createSelector(selectPokemonIndexState, (state) => state.selected);
+export const selectSelectedPokemonId = createSelector(selectPokemonIndexState, (state) => state.selected);
 
-// TODO: should be moved to different location because circular references can occur once many complex selectors are created
-export const selectSelectedPokemon = createSelector(selectSelected, selectPokemonEntities, (id, pokemonEntities) => {
-  return id ? pokemonEntities[id] : undefined;
-});
