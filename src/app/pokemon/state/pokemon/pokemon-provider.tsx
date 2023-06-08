@@ -1,12 +1,12 @@
 import { createContext, PropsWithChildren, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useFetchPokemonByIdQuery } from '../../pokemon/state/pokemon/pokemon.service';
-import { selectSelectedPokemonId } from '../../pokedex/state/pokemon-index/pokemon-index.slice';
-import { addPokemonViewHistoryItemByPokemonId } from '../../pokedex/state/pokemon-view-history/pokemon-view-history.slice';
-import { PokemonEntity } from '../../pokemon/state/pokemon/pokemon.slice';
-import { PokedexDispatch } from '../../state/root-store';
+import { Pokemon } from '../../../pokeapi/model';
+import { useFetchPokemonByIdQuery } from './pokemon.service';
+import { selectSelectedPokemonId } from '../../../pokedex/state/pokemon-index/pokemon-index.slice';
+import { addPokemonViewHistoryItemByPokemonId } from '../../../pokedex/state/pokemon-view-history/pokemon-view-history.slice';
+import { PokedexDispatch } from '../../../state/root-store';
 
-export const PokemonContext = createContext<PokemonEntity | undefined>(undefined);
+export const PokemonContext = createContext<Pokemon | undefined>(undefined);
 
 export interface PokemonProviderProps extends PropsWithChildren {
   pokemonId?: number;
@@ -35,10 +35,11 @@ export const PokemonProvider = (props: PokemonProviderProps) => {
     }
   }, [dispatch, useSelectedPokemon, selectedPokemonId$]);
 
-  if (pokemon$IsLoading) {
-    return <div>Loading</div>;
-  } else if(pokemon$Error) {
-    return <div>Error</div>;
+  // if id is 0 either no pokemon was selected, or we wish not to display
+  if (pokemonId === 0) {
+    return <></>;
+  } else if (pokemon$Error) {
+    return <div>pokemon fetch error</div>;
   }
 
   return <PokemonContext.Provider value={pokemon$}>{props.children}</PokemonContext.Provider>;

@@ -1,3 +1,5 @@
+@use '../../../styles/base-animations.scss';
+
 .container {
   width: 16rem;
   margin: 0 1rem 1rem 0;
@@ -42,10 +44,13 @@
 }
 
 .primary-image {
+  box-sizing: content-box;
   margin: 0 0 2rem 0;
-  height: 288px;
-}
-
-.primary-image img {
-  width: 18rem;
+  > img[data-lazy-src] {
+    opacity: 0;
+  }
+  > img {
+    animation: fadeIn 300ms;
+    opacity: 1;
+  }
 }

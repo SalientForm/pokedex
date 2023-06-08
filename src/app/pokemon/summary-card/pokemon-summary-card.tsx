@@ -1,6 +1,6 @@
 import { memo, useContext } from 'react';
 import { Card } from 'react-bootstrap';
-import { PokemonContext } from '../../common/providers/pokemon-provider';
+import { PokemonContext } from '../state/pokemon/pokemon-provider';
 import PokemonSummaryDetail from './detail/pokemon-summary-detail';
 import styles from './pokemon-summary-card.module.scss';
 
@@ -21,7 +21,7 @@ export const PokemonSummaryCard = memo(function PokemonSummaryCard(props: Pokemo
   };
 
   if (!pokemon) {
-    return <Card onClick={handleCardClick} className={`${styles['container']} ${props.className}}`}></Card>;
+    return <Card onClick={handleCardClick} className={`${styles['container']} ${props.className}`}></Card>;
   }
 
   return (

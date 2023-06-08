@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import { Badge } from 'react-bootstrap';
-import { PokemonContext } from '../../../common/providers/pokemon-provider';
-import { PokemonEntity } from '../../state/pokemon/pokemon.slice';
+import { Pokemon } from '../../../pokeapi/model';
+import { PokemonContext } from '../../state/pokemon/pokemon-provider';
 import styles from './pokemon-summary-detail.module.scss';
 
-const getAbilities = (pokemon: PokemonEntity) => {
+const getAbilities = (pokemon: Pokemon) => {
   return (
     <div className={`${styles['abilities']}`}>
       {pokemon?.abilities

@@ -74,8 +74,6 @@ export const pokemonIndexSlice = createSlice({
   name: POKEMON_INDEX_FEATURE_KEY,
   initialState: initialPokemonIndexState,
   reducers: {
-    add: pokemonIndexAdapter.addOne,
-    remove: pokemonIndexAdapter.removeOne,
     setSelectedPokemon(state, action: PayloadAction<number>) {
       state.selected = action.payload;
     },
@@ -103,40 +101,9 @@ export const pokemonIndexSlice = createSlice({
  * Export reducer for store configuration.
  */
 export const pokemonIndexReducer = pokemonIndexSlice.reducer;
-/*
- * Export action creators to be dispatched. For use with the `useDispatch` hook.
- *
- * e.g.
- * ```
- * import React, { useEffect } from 'react';
- * import { useDispatch } from 'react-redux';
- *
- * // ...
- *
- * const dispatch = useDispatch();
- * useEffect(() => {
- *   dispatch(pokemonIndexActions.add({ id: 1 }))
- * }, [dispatch]);
- * ```
- *
- * See: https://react-redux.js.org/next/api/hooks#usedispatch
- */
+
 export const pokemonIndexActions = pokemonIndexSlice.actions;
 
-/*
- * Export selectors to query state. For use with the `useSelector` hook.
- *
- * e.g.
- * ```
- * import { useSelector } from 'react-redux';
- *
- * // ...
- *
- * const entities = useSelector(selectAllPokemonIndex);
- * ```
- *
- * See: https://react-redux.js.org/next/api/hooks#useselector
- */
 const { selectAll, selectEntities } = pokemonIndexAdapter.getSelectors();
 
 export const selectPokemonIndexState = (rootState: PokedexFeatureState): PokemonIndexState =>
@@ -146,7 +113,7 @@ export const selectAllPokemonIndex = createSelector(selectPokemonIndexState, sel
 
 export const selectPokemonIndexEntities = createSelector(selectPokemonIndexState, selectEntities);
 
-export const selectPokemonFromIndexByName = (searchText: string, limit = 20) =>
+export const selectPokemonFromIndexByName = (searchText: string, limit = 25) =>
   createSelector(selectPokemonIndexState, selectAllPokemonIndex, (state, pokemonIndex) => {
     const fuse = new Fuse(pokemonIndex, {
       keys: ['name'],
@@ -163,4 +130,3 @@ export const selectPokemonIndexItemById = (pokemonId: number) =>
   });
 
 export const selectSelectedPokemonId = createSelector(selectPokemonIndexState, (state) => state.selected);
-

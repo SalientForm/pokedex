@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
-import { PokemonProvider } from '../common/providers/pokemon-provider';
+import { PokemonProvider } from './state/pokemon/pokemon-provider';
 import { pokemonIndexActions, selectSelectedPokemonId } from '../pokedex/state/pokemon-index/pokemon-index.slice';
 import { addPokemonViewHistoryItemByPokemonId } from '../pokedex/state/pokemon-view-history/pokemon-view-history.slice';
 import PokedexViewHistory from '../pokedex/view-history/pokedex-view-history';

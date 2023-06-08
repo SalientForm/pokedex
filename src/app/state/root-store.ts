@@ -16,7 +16,7 @@ export const rootStore = configureStore({
     [pokemonApi.reducerPath]: pokemonApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    (getDefaultMiddleware({ serializableCheck: false }).concat(pokemonApi.middleware)),
+    getDefaultMiddleware({ serializableCheck: false }).concat(pokemonApi.middleware),
   devTools: process.env.NODE_ENV !== 'production',
   enhancers: [],
 });

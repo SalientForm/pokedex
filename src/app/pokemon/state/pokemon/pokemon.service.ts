@@ -7,7 +7,7 @@ export const pokemonApi = createApi({
   endpoints: (builder) => ({
     fetchPokemonById: builder.query<Pokemon, number>({
       query: (id: number) => `pokemon/${id.toString()}`,
-      extraOptions: {}
+      extraOptions: {},
     }),
   }),
 });

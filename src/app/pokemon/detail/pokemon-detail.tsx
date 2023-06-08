@@ -1,15 +1,10 @@
 import { useContext } from 'react';
-import { useParams } from 'react-router';
-import { PokemonContext } from '../../common/providers/pokemon-provider';
-import PokedexViewHistory from '../../pokedex/view-history/pokedex-view-history';
-import { PokedexDispatch } from '../../state/root-store';
-import styles from './pokemon-detail.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { pokemonIndexActions, selectSelectedPokemon } from '../../pokedex/state/pokemon-index/pokemon-index.slice';
 import { Badge, Card } from 'react-bootstrap';
-import { PokemonEntity } from '../state/pokemon/pokemon.slice';
+import { Pokemon } from '../../pokeapi/model';
+import { PokemonContext } from '../state/pokemon/pokemon-provider';
+import styles from './pokemon-detail.module.scss';
 
-const getAbilities = (pokemon: PokemonEntity) => {
+const getAbilities = (pokemon: Pokemon) => {
   return pokemon.abilities
     ?.filter((i) => !i.is_hidden)
     .map((item, index) => (
@@ -19,11 +14,12 @@ const getAbilities = (pokemon: PokemonEntity) => {
     ));
 };
 
-const getBestImage = (pokemon$: PokemonEntity) => {
+const getBestImage = (pokemon$: Pokemon) => {
   return (
     pokemon$?.sprites?.other?.home.front_default ||
     pokemon$?.sprites?.other?.['official-artwork']?.front_default ||
-    pokemon$?.sprites?.front_default
+    pokemon$?.sprites?.front_default ||
+    undefined
   );
 };
 
@@ -40,7 +36,7 @@ export function PokemonDetail() {
       ) : (
         <div className={styles['detail-summary']}>
           <div className={styles['primary-image']}>
-            {pokemon$?.sprites?.front_default ? <img alt={pokemon$.name} src={getBestImage(pokemon$)} /> : null}
+            <img alt={pokemon$.name} src={getBestImage(pokemon$)} />
           </div>
           <div className={`${styles['detail-abilities']}`}>{getAbilities(pokemon$)}</div>
         </div>

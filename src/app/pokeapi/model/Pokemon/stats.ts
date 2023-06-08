@@ -1,4 +1,4 @@
-import { APIResource, Name, NamedAPIResource } from "../Common";
+import { APIResource, Name, NamedAPIResource } from '../Common';
 
 /**
  * ## Stat
@@ -9,15 +9,7 @@ export interface Stat {
   /** The identifier for this resource */
   id: number;
   /** The name for this resource */
-  name:
-    | "hp"
-    | "attack"
-    | "defense"
-    | "special-attack"
-    | "special-defense"
-    | "speed"
-    | "accuracy"
-    | "evasion";
+  name: 'hp' | 'attack' | 'defense' | 'special-attack' | 'special-defense' | 'speed' | 'accuracy' | 'evasion';
   /** ID the games use for this stat */
   game_index: number;
   /** Whether this stat only exists within a battle */

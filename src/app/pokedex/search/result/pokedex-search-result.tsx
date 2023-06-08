@@ -1,11 +1,10 @@
 import { Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { PokemonProvider } from '../../../common/providers/pokemon-provider';
-import { PokedexDispatch } from '../../../state/root-store';
-import { addPokemonViewHistoryItemByPokemonId } from '../../state/pokemon-view-history/pokemon-view-history.slice';
-import { pokemonIndexActions, selectPokemonFromIndexByName } from '../../state/pokemon-index/pokemon-index.slice';
+import { PokemonProvider } from '../../../pokemon/state/pokemon/pokemon-provider';
 import PokemonSummaryCard from '../../../pokemon/summary-card/pokemon-summary-card';
+import { PokedexDispatch } from '../../../state/root-store';
+import { selectPokemonFromIndexByName } from '../../state/pokemon-index/pokemon-index.slice';
 import styles from './pokedex-search-result.module.scss';
 
 export interface PokedexSearchResultProps {

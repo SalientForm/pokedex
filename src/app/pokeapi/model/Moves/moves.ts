@@ -1,12 +1,5 @@
-import {
-  APIResource,
-  Description,
-  MachineVersionDetail,
-  Name,
-  NamedAPIResource,
-  VerboseEffect,
-} from "../Common";
-import { AbilityEffectChange } from "../Pokemon";
+import { APIResource, Description, MachineVersionDetail, Name, NamedAPIResource, VerboseEffect } from '../Common';
+import { AbilityEffectChange } from '../Pokemon';
 
 /**
  * ## Move Target
@@ -83,7 +76,7 @@ export interface MoveBattleStyle {
   /** The identifier for this resource. */
   id: number;
   /** The name for this resource. */
-  name: "attack" | "defense" | "support";
+  name: 'attack' | 'defense' | 'support';
   /** The name of this resource listed in different languages. */
   names: Name[];
 }
