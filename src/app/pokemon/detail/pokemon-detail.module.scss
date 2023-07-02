@@ -1,7 +1,6 @@
 @use '../../../styles/base-animations.scss';
 
 .container {
-  width: 16rem;
   margin: 0 1rem 1rem 0;
   padding: 0.5rem;
   background-color: #aaaaaa;
@@ -13,7 +12,6 @@
 
 .title {
   font-size: 1.5rem;
-  align-self: center;
   border-bottom: #999999 solid 1px;
   width: 100%;
   display: flex;
@@ -22,13 +20,23 @@
   text-transform: capitalize;
 }
 
+.previous {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.next {
+  font-size: 24px;
+  font-weight: bold;
+}
+
 .detail-summary {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
+  flex-grow: 1;
 }
 
 .detail-abilities {
@@ -46,11 +54,5 @@
 .primary-image {
   box-sizing: content-box;
   margin: 0 0 2rem 0;
-  > img[data-lazy-src] {
-    opacity: 0;
-  }
-  > img {
-    animation: fadeIn 300ms;
-    opacity: 1;
-  }
+  height: 512px;
 }

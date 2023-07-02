@@ -1,6 +1,8 @@
 @use 'bootstrap/dist/css/bootstrap.min.css';
 @use 'styles/base-animations.scss';
 
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+
 @font-face {
   font-family: 'Flexo-Thin';
   src: url('./assets/fonts/285B7A_0_0.woff') format('woff');
@@ -32,6 +34,14 @@
 }
 
 body {
-  background-color: #888888;
+  background: linear-gradient(135deg, rgba(150,150,150,1) 0%, rgba(100,100,100,0.8) 75%, rgba(125,125,125,0.3) 100%);
   font-family: Flexo-Regular, Roboto, sans-serif;
+  height: 100%;
+}
+
+html {
+  background-color: #888888;
+  background-position: bottom -100px right 20px;
+  background-repeat: no-repeat;
+  background-image: url("https://upload.wikimedia.org/wikipedia/en/e/e4/Ash_Ketchum_Journeys.png");
 }

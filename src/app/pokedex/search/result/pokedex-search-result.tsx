@@ -1,9 +1,9 @@
+import { useCallback } from "react";
 import { Card } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { PokemonProvider } from '../../../pokemon/state/pokemon/pokemon-provider';
 import PokemonSummaryCard from '../../../pokemon/summary-card/pokemon-summary-card';
-import { PokedexDispatch } from '../../../state/root-store';
 import { selectPokemonFromIndexByName } from '../../state/pokemon-index/pokemon-index.slice';
 import styles from './pokedex-search-result.module.scss';
 
@@ -13,11 +13,11 @@ export interface PokedexSearchResultProps {
 
 export function PokedexSearchResult(props: PokedexSearchResultProps) {
   const navigate = useNavigate();
-  const dispatch = useDispatch<PokedexDispatch>();
-  const handleClickPokemonCard = (pokemonId: number) => {
-    navigate(`/pokemon/detail/${pokemonId}`);
-  };
   const searchResults$ = useSelector(selectPokemonFromIndexByName(props.searchText));
+
+  const handleClickPokemonCard = useCallback((pokemonId: number) => {
+    navigate(`/pokemon/detail/${pokemonId}`);
+  }, [navigate]);
 
   return (
     <Card className={styles['container']}>

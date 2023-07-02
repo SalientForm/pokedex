@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { Badge, Card } from 'react-bootstrap';
+import { PreloadedImage } from '../../common/preloaded-image';
 import { Pokemon } from '../../pokeapi/model';
 import { PokemonContext } from '../state/pokemon/pokemon-provider';
 import styles from './pokemon-detail.module.scss';
@@ -19,28 +20,37 @@ const getBestImage = (pokemon$: Pokemon) => {
     pokemon$?.sprites?.other?.home.front_default ||
     pokemon$?.sprites?.other?.['official-artwork']?.front_default ||
     pokemon$?.sprites?.front_default ||
-    undefined
+    ''
   );
 };
+
+// export default ImageLoader;
 
 export function PokemonDetail() {
   const pokemon$ = useContext(PokemonContext);
 
+  if (!pokemon$) {
+    return (
+      <Card className={styles['container']}>
+        <div className={styles['title']}>Pokemon Detail</div>
+        <div className={styles['detail-message']}>(No pokemon selected.)</div>
+      </Card>
+    );
+  }
+
   return (
     <Card className={styles['container']}>
-      <div className={styles['title']}>
-        {pokemon$ ? `${pokemon$.name} #${pokemon$?.id.toString().padStart(4, '0')}` : 'Pokemon Detail'}
-      </div>
-      {!pokemon$ ? (
-        <div className={styles['detail-message']}>(No pokemon selected.)</div>
-      ) : (
+      <div className={styles['title']}>{`${pokemon$.name} #${pokemon$?.id.toString().padStart(4, '0')}`}</div>
+      <div className={`w-100 d-flex flex-row align-items-center`}>
+        <div className={styles['previous']}><i className="bi bi-chevron-left"></i></div>
         <div className={styles['detail-summary']}>
           <div className={styles['primary-image']}>
-            <img alt={pokemon$.name} src={getBestImage(pokemon$)} />
+            <PreloadedImage src={getBestImage(pokemon$)} alt={pokemon$.name} title={pokemon$.name} />
           </div>
           <div className={`${styles['detail-abilities']}`}>{getAbilities(pokemon$)}</div>
         </div>
-      )}
+        <div className={styles['next']}><i className="bi bi-chevron-right"></i></div>
+      </div>
     </Card>
   );
 }

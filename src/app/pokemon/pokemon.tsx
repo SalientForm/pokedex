@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 import { PokemonProvider } from './state/pokemon/pokemon-provider';
 import { pokemonIndexActions, selectSelectedPokemonId } from '../pokedex/state/pokemon-index/pokemon-index.slice';
-import { addPokemonViewHistoryItemByPokemonId } from '../pokedex/state/pokemon-view-history/pokemon-view-history.slice';
+import {
+  addPokemonViewHistoryItemByPokemonId,
+  PokemonViewHistoryEntity
+} from '../pokedex/state/pokemon-view-history/pokemon-view-history.slice';
 import PokedexViewHistory from '../pokedex/view-history/pokedex-view-history';
 import { PokedexDispatch } from '../state/root-store';
 import PokemonDetail from './detail/pokemon-detail';
@@ -24,16 +27,20 @@ export function Pokemon(props: PokemonProps) {
     dispatch(pokemonIndexActions.setSelectedPokemon(pokemonId));
     dispatch(addPokemonViewHistoryItemByPokemonId(pokemonId));
     if (!pokemonIdUrlParam) {
-      navigate(`pokemon/detail/${pokemonId}`, { replace: true });
+      navigate(`/pokemon/detail/${pokemonId}`, { replace: true });
     }
-  }, [navigate]);
+  }, [pokemonIdUrlParam, navigate, pokemonId, dispatch]);
+
+  const onClickViewHistoryItem = (viewHistoryItem:PokemonViewHistoryEntity) => {
+    navigate(`/pokemon/detail/${viewHistoryItem.pokemonId}`);
+  };
 
   return (
     <div className={styles['container']}>
-      <PokemonProvider>
+      <PokemonProvider pokemonId={pokemonId}>
         <PokemonDetail></PokemonDetail>
       </PokemonProvider>
-      <PokedexViewHistory></PokedexViewHistory>
+      <PokedexViewHistory onClickViewHistoryItem={onClickViewHistoryItem}></PokedexViewHistory>
     </div>
   );
 }
