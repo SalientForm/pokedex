@@ -21,7 +21,8 @@ export const PokemonSummaryCard = memo(function PokemonSummaryCard(props: Pokemo
   };
 
   if (!pokemon) {
-    return <Card onClick={handleCardClick} className={`${styles['container']} ${props.className}`}></Card>;
+    // return <Card onClick={handleCardClick} className={`${styles['container']} ${props.className}`}></Card>;
+    return null;
   }
 
   return (

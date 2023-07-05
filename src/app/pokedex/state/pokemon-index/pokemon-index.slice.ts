@@ -59,6 +59,23 @@ export const fetchAllPokemonIndex = createAsyncThunk('pokemonIndex/fetchStatus',
   return Promise.resolve(pokemonIndex);
 });
 
+export const fetchNextPokemonIndex = createAsyncThunk('pokemonIndex/fetchStatus', async (currentId, _) => {
+
+
+
+  // SUGGESTION: instead of utilizing fetch here, consider a query library or request library
+  const POKEMON_LIMIT = 2000;
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=${POKEMON_LIMIT}`);
+  const responseBody: PokeApiListResponse<PokemonIndexEntity[]> = await response.json();
+  responseBody.results?.map((pokemonIndex) => {
+    pokemonIndex.id = getIdFromUrl(pokemonIndex.url);
+    return pokemonIndex;
+  });
+  const pokemonIndex: PokemonIndexEntity[] = responseBody.results ?? [];
+  return Promise.resolve(pokemonIndex);
+});
+
+
 // NOTE: api does not provide id, only url
 function getIdFromUrl(url: string) {
   const idIndex = url.lastIndexOf('/', url.lastIndexOf('/') - 1) + 1;

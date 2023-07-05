@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 import { Badge, Card } from 'react-bootstrap';
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { PreloadedImage } from '../../common/preloaded-image';
 import { Pokemon } from '../../pokeapi/model';
 import { PokemonContext } from '../state/pokemon/pokemon-provider';
@@ -28,6 +30,24 @@ const getBestImage = (pokemon$: Pokemon) => {
 
 export function PokemonDetail() {
   const pokemon$ = useContext(PokemonContext);
+  const navigate = useNavigate();
+  // const lastIndex = useSelector(selectLastPokemonIndex);
+  const lastIndex = 1500;
+  // const nextIndex = useSelector(selectNextPokemonIndex);
+  // const previousIndex = useSelector(selectPreviousPokemonIndex);
+
+  const onClickNext = () => {
+    if(!pokemon$) {return;}
+    const pokemonId = (pokemon$.id === lastIndex) ? 1 : pokemon$.id + 1;
+    navigate(`/pokemon/detail/${pokemonId}`);
+  };
+
+  const onClickPrevious = () => {
+    if(!pokemon$) {return;}
+    const pokemonId = (pokemon$.id === 1) ? 1500 : pokemon$.id - 1;
+    navigate(`/pokemon/detail/${pokemonId}`);
+  };
+
 
   if (!pokemon$) {
     return (
@@ -38,18 +58,19 @@ export function PokemonDetail() {
     );
   }
 
+
   return (
     <Card className={styles['container']}>
       <div className={styles['title']}>{`${pokemon$.name} #${pokemon$?.id.toString().padStart(4, '0')}`}</div>
       <div className={`w-100 d-flex flex-row align-items-center`}>
-        <div className={styles['previous']}><i className="bi bi-chevron-left"></i></div>
+        <div onClick={onClickPrevious} className={`${styles['increment']} ${styles['previous']}`}><i className="bi bi-chevron-left"></i></div>
         <div className={styles['detail-summary']}>
           <div className={styles['primary-image']}>
             <PreloadedImage src={getBestImage(pokemon$)} alt={pokemon$.name} title={pokemon$.name} />
           </div>
           <div className={`${styles['detail-abilities']}`}>{getAbilities(pokemon$)}</div>
         </div>
-        <div className={styles['next']}><i className="bi bi-chevron-right"></i></div>
+        <div onClick={onClickNext} className={`${styles['increment']} ${styles['next']}`}><i className="bi bi-chevron-right"></i></div>
       </div>
     </Card>
   );
