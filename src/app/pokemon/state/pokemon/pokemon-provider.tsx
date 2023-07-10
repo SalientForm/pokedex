@@ -1,11 +1,6 @@
-import { createContext, PropsWithChildren, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { createContext, PropsWithChildren } from 'react';
 import { Pokemon } from '../../../pokeapi/model';
 import { useFetchPokemonByIdQuery } from './pokemon.service';
-import { selectSelectedPokemonId } from '../../../pokedex/state/pokemon-index/pokemon-index.slice';
-import { addPokemonViewHistoryItemByPokemonId } from '../../../pokedex/state/pokemon-view-history/pokemon-view-history.slice';
-import { PokedexDispatch } from '../../../state/root-store';
 
 export const PokemonContext = createContext<Pokemon | undefined>(undefined);
 

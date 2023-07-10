@@ -7,6 +7,7 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit';
 import Fuse from 'fuse.js';
+import { getIdFromUrl } from "../../../common/helpers";
 import { PokeApiListResponse } from '../../../state/pokeapi.model';
 import { PokedexFeatureState } from '../../../state/pokedex-feature-state';
 
@@ -61,8 +62,6 @@ export const fetchAllPokemonIndex = createAsyncThunk('pokemonIndex/fetchStatus',
 
 export const fetchNextPokemonIndex = createAsyncThunk('pokemonIndex/fetchStatus', async (currentId, _) => {
 
-
-
   // SUGGESTION: instead of utilizing fetch here, consider a query library or request library
   const POKEMON_LIMIT = 2000;
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=${POKEMON_LIMIT}`);
@@ -74,13 +73,6 @@ export const fetchNextPokemonIndex = createAsyncThunk('pokemonIndex/fetchStatus'
   const pokemonIndex: PokemonIndexEntity[] = responseBody.results ?? [];
   return Promise.resolve(pokemonIndex);
 });
-
-
-// NOTE: api does not provide id, only url
-function getIdFromUrl(url: string) {
-  const idIndex = url.lastIndexOf('/', url.lastIndexOf('/') - 1) + 1;
-  return parseInt(url.substring(idIndex, url.length - 1) ?? 0);
-}
 
 export const initialPokemonIndexState: PokemonIndexState = pokemonIndexAdapter.getInitialState({
   loadingStatus: 'not loaded',
