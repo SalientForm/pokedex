@@ -37,12 +37,15 @@ body {
   background: linear-gradient(135deg, rgba(150,150,150,1) 0%, rgba(100,100,100,0.8) 75%, rgba(125,125,125,0.3) 100%);
   font-family: Flexo-Regular, Roboto, sans-serif;
   min-height: 100vh;
+  min-width: 58rem;
+  overscroll-behavior-y: none;
 }
 
 html {
-  background-color: #888888;
   background-position: top -150px right 20px;
   min-height: 100vh;
+  min-width: 100vw;
   background-repeat: no-repeat;
+  background-color: #969696;
   background-image: url("https://i.pinimg.com/originals/43/ed/d5/43edd5aa5f0de7f410f5e38326f4b94c.png");
 }

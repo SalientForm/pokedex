@@ -12,6 +12,6 @@ export const defaultLayoutConfig: DefaultLayoutProps = {
   ],
   links: [
     { label: 'Search', action: 'link', config: '/pokedex/search' },
-    { label: 'Detail', action: 'link', config: '/pokemon/detail' },
+    { label: 'Browse', action: 'link', config: '/pokemon/detail' },
   ],
 };

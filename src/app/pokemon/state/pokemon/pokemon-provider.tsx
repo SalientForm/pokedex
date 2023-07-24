@@ -1,5 +1,6 @@
 import { createContext, PropsWithChildren } from 'react';
 import { Pokemon } from '../../../pokeapi/model';
+import { useFetchEvolutionChainBySpeciesQuery } from '../evolution-chain/evolution-chain.service';
 import { useFetchPokemonByIdQuery } from './pokemon.service';
 
 export const PokemonContext = createContext<Pokemon | undefined>(undefined);
@@ -25,6 +26,13 @@ export const PokemonProvider = (props: PokemonProviderProps) => {
     error: pokemon$Error,
     isLoading: pokemon$IsLoading,
   } = useFetchPokemonByIdQuery(pokemonId, { skip: pokemonId === 0 });
+
+  // const speciesName = pokemon$IsLoading || !pokemon$ ? '' : pokemon$.species.name ?? '';
+  // const {
+  //   data: evolutionChain,
+  //   error: evolutionChainError,
+  //   isLoading: evolutionChainIsLoading,
+  // } = useFetchEvolutionChainBySpeciesQuery(speciesName, { skip: pokemon$IsLoading || !pokemon$ });
 
   // if id is 0 either no Pokemon was selected, or we wish not to display
   if (pokemon$IsLoading || props.pokemonId === 0) {

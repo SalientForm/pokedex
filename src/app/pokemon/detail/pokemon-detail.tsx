@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Badge, Card } from 'react-bootstrap';
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { PreloadedImage } from '../../common/preloaded-image';
+import { PreloadedImage } from '../../common/components/preloaded-image/preloaded-image';
 import { Pokemon } from '../../pokeapi/model';
 import { PokemonContext } from '../state/pokemon/pokemon-provider';
 import styles from './pokemon-detail.module.scss';
@@ -62,7 +62,7 @@ export function PokemonDetail() {
   return (
     <Card className={styles['container']}>
       <div className={styles['title']}>{`${pokemon$.name} #${pokemon$?.id.toString().padStart(4, '0')}`}</div>
-      <div className={`w-100 d-flex flex-row align-items-center`}>
+      <div className={`w-100 d-flex flex-row`}>
         <div onClick={onClickPrevious} className={`${styles['increment']} ${styles['previous']}`}><i className="bi bi-chevron-left"></i></div>
         <div className={styles['detail-summary']}>
           <div className={styles['primary-image']}>

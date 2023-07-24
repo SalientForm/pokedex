@@ -1,7 +1,5 @@
 import { PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react';
-import { sassTrue } from 'sass';
-import { b } from 'vitest/dist/types-ad1c3f45';
-
+import styles from './preloaded-image.module.scss';
 interface PreloadedImageProps extends PropsWithChildren {
   src: string;
   alt: string;
@@ -37,13 +35,17 @@ const imagePreloader: ImageLoader = {
 export function PreloadedImage(props: PreloadedImageProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
+  // TODO: to manage multiple for animation track queue of PreloadedImageProps?
+
   useEffect(() => {
-    const load = imagePreloader.load(props.src);
-    if(load instanceof Promise) {
+    const preloaded = imagePreloader.load(props.src);
+    if (preloaded instanceof Promise) {
       setImageLoaded(false);
-      load.then((result) => setImageLoaded(result));
+      preloaded.then((result) => {
+        setImageLoaded(result);
+      });
     } else {
-      setImageLoaded(load);
+      setImageLoaded(preloaded);
     }
   }, [props]);
 
@@ -51,5 +53,15 @@ export function PreloadedImage(props: PreloadedImageProps) {
     return null;
   }
 
-  return <img title={props.title} alt={props.alt} src={props.src} className={props.className} />;
+  // TODO: cookbook - how to destroy and rerender an, instead of just updated
+
+  return (
+    <img
+      key={props.src}
+      className={`${imageLoaded && styles['container']} ${props.className}`}
+      title={props.title}
+      alt={props.alt}
+      src={props.src}
+    />
+  );
 }

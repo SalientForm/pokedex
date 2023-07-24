@@ -15,7 +15,7 @@ describe('ViewHistoryItem', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
       <Provider store={rootStore}>
-        <PokemonViewHistoryItem viewHistoryItem={mockViewHistoryItem} />
+        <PokemonViewHistoryItem onClick={()=> ({})} viewHistoryItem={mockViewHistoryItem} />
       </Provider>
     );
     expect(baseElement).toBeTruthy();

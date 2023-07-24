@@ -61,8 +61,6 @@ export const fetchAllPokemonIndex = createAsyncThunk('pokemonIndex/fetchStatus',
 });
 
 export const fetchNextPokemonIndex = createAsyncThunk('pokemonIndex/fetchStatus', async (currentId, _) => {
-
-  // SUGGESTION: instead of utilizing fetch here, consider a query library or request library
   const POKEMON_LIMIT = 2000;
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=${POKEMON_LIMIT}`);
   const responseBody: PokeApiListResponse<PokemonIndexEntity[]> = await response.json();

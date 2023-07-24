@@ -8,7 +8,6 @@ import {
 } from '@reduxjs/toolkit';
 import { PokedexFeatureState } from '../../../state/pokedex-feature-state';
 import { selectPokemonIndexItemById } from '../pokemon-index/pokemon-index.slice';
-import { v4 as uuidv4 } from 'uuid';
 
 export const POKEMON_VIEW_HISTORY_FEATURE_KEY = 'pokemonViewHistory';
 
@@ -32,7 +31,7 @@ export const addPokemonViewHistoryItemByPokemonId = createAsyncThunk(
     let viewHistory = selectAllPokemonViewHistory(pokedexFeatureState);
     viewHistory = viewHistory.filter((item) => item.pokemonId !== pokemonId);
     const newHistoryItem: PokemonViewHistoryEntity = {
-      id: uuidv4(),
+      id: pokemonId.toString(),
       viewTimestamp: new Date().getTime(),
       pokemonId,
       name: pokemonIndexItem?.name ?? '',

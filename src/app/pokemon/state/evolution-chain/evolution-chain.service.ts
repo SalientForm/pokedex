@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery, FetchBaseQueryError } from '@reduxjs/toolkit/dist/query/react';
 import { EvolutionChain, PokemonSpecies } from '../../../pokeapi/model';
 
-export const evolutionChainApi = createApi({
-  reducerPath: 'pokemonApi',
+export const pokemonEvolutionChainApi = createApi({
+  reducerPath: 'pokemonEvolutionChainApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://pokeapi.co/api/v2/' }),
   endpoints: (builder) => ({
     fetchEvolutionChainBySpecies: builder.query<EvolutionChain, string>({
@@ -30,5 +30,5 @@ export const evolutionChainApi = createApi({
   }),
 });
 
-export const { useFetchEvolutionChainBySpeciesQuery } = evolutionChainApi;
+export const { useFetchEvolutionChainBySpeciesQuery } = pokemonEvolutionChainApi;
 

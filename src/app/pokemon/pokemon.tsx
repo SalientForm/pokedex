@@ -5,7 +5,7 @@ import { PokemonProvider } from './state/pokemon/pokemon-provider';
 import { pokemonIndexActions, selectSelectedPokemonId } from '../pokedex/state/pokemon-index/pokemon-index.slice';
 import {
   addPokemonViewHistoryItemByPokemonId,
-  PokemonViewHistoryEntity
+  PokemonViewHistoryEntity,
 } from '../pokedex/state/pokemon-view-history/pokemon-view-history.slice';
 import PokedexViewHistory from '../pokedex/view-history/pokedex-view-history';
 import { PokedexDispatch } from '../state/root-store';
@@ -31,15 +31,17 @@ export function Pokemon(props: PokemonProps) {
     }
   }, [pokemonIdUrlParam, navigate, pokemonId, dispatch]);
 
-  const onClickViewHistoryItem = (viewHistoryItem:PokemonViewHistoryEntity) => {
+  const onClickViewHistoryItem = (viewHistoryItem: PokemonViewHistoryEntity) => {
     navigate(`/pokemon/detail/${viewHistoryItem.pokemonId}`);
   };
 
   return (
     <div className={styles['container']}>
-      <PokemonProvider pokemonId={pokemonId}>
-        <PokemonDetail></PokemonDetail>
-      </PokemonProvider>
+      <div className={'flex-grow-1'}>
+        <PokemonProvider pokemonId={pokemonId}>
+          <PokemonDetail></PokemonDetail>
+        </PokemonProvider>
+      </div>
       <PokedexViewHistory onClickViewHistoryItem={onClickViewHistoryItem}></PokedexViewHistory>
     </div>
   );

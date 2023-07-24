@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useFetchEvolutionChainBySpeciesQuery } from "../../../pokemon/state/evolution-chain/evolution-chain.service";
-import { fetchEvolutionChainBySpecies } from "../../../pokemon/state/evolution-chain/useFetchEvolutionChainBySpecies";
+import { useFetchEvolutionChainBySpeciesQuery } from '../../../pokemon/state/evolution-chain/evolution-chain.service';
 import { useFetchPokemonByIdQuery } from '../../../pokemon/state/pokemon/pokemon.service';
-import { selectPokemonFromIndexByName } from '../../state/pokemon-index/pokemon-index.slice';
 import { PokemonViewHistoryEntity } from '../../state/pokemon-view-history/pokemon-view-history.slice';
 import styles from './pokemon-view-history-item.module.scss';
 
@@ -21,20 +18,17 @@ export function PokemonViewHistoryItem(props: ViewHistoryItemProps) {
     error: pokemon$Error,
     isLoading: pokemon$IsLoading,
   } = useFetchPokemonByIdQuery(props.viewHistoryItem.pokemonId);
-  const speciesName = (pokemon$IsLoading || !pokemon$) ? '' : pokemon$.species.name ?? '';
-  const {data:evolutionChain, error:evolutionChainError, isLoading: evolutionChainIsLoading} = useFetchEvolutionChainBySpeciesQuery(speciesName, { skip: pokemon$IsLoading });
   const [backgroundStyle, setBackgroundStyle] = useState<Record<string, string>>({ background: 'none' });
 
   useEffect(() => {
-    fetchEvolutionChainBySpecies(speciesName);
     const backgroundImage = pokemon$?.sprites?.front_default;
-    setBackgroundStyle({
-      backgroundImage: `url("${backgroundImage}")`,
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'top -20px right -15px'
-    });
-
-
+    setTimeout(()=>{
+      setBackgroundStyle({
+        backgroundImage: `url("${backgroundImage}")`,
+        backgroundPosition: 'top -20px right -15px',
+        backgroundRepeat: 'no-repeat',
+    })
+    }, 125);
   }, [pokemon$]);
 
   return (
