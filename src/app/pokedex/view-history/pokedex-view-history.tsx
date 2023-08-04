@@ -26,7 +26,7 @@ export function PokedexViewHistory(props: {onClickViewHistoryItem: (viewHistoryI
     <div className={styles['container']}>
       <div className={styles['title']}>View History</div>
       {viewHistory$.map((i) => (
-        <PokemonViewHistoryItem onClick={props.onClickViewHistoryItem} viewHistoryItem={i}></PokemonViewHistoryItem>
+        <PokemonViewHistoryItem key={i.id} onClick={props.onClickViewHistoryItem} viewHistoryItem={i}></PokemonViewHistoryItem>
       ))}
       {message ? <div>{message}</div> : ''}
     </div>

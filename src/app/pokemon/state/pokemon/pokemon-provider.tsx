@@ -35,11 +35,11 @@ export const PokemonProvider = (props: PokemonProviderProps) => {
   // } = useFetchEvolutionChainBySpeciesQuery(speciesName, { skip: pokemon$IsLoading || !pokemon$ });
 
   // if id is 0 either no Pokemon was selected, or we wish not to display
-  if (pokemon$IsLoading || props.pokemonId === 0) {
-    return <></>;
-  } else if (pokemon$Error) {
-    return <div>Pokemon fetch error?</div>;
-  }
+  // if (pokemon$IsLoading || props.pokemonId === 0) {
+  //   return <></>;
+  // } else if (pokemon$Error) {
+  //   return <div>Pokemon fetch error?</div>;
+  // }
 
   return <PokemonContext.Provider value={pokemon$}>{props.children}</PokemonContext.Provider>;
 };

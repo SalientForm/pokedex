@@ -1,22 +1,52 @@
 .container {
-  //transition: all 0.3s ease-in-out;
-  animation: fadeInUpwards 300ms;
-  opacity: 1;
-  top: 0;
   position: relative;
+  margin: auto;
+  width: 500px;
 }
 
-@keyframes fadeInUpwards {
+.image {
+  position: absolute;
+  opacity: 1;
+  width: 500px;
+}
+
+.image-in {
+  animation: fadeInUp 300ms;
+  opacity: 1;
+}
+
+.image-out {
+  animation: fadeOut 200ms;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
   0% {
-    top: 8rem;
-    filter: blur(8rem);
+    filter: blur(2rem);
+    transform: translate3d(0, 3rem, 0);
+    opacity: 0;
+  }
+  50% {
+    filter: blur(2rem);
     transform: translate3d(0, 3rem, 0);
     opacity: 0;
   }
   100% {
-    top: 0;
     filter: blur(0);
     transform: translate3d(0, 0, 0);
     opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    filter: blur(0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    filter: blur(2rem);
+    transform: translate3d(0, -3rem, 0);
+    opacity: 0;
   }
 }

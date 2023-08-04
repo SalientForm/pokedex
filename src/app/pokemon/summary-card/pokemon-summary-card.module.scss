@@ -8,10 +8,20 @@
   justify-content: center;
   transform: scale(1);
   transition: all 0.3s ease-in-out;
-  animation: fadeIn 300ms;
+  animation: fadeIn 1000ms;
+  opacity: 1;
   background-color: #aaaaaa;
   cursor: pointer;
   padding: 0 0 1rem 0;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .rolloverEffect {
