@@ -26,12 +26,15 @@ export const PokemonSummaryCard = memo(function PokemonSummaryCard(props: Pokemo
   }
 
   return (
-    <Card
-      onClick={handleCardClick}
-      className={`${styles['container']} ${props.className} ${props.rolloverEffect && styles['rolloverEffect']}`}
-    >
-      <PokemonSummaryDetail {...props} />
-    </Card>
+    <>
+      <div className={styles['title']}>{props.title}</div>
+      <Card
+        onClick={handleCardClick}
+        className={`${styles['container']} ${props.className} ${props.rolloverEffect && styles['rolloverEffect']}`}
+      >
+        <PokemonSummaryDetail />
+      </Card>
+    </>
   );
 });
 

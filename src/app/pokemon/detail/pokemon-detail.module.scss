@@ -25,7 +25,7 @@ $colorDark: 150;
 
 .previous:hover,
 .next:hover {
-  background: #999999 linear-gradient(90deg, rgba($colorDark, $colorDark, $colorDark, 0) 0%, rgba($colorDark, $colorDark, $colorDark, 0) 100%);
+  background: #999999 linear-gradient(270deg, rgba($colorDark, $colorDark, $colorDark,1) 0%, rgba($colorDark, $colorDark, $colorDark,0) 100%);
   color: #ffffff;
   cursor: pointer;
   transition: ease-in 0.1s;

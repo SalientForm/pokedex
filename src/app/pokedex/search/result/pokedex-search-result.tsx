@@ -24,9 +24,10 @@ export function PokedexSearchResult(props: PokedexSearchResultProps) {
 
   return (
     <Card className={styles['container']}>
-      <div className={`${styles['title']}`}>Search Results</div>
-      <div className={`${styles['results']}`}>
-        {searchResults$.map((result) => (
+      <div className={styles['content']}>
+        <div className={`${styles['title']}`}>Search Results</div>
+        <div className={`${styles['results']}`}>
+          {searchResults$.map((result) => (
             <PokemonProvider key={result.item.id} pokemonId={result.item.id}>
               <PokemonSummaryCard
                 onClick={handleClickPokemonCard}
@@ -34,8 +35,9 @@ export function PokedexSearchResult(props: PokedexSearchResultProps) {
                 rolloverEffect={true}
               ></PokemonSummaryCard>
             </PokemonProvider>
-        ))}
-        {searchResults$.length === 0 ? <div>(No results found.)</div> : null}
+          ))}
+          {searchResults$.length === 0 ? <div>(No results found.)</div> : null}
+        </div>
       </div>
     </Card>
   );
