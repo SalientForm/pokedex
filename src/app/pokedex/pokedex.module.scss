@@ -3,16 +3,20 @@
   flex-direction: row;
   width: 100%;
   height: calc(100vh - 6.5rem);
+  max-height: calc(100vh - 6.5rem);
   position: relative;
-  animation: fadeIn 400ms ease-out, enterUp 500ms ease-out;
+  animation: fadeIn 500ms ease-out, enterUp 200ms ease-in-out;
+  transform-origin: top center;
 }
 
 @keyframes enterUp {
   0% {
     top: 1.5rem;
+    padding-bottom: 10rem;
   }
   100% {
     top: 0;
+    padding-bottom: 0;
   }
 }
 

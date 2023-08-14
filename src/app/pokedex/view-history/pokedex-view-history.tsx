@@ -2,12 +2,14 @@ import styles from './pokedex-view-history.module.scss';
 import { useSelector } from 'react-redux';
 import {
   PokemonViewHistoryEntity,
-  selectAllPokemonViewHistory
+  selectAllPokemonViewHistory,
 } from '../state/pokemon-view-history/pokemon-view-history.slice';
 import PokemonViewHistoryItem from './item/pokemon-view-history-item';
 import { useEffect, useState } from 'react';
 
-export function PokedexViewHistory(props: {onClickViewHistoryItem: (viewHistoryItem: PokemonViewHistoryEntity) => void}) {
+export function PokedexViewHistory(props: {
+  onClickViewHistoryItem: (viewHistoryItem: PokemonViewHistoryEntity) => void;
+}) {
   const [message, setMessage] = useState('');
   const viewHistory$ = useSelector(selectAllPokemonViewHistory);
 
@@ -25,10 +27,16 @@ export function PokedexViewHistory(props: {onClickViewHistoryItem: (viewHistoryI
   return (
     <div className={styles['container']}>
       <div className={styles['title']}>View History</div>
-      {viewHistory$.map((i) => (
-        <PokemonViewHistoryItem key={i.id} onClick={props.onClickViewHistoryItem} viewHistoryItem={i}></PokemonViewHistoryItem>
-      ))}
-      {message ? <div>{message}</div> : ''}
+      <div className={styles['historyItems']}>
+        {viewHistory$.map((i) => (
+          <PokemonViewHistoryItem
+            key={i.id}
+            onClick={props.onClickViewHistoryItem}
+            viewHistoryItem={i}
+          ></PokemonViewHistoryItem>
+        ))}
+        {message ? <div className={'pt-2'}>{message}</div> : ''}
+      </div>
     </div>
   );
 }

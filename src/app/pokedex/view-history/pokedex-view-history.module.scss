@@ -1,14 +1,26 @@
 .container {
-  margin: 0 0 1rem 0;
+  margin: 0 0 0 0;
   min-width: 14rem;
   min-height: 16rem;
-  max-height: 40rem;
   overflow-y: scroll;
   text-align: center;
   //noinspection CssInvalidPropertyValue
-  -webkit-mask-image:  linear-gradient(180deg, rgba(0, 0, 0, 1) calc(50% + 3rem), rgba(0, 0, 0, 0));
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) calc(50% + 3rem), rgba(0, 0, 0, 0));
+  //-webkit-mask-image:  linear-gradient(180deg, rgba(0, 0, 0, 1) calc(50% + 3rem), rgba(0, 0, 0, 0));
+  //mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) calc(50% + 3rem), rgba(0, 0, 0, 0));
   animation: fadeIn 500ms;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.historyItems {
+  border-color: #666666;
+  background: rgb(170, 170, 170, 0.25);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  flex-grow: 1;
+  overflow: scroll;
 }
 
 .title {

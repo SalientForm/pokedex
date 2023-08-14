@@ -27,7 +27,7 @@ export function Pokedex() {
   return (
     <div className={styles['container']}>
       <PokedexSearch />
-      <div className={'ms-3 flex-shrink-0'}>
+      <div className={'ms-3 flex-shrink-0 d-flex flex-column justify-content-start'}>
         <PokemonProvider pokemonId={pokemonId$}>
           <PokemonSummaryCard onClick={onSelectPokemon} className={'mb-2'} title={'Last viewed'} />
         </PokemonProvider>
