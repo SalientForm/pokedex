@@ -7,7 +7,7 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit';
 import Fuse from 'fuse.js';
-import { getIdFromUrl } from "../../../common/helpers";
+import { getIdFromUrl } from '../../../common/helpers';
 import { PokeApiListResponse } from '../../../state/pokeapi.model';
 import { PokedexFeatureState } from '../../../state/pokedex-feature-state';
 
@@ -25,27 +25,13 @@ export interface PokemonIndexEntity {
 export interface PokemonIndexState extends EntityState<PokemonIndexEntity> {
   loadingStatus: 'not loaded' | 'loading' | 'loaded' | 'error';
   error: string;
-  selected?: number;
+  selected: number;
 }
 
 export const pokemonIndexAdapter = createEntityAdapter<PokemonIndexEntity>();
 
 /**
- * Export an effect using createAsyncThunk from
- * the Redux Toolkit: https://redux-toolkit.js.org/api/createAsyncThunk
  *
- * e.g.
- * ```
- * import React, { useEffect } from 'react';
- * import { useDispatch } from 'react-redux';
- *
- * // ...
- *
- * const dispatch = useDispatch();
- * useEffect(() => {
- *   dispatch(fetchPokemonIndex())
- * }, [dispatch]);
- * ```
  */
 export const fetchAllPokemonIndex = createAsyncThunk('pokemonIndex/fetchStatus', async (_) => {
   // SUGGESTION: instead of utilizing fetch here, consider a query library or request library
@@ -60,21 +46,12 @@ export const fetchAllPokemonIndex = createAsyncThunk('pokemonIndex/fetchStatus',
   return Promise.resolve(pokemonIndex);
 });
 
-export const fetchNextPokemonIndex = createAsyncThunk('pokemonIndex/fetchStatus', async (currentId, _) => {
-  const POKEMON_LIMIT = 2000;
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=${POKEMON_LIMIT}`);
-  const responseBody: PokeApiListResponse<PokemonIndexEntity[]> = await response.json();
-  responseBody.results?.map((pokemonIndex) => {
-    pokemonIndex.id = getIdFromUrl(pokemonIndex.url);
-    return pokemonIndex;
-  });
-  const pokemonIndex: PokemonIndexEntity[] = responseBody.results ?? [];
-  return Promise.resolve(pokemonIndex);
-});
-
 export const initialPokemonIndexState: PokemonIndexState = pokemonIndexAdapter.getInitialState({
   loadingStatus: 'not loaded',
   error: '',
+  selected: 1,
+  ids: [],
+  entities: {},
 });
 
 export const pokemonIndexSlice = createSlice({
@@ -111,12 +88,13 @@ export const pokemonIndexReducer = pokemonIndexSlice.reducer;
 
 export const pokemonIndexActions = pokemonIndexSlice.actions;
 
-const { selectAll, selectEntities } = pokemonIndexAdapter.getSelectors();
+const { selectIds, selectAll, selectEntities } = pokemonIndexAdapter.getSelectors();
 
 export const selectPokemonIndexState = (rootState: PokedexFeatureState): PokemonIndexState =>
   rootState[POKEMON_INDEX_FEATURE_KEY] as PokemonIndexState;
 
 export const selectAllPokemonIndex = createSelector(selectPokemonIndexState, selectAll);
+export const selectPokemonIndexIds = createSelector(selectPokemonIndexState, selectIds);
 
 export const selectPokemonIndexEntities = createSelector(selectPokemonIndexState, selectEntities);
 
@@ -137,3 +115,21 @@ export const selectPokemonIndexItemById = (pokemonId: number) =>
   });
 
 export const selectSelectedPokemonId = createSelector(selectPokemonIndexState, (state) => state.selected);
+
+export const selectPreviousPokemonId = createSelector(selectSelectedPokemonId, selectPokemonIndexIds, (currentId, ids) => {
+  const currentIndex = ids.indexOf(currentId);
+  if (currentIndex > 0) {
+    return ids[currentIndex - 1];
+  } else {
+    return ids[ids.length - 1];
+  }
+});
+
+export const selectNextPokemonId = createSelector(selectSelectedPokemonId, selectPokemonIndexIds, (currentId, ids) => {
+  const currentIndex = ids.indexOf(currentId);
+  if (currentIndex < ids.length - 1) {
+    return ids[currentIndex + 1];
+  } else {
+    return ids[0];
+  }
+});

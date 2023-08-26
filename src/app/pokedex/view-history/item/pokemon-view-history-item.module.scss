@@ -10,6 +10,10 @@
   z-index: 0;
 }
 
+.container + .container:last-of-type {
+  margin: 0;
+}
+
 .container-background {
   box-sizing: border-box;
   filter: blur(3px);

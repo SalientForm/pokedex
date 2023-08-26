@@ -1,13 +1,14 @@
 @use '../../../styles/base-animations.scss';
 
 .container {
-  margin: 0 1rem 1rem 0;
+  margin: 0 1rem 0 0;
   padding: 0.5rem;
   background-color: #aaaaaa;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: scroll;
 }
 
 .title {
@@ -20,12 +21,56 @@
   text-transform: capitalize;
 }
 
+.image-missing {
+  width: 512px;
+  height: 512px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.image-missing-text {
+  font-weight: bold;
+  color: #aaaaaa;
+  font-size: 80px;
+  content: '?';
+  position: absolute;
+  transform: translate(188px, 222px);
+  z-index: 5;
+}
+
+.image-missing-image {
+  width: 512px;
+  height: 512px;
+  position: relative;
+  background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/25.png');
+  filter: brightness(0);
+}
+
+@keyframes fadeIn {
+  0% {
+    filter: blur(1rem);
+    opacity: 0;
+  }
+  25% {
+    filter: blur(1rem);
+    opacity: 0;
+  }
+  100% {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
 $colorLight: 180;
 $colorDark: 150;
 
 .previous:hover,
 .next:hover {
-  background: #999999 linear-gradient(270deg, rgba($colorDark, $colorDark, $colorDark,1) 0%, rgba($colorDark, $colorDark, $colorDark,0) 100%);
+  background: #999999
+    linear-gradient(
+      270deg,
+      rgba($colorDark, $colorDark, $colorDark, 1) 0%,
+      rgba($colorDark, $colorDark, $colorDark, 0) 100%
+    );
   color: #ffffff;
   cursor: pointer;
   transition: ease-in 0.1s;
@@ -44,12 +89,22 @@ $colorDark: 150;
 }
 
 .previous {
-  background: transparent linear-gradient(90deg, rgba($colorLight,$colorLight,$colorLight,1) 0%, rgba($colorLight,$colorLight,$colorLight,0) 100%);
+  background: transparent
+    linear-gradient(
+      90deg,
+      rgba($colorLight, $colorLight, $colorLight, 1) 0%,
+      rgba($colorLight, $colorLight, $colorLight, 0) 100%
+    );
   transition: ease-out 0.25s;
 }
 
 .next {
-  background: transparent linear-gradient(270deg, rgba($colorLight,$colorLight,$colorLight,1) 0%, rgba($colorLight,$colorLight,$colorLight,0) 100%);
+  background: transparent
+    linear-gradient(
+      270deg,
+      rgba($colorLight, $colorLight, $colorLight, 1) 0%,
+      rgba($colorLight, $colorLight, $colorLight, 0) 100%
+    );
   transition: ease-out 0.25s;
 }
 
