@@ -1,23 +1,27 @@
 .container {
-  position: relative;
   margin: auto;
-  width: 500px;
-}
-
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  flex-direction: column;
 }
 
 .image {
+  width: auto;
+  height: auto;
   position: absolute;
+  max-width: 100%;
+  max-height: 100%;
   opacity: 1;
-  width: 500px;
+
 }
 
 .image-in {
+  z-index: 1;
   animation: fadeInUp 300ms;
   opacity: 1;
 }
@@ -25,6 +29,7 @@
 .image-out {
   animation: fadeOut 200ms;
   opacity: 0;
+  z-index: 0;
 }
 
 @keyframes fadeInUp {

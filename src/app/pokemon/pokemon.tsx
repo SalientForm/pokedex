@@ -15,6 +15,13 @@ import styles from './pokemon.module.scss';
 /* eslint-disable-next-line */
 export interface PokemonProps {}
 
+/**
+ * TODO: change from pokemon to pokemon-detail feature
+ *
+ * @param props
+ * @constructor
+ */
+
 export function Pokemon(props: PokemonProps) {
   const { id: pokemonIdUrlParam } = useParams();
   const selectedPokemonId = useSelector(selectSelectedPokemonId);

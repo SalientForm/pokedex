@@ -37,11 +37,12 @@ export function PreloadedImage(props: PreloadedImageProps) {
 
   useEffect(() => {
     if (props.src !== current.src) {
-      imagePreloader.load(props.src);
+      // TODO: don't set new source until image is loaded
+      const result = imagePreloader.load(props.src);
       setPrevious(current);
       setCurrent(props);
     }
-  }, [props]);
+  }, [current, props]);
 
   const getClassNames = (image: PreloadedImageProps) => {
     if (image.src === props.src) {

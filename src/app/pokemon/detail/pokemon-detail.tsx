@@ -55,7 +55,7 @@ export function PokemonDetail() {
   return (
     <Card className={styles['container']}>
       <div className={styles['title']}>{`${pokemon$.name} #${pokemon$?.id.toString().padStart(4, '0')}`}</div>
-      <div className={`w-100 d-flex flex-row overflow-scroll`}>
+      <div className={`w-100 d-flex flex-row overflow-scroll h-100`}>
         <div onClick={onClickPrevious} className={`${styles['increment']} ${styles['previous']}`}><i className="bi bi-chevron-left"></i></div>
         <div className={styles['detail-summary']}>
           <div className={styles['primary-image']}>
