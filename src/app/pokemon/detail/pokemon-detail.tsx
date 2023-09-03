@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 import { Badge, Card } from 'react-bootstrap';
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { PreloadedImage } from '../../common/components/preloaded-image/preloaded-image';
 import { Pokemon } from '../../pokeapi/model';
 import { PokemonContext } from '../state/pokemon/pokemon-provider';
 import styles from './pokemon-detail.module.scss';
-import {selectNextPokemonId, selectPreviousPokemonId} from "../../pokedex/state/pokemon-index/pokemon-index.slice";
+import { selectNextPokemonId, selectPreviousPokemonId } from '../../pokedex/state/pokemon-index/pokemon-index.slice';
 
 const getAbilities = (pokemon: Pokemon) => {
   return pokemon.abilities
@@ -41,7 +41,6 @@ export function PokemonDetail() {
     navigate(`/pokemon/detail/${previousIndex}`);
   };
 
-
   if (!pokemon$) {
     return (
       <Card className={styles['container']}>
@@ -51,19 +50,29 @@ export function PokemonDetail() {
     );
   }
 
-
   return (
     <Card className={styles['container']}>
       <div className={styles['title']}>{`${pokemon$.name} #${pokemon$?.id.toString().padStart(4, '0')}`}</div>
-      <div className={`w-100 d-flex flex-row overflow-scroll`}>
-        <div onClick={onClickPrevious} className={`${styles['increment']} ${styles['previous']}`}><i className="bi bi-chevron-left"></i></div>
+      <div className={`w-100 d-flex flex-row overflow-scroll flex-grow-1`}>
+        <div onClick={onClickPrevious} className={`${styles['increment']} ${styles['previous']}`}>
+          <i className='bi bi-chevron-left'></i>
+        </div>
         <div className={styles['detail-summary']}>
           <div className={styles['primary-image']}>
-            { (getBestImage(pokemon$)==='') ? <div key={pokemon$.id} className={styles['image-missing']}><div className={styles['image-missing-text']}>?</div><div className={styles['image-missing-image']}></div></div> : <PreloadedImage src={getBestImage(pokemon$)} alt={pokemon$.name} title={pokemon$.name} /> }
+            {getBestImage(pokemon$) === '' ? (
+              <div key={pokemon$.id} className={styles['image-missing']}>
+                <div className={styles['image-missing-text']}>?</div>
+                <div className={styles['image-missing-image']}></div>
+              </div>
+            ) : (
+              <PreloadedImage src={getBestImage(pokemon$)} alt={pokemon$.name} title={pokemon$.name} />
+            )}
           </div>
           <div className={`${styles['detail-abilities']}`}>{getAbilities(pokemon$)}</div>
         </div>
-        <div onClick={onClickNext} className={`${styles['increment']} ${styles['next']}`}><i className="bi bi-chevron-right"></i></div>
+        <div onClick={onClickNext} className={`${styles['increment']} ${styles['next']}`}>
+          <i className='bi bi-chevron-right'></i>
+        </div>
       </div>
     </Card>
   );

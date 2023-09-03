@@ -37,11 +37,11 @@ export function Pokemon(props: PokemonProps) {
 
   return (
     <div className={styles['container']}>
-      <div className={'flex-grow-1 d-flex'}>
+
         <PokemonProvider pokemonId={pokemonId}>
           <PokemonDetail></PokemonDetail>
         </PokemonProvider>
-      </div>
+
       <PokedexViewHistory onClickViewHistoryItem={onClickViewHistoryItem}></PokedexViewHistory>
     </div>
   );

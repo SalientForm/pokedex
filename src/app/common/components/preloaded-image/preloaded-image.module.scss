@@ -4,17 +4,11 @@
   width: 500px;
 }
 
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .image {
   position: absolute;
   opacity: 1;
-  width: 500px;
+  min-width: 500px;
+  max-height: 500px;
 }
 
 .image-in {
