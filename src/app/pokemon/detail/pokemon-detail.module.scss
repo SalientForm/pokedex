@@ -115,6 +115,8 @@ $colorDark: 150;
   justify-content: center;
   margin-bottom: 1rem;
   flex-grow: 1;
+  height: 100%;
+  width: 100%
 }
 
 .detail-message {
@@ -126,6 +128,7 @@ $colorDark: 150;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  flex-grow: 0;
 }
 
 .badge {
@@ -136,6 +139,12 @@ $colorDark: 150;
 .primary-image {
   box-sizing: content-box;
   margin: 0 0 2rem 0;
-  height: 512px;
+  max-width: 512px;
+  max-height: 512px;
+  min-width: 10rem;
+  min-height: 10rem;
   flex-grow: 1;
+  height: 100%;
+  width: 100%;
+  align-content: center;
 }

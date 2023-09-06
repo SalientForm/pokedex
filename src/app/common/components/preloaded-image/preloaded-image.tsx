@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { b } from 'vitest/dist/types-ad1c3f45';
 import styles from './preloaded-image.module.scss';
 
 interface PreloadedImageProps {
@@ -7,9 +8,14 @@ interface PreloadedImageProps {
   title: string;
 }
 
+interface PreloadItem {
+  src: string;
+  success: boolean;
+}
+
 interface ImageLoader {
-  loadedImages: Record<string, Promise<boolean> | boolean>;
-  load: (src: string) => Promise<boolean> | boolean;
+  loadedImages: Record<string, Promise<PreloadItem> | PreloadItem>;
+  load: (src: string) => Promise<PreloadItem> | PreloadItem;
   isLoaded: (src: string) => boolean;
 }
 
@@ -17,12 +23,13 @@ const imagePreloader: ImageLoader = {
   loadedImages: {},
   load: (src: string) => {
     if (!imagePreloader.loadedImages[src]) {
-      return (imagePreloader.loadedImages[src] = new Promise<boolean>((resolve) => {
+      return (imagePreloader.loadedImages[src] = new Promise<PreloadItem>((resolve) => {
         const img = new Image();
         img.src = src;
         img.onload = () => {
-          imagePreloader.loadedImages[src] = true;
-          resolve(true);
+          const result = { src, success: true };
+          imagePreloader.loadedImages[src] = result;
+          resolve(result);
         };
       }));
     }
@@ -32,19 +39,34 @@ const imagePreloader: ImageLoader = {
 };
 
 export function PreloadedImage(props: PreloadedImageProps) {
-  const [current, setCurrent] = useState<PreloadedImageProps>(props);
-  const [previous, setPrevious] = useState<PreloadedImageProps>();
+  const [currentIsLoaded, setCurrentIsLoaded] = useState(false);
+  const currentImageProps= useRef<PreloadedImageProps>();
+  const previousImageProps = useRef<PreloadedImageProps>();
+
+  const listenToPromise = (result: Promise<PreloadItem>) => {
+    setCurrentIsLoaded(false);
+    result.then(({ src, success }) => {
+      if (src === currentImageProps.current?.src) {
+        setCurrentIsLoaded(success);
+      }
+    });
+  };
 
   useEffect(() => {
-    if (props.src !== current.src) {
-      imagePreloader.load(props.src);
-      setPrevious(current);
-      setCurrent(props);
+    if (props.src !== currentImageProps.current?.src) {
+      previousImageProps.current = currentImageProps.current;
+      currentImageProps.current = props;
+      const result = imagePreloader.load(props.src);
+      if (result instanceof Promise) {
+        listenToPromise(result);
+      } else {
+        setCurrentIsLoaded(result.success);
+      }
     }
   }, [props]);
 
   const getClassNames = (image: PreloadedImageProps) => {
-    if (image.src === props.src) {
+    if (image.src === currentImageProps.current?.src) {
       return `${styles['image']} ${styles['image-in']}`;
     }
     return `${styles['image']} ${styles['image-out']}`;
@@ -52,20 +74,24 @@ export function PreloadedImage(props: PreloadedImageProps) {
 
   return (
     <div className={`${styles['container']}`}>
-      <img
-        key={current.src}
-        className={getClassNames(current)}
-        title={current.title}
-        alt={current.alt}
-        src={current.src}
-      />
-      {previous ? (
+      {currentIsLoaded && currentImageProps.current ? (
         <img
-          key={previous.src}
-          className={getClassNames(previous)}
-          title={previous.title}
-          alt={previous.alt}
-          src={previous.src}
+          key={currentImageProps.current.src}
+          className={getClassNames(currentImageProps.current)}
+          title={currentImageProps.current.title}
+          alt={currentImageProps.current.alt}
+          src={currentImageProps.current.src}
+        />
+      ) : (
+        ''
+      )}
+      {previousImageProps.current ? (
+        <img
+          key={previousImageProps.current.src}
+          className={getClassNames(previousImageProps.current)}
+          title={previousImageProps.current.title}
+          alt={previousImageProps.current.alt}
+          src={previousImageProps.current.src}
         />
       ) : (
         ''
