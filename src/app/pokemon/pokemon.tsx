@@ -44,12 +44,12 @@ export function Pokemon(props: PokemonProps) {
 
   return (
     <div className={styles['container']}>
-
-        <PokemonProvider pokemonId={pokemonId}>
-          <PokemonDetail></PokemonDetail>
-        </PokemonProvider>
-
-      <PokedexViewHistory onClickViewHistoryItem={onClickViewHistoryItem}></PokedexViewHistory>
+      <PokemonProvider pokemonId={pokemonId}>
+        <PokemonDetail></PokemonDetail>
+      </PokemonProvider>
+      <div className='flex-grow-0 d-flex flex-column'>
+        <PokedexViewHistory onClickViewHistoryItem={onClickViewHistoryItem}></PokedexViewHistory>
+      </div>
     </div>
   );
 }

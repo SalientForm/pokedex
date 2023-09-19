@@ -4,11 +4,8 @@
   min-height: 16rem;
   overflow-y: scroll;
   text-align: center;
-  //noinspection CssInvalidPropertyValue
-  //-webkit-mask-image:  linear-gradient(180deg, rgba(0, 0, 0, 1) calc(50% + 3rem), rgba(0, 0, 0, 0));
-  //mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) calc(50% + 3rem), rgba(0, 0, 0, 0));
   animation: fadeIn 500ms;
-  flex-grow: 0;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
