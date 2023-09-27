@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { b } from 'vitest/dist/types-ad1c3f45';
+import { useEffect, useRef, useState } from 'react';
 import styles from './preloaded-image.module.scss';
 
 interface PreloadedImageProps {

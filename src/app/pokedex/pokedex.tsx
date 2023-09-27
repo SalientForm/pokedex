@@ -1,16 +1,13 @@
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { PokemonProvider } from '../pokemon/state/pokemon/pokemon-provider';
 import PokemonSummaryCard from '../pokemon/summary-card/pokemon-summary-card';
 import styles from './pokedex.module.scss';
 import PokedexSearch from './search/pokedex-search';
-import { pokemonIndexActions, selectSelectedPokemonId } from './state/pokemon-index/pokemon-index.slice';
-import {
-  addPokemonViewHistoryItemByPokemonId,
-  PokemonViewHistoryEntity,
-} from './state/pokemon-view-history/pokemon-view-history.slice';
+import { selectSelectedPokemonId } from './state/pokemon-index/pokemon-index.slice';
+import { PokemonViewHistoryEntity } from './state/pokemon-view-history/pokemon-view-history.slice';
 import PokedexViewHistory from './view-history/pokedex-view-history';
+import { useEffect } from 'react';
 
 export function Pokedex() {
   const pokemonId$ = useSelector(selectSelectedPokemonId);

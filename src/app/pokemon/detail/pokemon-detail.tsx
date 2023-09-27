@@ -38,7 +38,7 @@ export function PokemonDetail() {
   };
 
   const onClickPrevious = () => {
-    navigate(`/pokemon/detail/${previousIndex}`);
+    navigate(`/pokemon/detail/${previousIndex}`, {  });
   };
 
   if (!pokemon$) {

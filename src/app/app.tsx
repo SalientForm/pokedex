@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Outlet } from 'react-router';
-import { defaultLayoutConfig } from './config/default-layout.config';
-import DefaultLayout from './layout/default-layout';
+import { RouterProvider } from 'react-router';
 import { fetchAllPokemonIndex, selectPokemonIndexItemById } from './pokedex/state/pokemon-index/pokemon-index.slice';
 import { PokedexDispatch } from './state/root-store';
+import { AnimatePresence } from 'framer-motion';
+import { pokedexRouter } from './routing/root-router-config';
 
 export function App() {
   // TODO: create initialization hook that won't render until index is available
@@ -15,14 +15,14 @@ export function App() {
     dispatch(fetchAllPokemonIndex());
   }, [dispatch]);
 
-  if(!indexCheck){
+  if (!indexCheck) {
     return null;
   }
 
   return (
-    <DefaultLayout layoutProps={defaultLayoutConfig}>
-      <Outlet />
-    </DefaultLayout>
+    <AnimatePresence mode='wait'>
+      <RouterProvider router={pokedexRouter} />
+    </AnimatePresence>
   );
 }
 
