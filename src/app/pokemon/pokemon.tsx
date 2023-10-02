@@ -16,6 +16,7 @@ import {
   unstable_Blocker as Blocker,
   unstable_BlockerFunction as BlockerFunction,
 } from 'react-router';
+import { useDelayNavigate } from '../common/hooks/useDelayNavigate';
 
 /* eslint-disable-next-line */
 export interface PokemonProps {}
@@ -26,43 +27,23 @@ export interface PokemonProps {}
  * @param props
  * @constructor
  */
-
 export function Pokemon(props: PokemonProps) {
   const { id: pokemonIdUrlParam } = useParams();
   const selectedPokemonId = useSelector(selectSelectedPokemonId);
-  // param value is priority
+  // param value for pokemonId is priority
   const pokemonId = pokemonIdUrlParam ? parseInt(pokemonIdUrlParam) : selectedPokemonId ?? 1;
   const dispatch = useDispatch<PokedexDispatch>();
   const navigate = useNavigate();
 
-  const [exitTimeoutId, setExitTimeoutId] = useState<NodeJS.Timeout | undefined>();
+  const [exiting, setExiting] = useState(false);
+  const onStartExit = () => {
+    console.log('exiting');
+    setExiting(true);
+  };
 
-  const blocker = useBlocker(true);
+  useDelayNavigate(225, onStartExit, 'pokemon');
 
-  const startTimeout = useCallback(() => {
-    if (exitTimeoutId) {
-      clearTimeout(exitTimeoutId);
-    }
-    const timeoutId = setTimeout(() => {
-      if (blocker.proceed) {
-        blocker.proceed();
-      }
 
-      if (blocker.reset) {
-        blocker.reset();
-      }
-    }, 3000);
-    setExitTimeoutId(timeoutId);
-  }, [blocker, exitTimeoutId]);
-
-  useEffect(() => {
-    console.log('-------------');
-    console.log('state', blocker.state);
-    console.log('proceed', blocker.proceed);
-    console.log('reset', blocker.reset);
-    console.log('location', blocker.location);
-    startTimeout();
-  }, [blocker]);
 
   useEffect(() => {
     dispatch(pokemonIndexActions.setSelectedPokemon(pokemonId));
@@ -70,9 +51,6 @@ export function Pokemon(props: PokemonProps) {
     if (!pokemonIdUrlParam) {
       navigate(`/pokemon/detail/${pokemonId}`, { replace: true });
     }
-    return () => {
-      return;
-    };
   }, [pokemonIdUrlParam, navigate, pokemonId, dispatch]);
 
   const onClickViewHistoryItem = (viewHistoryItem: PokemonViewHistoryEntity) => {
@@ -80,7 +58,7 @@ export function Pokemon(props: PokemonProps) {
   };
 
   return (
-    <div className={styles['container']}>
+    <div className={`${styles['container']}` + (exiting ? ` ${styles['exit']}` : ``)}>
       <PokemonProvider pokemonId={pokemonId}>
         <PokemonDetail></PokemonDetail>
       </PokemonProvider>

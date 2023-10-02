@@ -9,3 +9,49 @@
   transform-origin: top center;
 }
 
+@keyframes enterUp {
+  0% {
+    top: 1.5rem;
+    padding-bottom: 10rem;
+  }
+  100% {
+    top: 0;
+    padding-bottom: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.exit {
+  animation: fadeOut 200ms ease-in, exitDown 200ms ease-in;
+  opacity: 0;
+  top: 1.5rem;
+  padding-bottom: 10rem;
+}
+
+@keyframes exitDown {
+  0% {
+    top: 0;
+    padding-bottom: 0;
+  }
+  100% {
+    top: 1.5rem;
+    padding-bottom: 10rem;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
