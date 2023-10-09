@@ -29,7 +29,7 @@ const getEvolutionChain = (evolutionChain: EvolutionChain) => {
   //     </Badge>
   //   ));
 
-   return flatTree;
+   return <div></div>;
 };
 
 
@@ -66,7 +66,7 @@ export function PokemonDetail() {
     navigate(`/pokemon/detail/${previousIndex}`, {});
   };
 
-  if (!pokemon$) {
+  if (!pokemon$ || !evolutionChain) {
     return (
       <Card className={styles['container']}>
         <div className={styles['title']}>Pokemon Detail</div>
