@@ -13,13 +13,16 @@ export function Header(props: PropsWithChildren<DefaultLayoutProps>) {
 
   return (
     <div className={styles['container']}>
-      <div className={styles['title']}>{appTitle}</div>
+      <div className={styles['options']}>
+      <div className={`${styles['title']} flex-grow-1`}>{appTitle}</div>
       <div className={'flex-grow-1'}></div>
       {links?.map((mi: MenuItemConfig, index) => (
         <Button variant='dark' key={index} onClick={() => onClickLink(mi.config as string)}>
           {mi.label}
         </Button>
       ))}
+      </div>
+      <div className={styles['border']}></div>
     </div>
   );
 }

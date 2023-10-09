@@ -1,0 +1,8 @@
+Use as reference, https://www.pokemon.com/us/pokedex/feraligatr
+
+finish separation evolution chain provider from pokemon provider
+
+include details in column initially with a details
+preview previous / next names in title of pokemon details
+preload pokemon on rollover of search results
+update favicon

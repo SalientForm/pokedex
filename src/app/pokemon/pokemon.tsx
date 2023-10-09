@@ -35,15 +35,7 @@ export function Pokemon(props: PokemonProps) {
   const dispatch = useDispatch<PokedexDispatch>();
   const navigate = useNavigate();
 
-  const [exiting, setExiting] = useState(false);
-  const onStartExit = () => {
-    console.log('exiting');
-    setExiting(true);
-  };
-
-  useDelayNavigate(225, onStartExit, 'pokemon');
-
-
+  const [delayNavigationStatus] = useDelayNavigate(225, 'pokemon');
 
   useEffect(() => {
     dispatch(pokemonIndexActions.setSelectedPokemon(pokemonId));
@@ -58,7 +50,7 @@ export function Pokemon(props: PokemonProps) {
   };
 
   return (
-    <div className={`${styles['container']}` + (exiting ? ` ${styles['exit']}` : ``)}>
+    <div className={`${styles['container']}` + (delayNavigationStatus==='pending' ? ` ${styles['exit']}` : ``)}>
       <PokemonProvider pokemonId={pokemonId}>
         <PokemonDetail></PokemonDetail>
       </PokemonProvider>

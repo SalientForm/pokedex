@@ -5,14 +5,14 @@
   height: calc(100vh - 6.5rem);
   max-height: calc(100vh - 6.5rem);
   position: relative;
-  animation: fadeIn 500ms ease-out, enterUp 200ms ease-in-out;
+  animation: fadeIn 300ms ease-out, enterUp 200ms ease-in-out;
   transform-origin: top center;
 }
 
 @keyframes enterUp {
   0% {
     top: 1.5rem;
-    padding-bottom: 10rem;
+    padding-bottom: 20rem;
   }
   100% {
     top: 0;
@@ -29,11 +29,13 @@
   }
 }
 
+// TODO: generalize this exit animation?
+
 .exit {
   animation: fadeOut 200ms ease-in, exitDown 200ms ease-in;
   opacity: 0;
   top: 1.5rem;
-  padding-bottom: 10rem;
+  //padding-bottom: 10rem;
 }
 
 @keyframes exitDown {
@@ -42,8 +44,8 @@
     padding-bottom: 0;
   }
   100% {
-    top: 1.5rem;
-    padding-bottom: 10rem;
+    top: 15.5rem;
+    //padding-bottom: 10rem;
   }
 }
 

@@ -8,9 +8,12 @@ import { selectSelectedPokemonId } from './state/pokemon-index/pokemon-index.sli
 import { PokemonViewHistoryEntity } from './state/pokemon-view-history/pokemon-view-history.slice';
 import PokedexViewHistory from './view-history/pokedex-view-history';
 import { useEffect } from 'react';
+import {useDelayNavigate} from "../common/hooks/useDelayNavigate";
 
 export function Pokedex() {
   const pokemonId$ = useSelector(selectSelectedPokemonId);
+
+  const [delayNavigationStatus] = useDelayNavigate(225, 'pokedex');
 
   const navigate = useNavigate();
   const onSelectHistoryItem = (viewHistoryItem: PokemonViewHistoryEntity) => {
@@ -22,7 +25,7 @@ export function Pokedex() {
   };
 
   return (
-    <div className={styles['container']}>
+    <div className={`${styles['container']}` + (delayNavigationStatus==='pending' ? ` ${styles['exit']}` : ``)}>
       <PokedexSearch />
       <div className={'ms-3 flex-shrink-0 d-flex flex-column justify-content-start'}>
         <PokemonProvider pokemonId={pokemonId$}>

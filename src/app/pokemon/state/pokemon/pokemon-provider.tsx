@@ -27,13 +27,6 @@ export const PokemonProvider = (props: PokemonProviderProps) => {
     isLoading: pokemon$IsLoading,
   } = useFetchPokemonByIdQuery(pokemonId, { skip: pokemonId === 0 });
 
-  // const speciesName = pokemon$IsLoading || !pokemon$ ? '' : pokemon$.species.name ?? '';
-  // const {
-  //   data: evolutionChain,
-  //   error: evolutionChainError,
-  //   isLoading: evolutionChainIsLoading,
-  // } = useFetchEvolutionChainBySpeciesQuery(speciesName, { skip: pokemon$IsLoading || !pokemon$ });
-
   // if id is 0 either no Pokemon was selected, or we wish not to display
   // if (pokemon$IsLoading || props.pokemonId === 0) {
   //   return <></>;
