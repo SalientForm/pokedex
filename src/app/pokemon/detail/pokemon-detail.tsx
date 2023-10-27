@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import {useContext, useRef} from 'react';
 import { Badge, Card } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -34,6 +34,20 @@ const getEvolutionChain = (evolutionChain: EvolutionChain) => {
 
 
 
+function CircleA() {
+  return <circle cx={10} cy={10} r={5} fill="red" />;
+}
+
+function CircleB() {
+  return <circle cx={40} cy={30} r={5} fill="blue" />;
+}
+
+function CircleC() {
+  return <circle cx={10} cy={50} r={5} fill="blue" />;
+}
+
+
+
 const getBestImage = (pokemon$: Pokemon) => {
   return (
     pokemon$?.sprites?.other?.home.front_default ||
@@ -48,6 +62,9 @@ export function PokemonDetail() {
   const navigate = useNavigate();
   const nextIndex = useSelector(selectNextPokemonId);
   const previousIndex = useSelector(selectPreviousPokemonId);
+
+  const refA = useRef();
+  const refB = useRef();
 
   // -- load evolution chain --
 
@@ -98,11 +115,18 @@ export function PokemonDetail() {
             <div className={`${styles['detail-abilities']}`}>{getAbilities(pokemon$)}</div>
           </div>
           <div className={styles['evolution-chain']}>{getEvolutionChain(evolutionChain)}</div>
+          <div><svg width="100%" height="100%">
+            <CircleA ref={refA} />
+            <CircleB ref={refB} />
+            {getSvgConnector()}
+          </svg></div>
         </div>
         <div onClick={onClickNext} className={`${styles['increment']} ${styles['next']}`}>
           <i className='bi bi-chevron-right'></i>
         </div>
       </div>
+
+
     </Card>
   );
 }
