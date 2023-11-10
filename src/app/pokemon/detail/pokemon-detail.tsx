@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { PreloadedImage } from '../../common/components/preloaded-image/preloaded-image';
 import { EvolutionChain, Pokemon } from '../../pokeapi/model';
+import EvolutionChainView from "../evolution-chain/evolution-chain-view";
 import { PokemonContext } from '../state/pokemon/pokemon-provider';
-import { getSvgConnector } from "./connector";
 import styles from './pokemon-detail.module.scss';
 import { selectNextPokemonId, selectPreviousPokemonId } from '../../pokedex/state/pokemon-index/pokemon-index.slice';
 import { useFetchEvolutionChainBySpeciesQuery } from '../state/evolution-chain/evolution-chain.service';
@@ -32,18 +32,6 @@ const getEvolutionChain = (evolutionChain: EvolutionChain) => {
 
   return <div></div>;
 };
-
-function CircleA({ref:any}) {
-  return <circle ref={ref} cx={10} cy={10} r={5} fill='red' />;
-}
-
-function CircleB(ref:any) {
-  return <circle ref={ref} cx={40} cy={30} r={5} fill='blue' />;
-}
-
-function Circle(ref:any) {
-  return <circle ref={ref} cx={10} cy={50} r={5} fill='blue' />;
-}
 
 const getBestImage = (pokemon$: Pokemon) => {
   return (
@@ -113,11 +101,7 @@ export function PokemonDetail() {
           </div>
           <div className={styles['evolution-chain']}>{getEvolutionChain(evolutionChain)}</div>
           <div>
-            <svg width='100%' height='100%'>
-              <CircleA ref={refA} />
-              <CircleB ref={refB} />
-              {getSvgConnector(refA, refB)}
-            </svg>
+            <EvolutionChainView></EvolutionChainView>
           </div>
         </div>
         <div onClick={onClickNext} className={`${styles['increment']} ${styles['next']}`}>
