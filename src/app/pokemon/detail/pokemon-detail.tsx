@@ -1,13 +1,14 @@
-import {useContext, useRef} from 'react';
+import { useContext, useRef } from 'react';
 import { Badge, Card } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { PreloadedImage } from '../../common/components/preloaded-image/preloaded-image';
-import {EvolutionChain, Pokemon} from '../../pokeapi/model';
+import { EvolutionChain, Pokemon } from '../../pokeapi/model';
 import { PokemonContext } from '../state/pokemon/pokemon-provider';
 import styles from './pokemon-detail.module.scss';
 import { selectNextPokemonId, selectPreviousPokemonId } from '../../pokedex/state/pokemon-index/pokemon-index.slice';
 import { useFetchEvolutionChainBySpeciesQuery } from '../state/evolution-chain/evolution-chain.service';
+import EvolutionChainNodeTree from "../state/evolution-chain/evolution-chain-node-tree";
 
 const getAbilities = (pokemon: Pokemon) => {
   return pokemon.abilities
@@ -29,24 +30,20 @@ const getEvolutionChain = (evolutionChain: EvolutionChain) => {
   //     </Badge>
   //   ));
 
-   return <div></div>;
+  return <div></div>;
 };
 
-
-
 function CircleA() {
-  return <circle cx={10} cy={10} r={5} fill="red" />;
+  return <circle cx={10} cy={10} r={5} fill='red' />;
 }
 
 function CircleB() {
-  return <circle cx={40} cy={30} r={5} fill="blue" />;
+  return <circle cx={40} cy={30} r={5} fill='blue' />;
 }
 
 function CircleC() {
-  return <circle cx={10} cy={50} r={5} fill="blue" />;
+  return <circle cx={10} cy={50} r={5} fill='blue' />;
 }
-
-
 
 const getBestImage = (pokemon$: Pokemon) => {
   return (
@@ -63,8 +60,20 @@ export function PokemonDetail() {
   const nextIndex = useSelector(selectNextPokemonId);
   const previousIndex = useSelector(selectPreviousPokemonId);
 
-  const refA = useRef();
-  const refB = useRef();
+  const refA = useRef<HTMLCanvasElement>();
+  const refB = useRef<HTMLCanvasElement>();
+
+  // useEffect(() => {
+  //   if (refA.current && refB.current) {
+  //     const ctx = refA.current.getContext('2d');
+  //     if(ctx) {
+  //       ctx.beginPath();
+  //       ctx.moveTo(10, 10);
+  //       ctx.lineTo(40, 30);
+  //       ctx.stroke();
+  //     }
+  //   }
+  // }, []);
 
   // -- load evolution chain --
 
@@ -115,18 +124,14 @@ export function PokemonDetail() {
             <div className={`${styles['detail-abilities']}`}>{getAbilities(pokemon$)}</div>
           </div>
           <div className={styles['evolution-chain']}>{getEvolutionChain(evolutionChain)}</div>
-          <div><svg width="100%" height="100%">
-            <CircleA ref={refA} />
-            <CircleB ref={refB} />
-            {getSvgConnector()}
-          </svg></div>
+          <div>
+            <EvolutionChainNodeTree></EvolutionChainNodeTree>
+          </div>
         </div>
         <div onClick={onClickNext} className={`${styles['increment']} ${styles['next']}`}>
           <i className='bi bi-chevron-right'></i>
         </div>
       </div>
-
-
     </Card>
   );
 }
