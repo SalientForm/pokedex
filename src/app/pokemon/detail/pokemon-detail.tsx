@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router';
 import { PreloadedImage } from '../../common/components/preloaded-image/preloaded-image';
 import { EvolutionChain, Pokemon } from '../../pokeapi/model';
 import { PokemonContext } from '../state/pokemon/pokemon-provider';
+import { getSvgConnector } from "./connector";
 import styles from './pokemon-detail.module.scss';
 import { selectNextPokemonId, selectPreviousPokemonId } from '../../pokedex/state/pokemon-index/pokemon-index.slice';
 import { useFetchEvolutionChainBySpeciesQuery } from '../state/evolution-chain/evolution-chain.service';
@@ -60,8 +61,6 @@ export function PokemonDetail() {
   const nextIndex = useSelector(selectNextPokemonId);
   const previousIndex = useSelector(selectPreviousPokemonId);
 
-  const refA = useRef<HTMLCanvasElement>();
-  const refB = useRef<HTMLCanvasElement>();
 
   // useEffect(() => {
   //   if (refA.current && refB.current) {
@@ -74,6 +73,9 @@ export function PokemonDetail() {
   //     }
   //   }
   // }, []);
+
+  const refA = useRef(null);
+  const refB = useRef(null);
 
   // -- load evolution chain --
 
