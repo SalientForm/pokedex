@@ -48,8 +48,18 @@ export function PokemonDetail() {
   const nextIndex = useSelector(selectNextPokemonId);
   const previousIndex = useSelector(selectPreviousPokemonId);
 
-  const refA = useRef(null);
-  const refB = useRef(null);
+
+  // useEffect(() => {
+  //   if (refA.current && refB.current) {
+  //     const ctx = refA.current.getContext('2d');
+  //     if(ctx) {
+  //       ctx.beginPath();
+  //       ctx.moveTo(10, 10);
+  //       ctx.lineTo(40, 30);
+  //       ctx.stroke();
+  //     }
+  //   }
+  // }, []);
 
   // -- load evolution chain --
 
@@ -85,21 +95,21 @@ export function PokemonDetail() {
           <i className='bi bi-chevron-left'></i>
         </div>
         <div className={styles['detail-summary']}>
-          <div className={styles['primary-image']}>
-            {getBestImage(pokemon$) === '' ? (
-              <div key={pokemon$.id} className={styles['image-missing']}>
-                <div className={styles['image-missing-text']}>?</div>
-                <div className={styles['image-missing-image']}></div>
-              </div>
-            ) : (
-              <PreloadedImage src={getBestImage(pokemon$)} alt={pokemon$.name} title={pokemon$.name} />
-            )}
-          </div>
-          <div className={styles['pokemon-detail']}>
-            <span className={styles['pokemon-detail-title']}>Abilities</span>
-            <div className={`${styles['detail-abilities']}`}>{getAbilities(pokemon$)}</div>
-          </div>
-          <div className={styles['evolution-chain']}>{getEvolutionChain(evolutionChain)}</div>
+          {/*<div className={styles['primary-image']}>*/}
+          {/*  {getBestImage(pokemon$) === '' ? (*/}
+          {/*    <div key={pokemon$.id} className={styles['image-missing']}>*/}
+          {/*      <div className={styles['image-missing-text']}>?</div>*/}
+          {/*      <div className={styles['image-missing-image']}></div>*/}
+          {/*    </div>*/}
+          {/*  ) : (*/}
+          {/*    <PreloadedImage src={getBestImage(pokemon$)} alt={pokemon$.name} title={pokemon$.name} />*/}
+          {/*  )}*/}
+          {/*</div>*/}
+          {/*<div className={styles['pokemon-detail']}>*/}
+          {/*  <span className={styles['pokemon-detail-title']}>Abilities</span>*/}
+          {/*  <div className={`${styles['detail-abilities']}`}>{getAbilities(pokemon$)}</div>*/}
+          {/*</div>*/}
+          {/*<div className={styles['evolution-chain']}>{getEvolutionChain(evolutionChain)}</div>*/}
           <div>
             <EvolutionChainView></EvolutionChainView>
           </div>

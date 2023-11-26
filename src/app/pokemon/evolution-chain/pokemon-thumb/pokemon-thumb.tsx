@@ -6,9 +6,9 @@ export interface PokemonThumbProps {}
 
 export function PokemonThumb(props: PokemonThumbProps) {
   return (
-    <Card className={styles['container']}>
+    <div className={styles['container']}>
       <p>Pokemon</p>
-    </Card>
+    </div>
   );
 }
 
