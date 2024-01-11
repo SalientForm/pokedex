@@ -64,8 +64,10 @@ export function EvolutionChainView(props: EvolutionChainProps) {
     const { color = 'black', width = 1 } = style;
 
     // breakdown
-    // a. direction from a -> b (right, left, down, up)
+    // a. determine 2 points
+    // a. direction from a -> b (x, y, -x, -y)
     // b. point a, direction determines connector point
+    //     a. (xA < xB) && (yA < yB) && ((xB - xA) > (yB - yB)) if d = x
     // c. stem a, length = (1/2 distance of direction) - (2 x connectorRadius)
     // d. connector
     //      1. point a is end of stem
