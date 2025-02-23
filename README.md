@@ -1,4 +1,10 @@
-# Pokedex Assessment
+# Pokedex Example App
+
+## Setup
+
+- Clone the repo
+- Install local dependencies `npm i`
+- Run `nx serve`
 
 ## Update 5/30/23
 
@@ -38,12 +44,6 @@
 1. Use of the scaffolding tool [Nx](https://nx.dev/)
 1. Use of [CSS Modules](https://github.com/gajus/react-css-modules) to namespace CSS rules
 1. Use of [React Bootstrap components](https://react-bootstrap.github.io/)
-
-## Setup
-
-- Clone the repo
-- Install local dependencies `npm i`
-- Run `nx serve`
 
 ## Next steps
 
